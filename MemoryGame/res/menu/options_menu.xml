@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_info"
+        android:icon="@drawable/info"
+        android:orderInCategory="99"
+        android:showAsAction="ifRoom"
+        android:text="@string/action_info"/>
+    <item
+        android:id="@+id/gohome"
+        android:icon="@drawable/home"
+        android:orderInCategory="98"
+        android:showAsAction="ifRoom"
+        android:title="@string/goHome"/>
+
+</menu>
