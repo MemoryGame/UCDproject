@@ -1,5 +1,6 @@
 package com.example.memorygame;
-
+//I put this comment here
+//and here
 import android.content.Intent;
 import android.os.Bundle;
 
