@@ -16,7 +16,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="37dp"
         android:onClick="btPlayNow"
-        android:text="@string/button_play" />
+        android:text="@string/buttonPlay" />
 
     <Button
         android:id="@+id/button_instructions"
@@ -26,7 +26,7 @@
         android:layout_alignLeft="@+id/button_play"
         android:layout_alignRight="@+id/button_play"
         android:layout_below="@+id/button_play"
-        android:text="@string/button_instructions" />
+        android:text="@string/buttonInstructions" />
 
     <Button
         android:id="@+id/button_options"
@@ -36,7 +36,7 @@
         android:layout_alignLeft="@+id/button_instructions"
         android:layout_alignRight="@+id/button_instructions"
         android:layout_below="@+id/button_instructions"
-        android:text="@string/button_options" />
+        android:text="@string/buttonOptions" />
 
     <Button
         android:id="@+id/button_high_score"
