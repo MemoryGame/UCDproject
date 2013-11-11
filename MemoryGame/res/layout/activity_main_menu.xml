@@ -9,43 +9,43 @@
     tools:context=".MainMenu" >
 
     <Button
-        android:id="@+id/buttonPlay"
+        android:id="@+id/button_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="37dp"
         android:onClick="btPlayNow"
-        android:text="@string/buttonPlay" />
+        android:text="@string/button_play" />
 
     <Button
-        android:id="@+id/buttonInstructions"
+        android:id="@+id/button_instructions"
         android:onClick="btInstructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/buttonPlay"
-        android:layout_alignRight="@+id/buttonPlay"
-        android:layout_below="@+id/buttonPlay"
-        android:text="@string/buttonInstructions" />
+        android:layout_alignLeft="@+id/button_play"
+        android:layout_alignRight="@+id/button_play"
+        android:layout_below="@+id/button_play"
+        android:text="@string/button_instructions" />
 
     <Button
-        android:id="@+id/buttonOptions"
+        android:id="@+id/button_options"
         android:onClick="btOptions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/buttonInstructions"
-        android:layout_alignRight="@+id/buttonInstructions"
-        android:layout_below="@+id/buttonInstructions"
-        android:text="@string/buttonOptions" />
+        android:layout_alignLeft="@+id/button_instructions"
+        android:layout_alignRight="@+id/button_instructions"
+        android:layout_below="@+id/button_instructions"
+        android:text="@string/button_options" />
 
     <Button
-        android:id="@+id/buttonHighScore"
+        android:id="@+id/button_high_score"
         android:layout_width="wrap_content"
         android:onClick="btHighScores"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/buttonOptions"
-        android:layout_alignRight="@+id/buttonOptions"
-        android:layout_below="@+id/buttonOptions"
+        android:layout_alignLeft="@+id/button_options"
+        android:layout_alignRight="@+id/button_options"
+        android:layout_below="@+id/button_options"
         android:text="@string/buttonScores" />
 
 </RelativeLayout>

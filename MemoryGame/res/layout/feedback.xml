@@ -13,7 +13,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textview1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -22,14 +22,14 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textview2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="@string/feedback_instructions" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/edit_text1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -40,7 +40,7 @@
         </EditText>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/edit_text2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -58,7 +58,7 @@
             android:fillViewport="true" >
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/edit_text3"
                 android:layout_width="match_parent"
                 android:layout_height="320dp"
                 android:layout_gravity="top"

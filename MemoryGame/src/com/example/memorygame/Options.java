@@ -2,7 +2,6 @@ package com.example.memorygame;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;

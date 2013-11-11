@@ -75,9 +75,9 @@ public class Feedback extends SherlockActivity {
 
 	/* Method to send feedback from actionbar/options menu */
 	private void sendMail() {
-		final EditText name = (EditText) findViewById(R.id.editText1);
-		final EditText mailaddress = (EditText) findViewById(R.id.editText2);
-		final EditText comment = (EditText) findViewById(R.id.editText3);
+		final EditText name = (EditText) findViewById(R.id.edit_text1);
+		final EditText mailaddress = (EditText) findViewById(R.id.edit_text2);
+		final EditText comment = (EditText) findViewById(R.id.edit_text3);
 
 		Intent email2 = new Intent(android.content.Intent.ACTION_SEND);
 		email2.setType("plain/text");
