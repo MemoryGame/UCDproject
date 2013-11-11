@@ -1,4 +1,5 @@
 package com.example.memorygame;
+
 //I put this comment here
 //comment peter
 //and here
@@ -15,6 +16,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+
 //bla
 public class About extends SherlockActivity {
 
