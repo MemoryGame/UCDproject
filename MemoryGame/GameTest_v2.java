@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class GameTest{
+public class GameTest_v2{
 
 public static void main(String args[]){
 
@@ -20,7 +20,7 @@ int lives = 3;
 //insert game loop new pattern here
 boolean correct =false;
 for(int i =0; i<p;i++){
-			pattern.add(r.nextInt(4));
+			pattern.add(r.nextInt(4));  // AD - why four here?
 	}
 
 	System.out.println(pattern);
