@@ -151,7 +151,7 @@ public class PlayGame extends Activity implements OnClickListener {
 	}
 	
 	public void alert(String title, String message){
-		AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+		AlertDialog.Builder builder = new AlertDialog.Builder(PlayGame.this);
         builder.setTitle(title)
         .setMessage(message)
         .setCancelable(false)
