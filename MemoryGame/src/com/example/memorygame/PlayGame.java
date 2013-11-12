@@ -2,12 +2,15 @@ package com.example.memorygame;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -29,27 +32,13 @@ public class PlayGame extends Activity implements OnClickListener {
 	Random r = new Random();
 	
 	//create an array of buttons that will be added to the layout
-	Button[] buttons = new Button[numButtons];
+	//Button[] buttons = new Button[numButtons];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_play_game);
-		
-		// generate a new pattern
-		pattern.clear();
-		// also want a string version of the pattern that can be printed out to the user
-		StringBuilder patternString = new StringBuilder();
-		for(int i =0; i<sequenceLength;i++){
-			int x = r.nextInt(numButtons);
-    		pattern.add(x);
-    		patternString.append(Integer.toString(x));
-    	}
 
-		// display the pattern to the user
-		String message = "The pattern is: " + patternString;
-		alert("The Pattern", message);
-		
 		// start generating the layout 
 		LinearLayout mainLayout = ((LinearLayout)findViewById(R.id.mainLayout));
 		
@@ -69,8 +58,9 @@ public class PlayGame extends Activity implements OnClickListener {
 		}
 
 		// The buttons will have different background colours
-		int[] colours = {0xff0000ff, 0xff00ffff, 0xff888888, 0xff00ff00, 0xffff0000, 0xffffff00, 0xffcccccc, 0xffff00ff};
-	
+		int[] coloursOff = {0xff0000ff, 0xff00ffff, 0xff888888, 0xff00ff00, 0xffff0000, 0xffffff00, 0xffcccccc, 0xffff00ff};
+		int[] coloursOn = {0xff00ffff, 0xff0000ff, 0xffff8888, 0xff00ff00, 0xff8f0000, 0xff800f00, 0xffcccccc, 0xffff00ff};
+
 		// each "row" talked about above is actually a linearLayout
 		LinearLayout[] rows = new LinearLayout[numRows];
 		
@@ -92,7 +82,7 @@ public class PlayGame extends Activity implements OnClickListener {
 	        	btn.setId(buttonNum);
 	        	// buttonNum is a unique number for the current button
 	        	// use buttonNum as an index to extract a colour from the colours array
-	        	btn.setBackgroundColor(colours[buttonNum]);
+	        	btn.setBackgroundColor(coloursOff[buttonNum]);
 	        	btn.setOnClickListener(this);
 	        	rows[i].addView(btn);
 	        	// every time we add a button buttonNum is increased
@@ -107,7 +97,7 @@ public class PlayGame extends Activity implements OnClickListener {
 		        	btn.setId(buttonNum);
 		        	// buttonNum is a unique number for the current button
 		        	// use buttonNum as an index to extract a colour from the colours array
-		        	btn.setBackgroundColor(colours[buttonNum]);
+		        	btn.setBackgroundColor(coloursOff[buttonNum]);
 		        	btn.setOnClickListener(this);
 		        	rows[i].addView(btn);
 		        	buttonNum++;
@@ -116,6 +106,34 @@ public class PlayGame extends Activity implements OnClickListener {
 			mainLayout.addView(rows[i]);
 		}
 		// finish generating the layout 
+		
+		// generate a new pattern
+		pattern.clear();
+		// also want a string version of the pattern that can be printed out to the user
+		for(int i =0; i<sequenceLength;i++){
+			int x = r.nextInt(numButtons);
+    		pattern.add(x);
+    		Button b = ((Button)findViewById(x));
+    		final Button fb = b;
+    		final Handler h = new Handler();
+    		Timer t = new Timer();
+    		t.schedule(new TimerTask(){
+    			public void run(){
+    				h.post(new Runnable(){
+    					public void run(){
+    						fb.setText("Rest");
+    					}
+    				});
+    			}
+    		}, 1500);
+      	}
+
+		/* display the pattern to the user
+		String message = "The pattern is: " + patternString;
+		alert("The Pattern", message);
+		*/
+		
+		
 	}
 
 	@Override
