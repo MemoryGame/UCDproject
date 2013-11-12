@@ -10,7 +10,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 public class Options extends SherlockActivity {
-	
+
 	Boolean continueMusic;
 
 	@Override
@@ -19,15 +19,30 @@ public class Options extends SherlockActivity {
 		setContentView(R.layout.activity_options);
 
 	}
-	
+
 	/* require override to continue music on back button pressed */
 	@Override
-	public boolean onKeyDown(int keyCode,KeyEvent event){
-		if (keyCode == KeyEvent.KEYCODE_BACK){
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			continueMusic = true;
-			
+
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (!continueMusic) {
+			MusicManager.pause();
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		continueMusic = false;
+		MusicManager.start(this, MusicManager.MUSIC_MENU);
 	}
 
 	@Override
@@ -56,13 +71,13 @@ public class Options extends SherlockActivity {
 
 	// Home activity launched from the actionBar
 	public void abGoHome() {
-
+		continueMusic = true;
 		startActivity(new Intent(this, MainMenu.class));
 
 	}
 
 	public void abInfo() {
-
+		continueMusic = true;
 		startActivity(new Intent(this, About.class));
 
 	}

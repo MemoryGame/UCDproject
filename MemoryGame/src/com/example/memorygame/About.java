@@ -1,16 +1,5 @@
 package com.example.memorygame;
 
-//I put this comment here
-//comment peter
-//and here
-//and here also
-//again
-// EDIT TEST 12.11
-// Hi test 12.11
-// PULL TEsT. EDITING THIS ONLINE AND GOING TO TRY AND PULL IT DOWN TO ECLIPSE
-// edit test
-// yet another pull test - again - and a push test
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -20,9 +9,8 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-//bla
 public class About extends SherlockActivity {
-	
+
 	Boolean continueMusic;
 
 	@Override
@@ -31,15 +19,30 @@ public class About extends SherlockActivity {
 		setContentView(R.layout.about);
 
 	}
-	
+
 	/* require override to continue music on back button pressed */
 	@Override
-	public boolean onKeyDown(int keyCode,KeyEvent event){
-		if (keyCode == KeyEvent.KEYCODE_BACK){
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			continueMusic = true;
-			
+
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (!continueMusic) {
+			MusicManager.pause();
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		continueMusic = false;
+		MusicManager.start(this, MusicManager.MUSIC_MENU);
 	}
 
 	@Override
@@ -75,21 +78,21 @@ public class About extends SherlockActivity {
 
 	// Options activity launched from the actionBar
 	public void abOptions() {
-
+		continueMusic = true;
 		startActivity(new Intent(this, Options.class));
 
 	}
 
 	// Feedback activity launched from the actionBar
 	public void abFeedback() {
-
+		continueMusic = true;
 		startActivity(new Intent(this, Feedback.class));
 
 	}
 
 	// Home activity launched from the actionBar
 	public void abGoHome() {
-
+		continueMusic = true;
 		startActivity(new Intent(this, MainMenu.class));
 
 	}
