@@ -21,6 +21,8 @@ import com.actionbarsherlock.view.MenuItem;
 
 //bla
 public class About extends SherlockActivity {
+	
+	Boolean continueMusic;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -1,13 +1,15 @@
 package com.example.memorygame;
 import android.content.Intent;
 import android.os.Bundle;
+
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 public class Instructions extends SherlockActivity {
-
+	
+	Boolean continueMusic;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

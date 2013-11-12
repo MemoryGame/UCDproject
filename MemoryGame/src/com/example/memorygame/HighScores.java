@@ -12,6 +12,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 public class HighScores extends SherlockActivity {
 
+	Boolean continueMusic;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

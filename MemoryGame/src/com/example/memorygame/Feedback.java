@@ -14,7 +14,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 public class Feedback extends SherlockActivity {
 	ImageButton clearForm, sendForm;
-
+	Boolean continueMusic;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
