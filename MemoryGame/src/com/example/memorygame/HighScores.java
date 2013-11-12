@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -18,6 +19,16 @@ public class HighScores extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_high_scores);
 
+	}
+	
+	/* require override to continue music on back button pressed */
+	@Override
+	public boolean onKeyDown(int keyCode,KeyEvent event){
+		if (keyCode == KeyEvent.KEYCODE_BACK){
+			continueMusic = true;
+			
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 	@Override
