@@ -16,7 +16,6 @@
     <string name="key_pref_music_volume">100</string>
     <string name="key_def_music_volume">100</string>
     <string name="feedback_actual">Please enter your feedback</string>
-    <string name="feedback_actual">Please enter your feedback</string>
     <string name="feedback_actual_hint">Please enter your feedback</string>
     <string name="feedback_email">Please enter your email address</string>
     <string name="feedback_email_hint">Please enter your email address</string>

@@ -158,12 +158,17 @@ public class PlayGame extends Activity implements OnClickListener {
 			lives--;
 			if(lives==0){
 				// start game over activity
+				String m = "Would you like to enter your score?";
+				alerta("GAME OVER", m ,1000);
+				
 			}
+			else{
 			// display the number of lives left to the user
 			String message = Integer.toString(lives) + " lives left.";
 			alert("Nope", message);
 			// keep the current pattern sequence but start the user guess from the beginning
 			patternPosition = 0;
+			}
 		}
 		
 	}
@@ -181,6 +186,27 @@ public class PlayGame extends Activity implements OnClickListener {
         AlertDialog alert = builder.create();
         alert.show();	
 	}
+	
+	public void alerta(String title, String message,int scores){
+		AlertDialog.Builder builder = new AlertDialog.Builder(PlayGame.this);
+        builder.setTitle(title)
+        .setMessage(message)
+        .setCancelable(false)
+        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				startActivity(new Intent(PlayGame.this, HighScores.class));		
+			}
+		})
+		.setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				startActivity(new Intent(PlayGame.this, MainMenu.class));
+				
+			}
+		});
+        AlertDialog alerta = builder.create();
+        alerta.show();
+	}
+		
 
 }
 
