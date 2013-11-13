@@ -1,8 +1,12 @@
 package com.example.memorygame;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -12,11 +16,44 @@ import com.actionbarsherlock.view.MenuItem;
 public class Options extends SherlockActivity {
 
 	Boolean continueMusic;
+	ToggleButton soundnotify;
+	SharedPreferences preferences; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_options);
+
+		/* Toggle sound on/off with Button - option from action bar too: to be decided*/
+		preferences = getPreferences(MODE_PRIVATE);
+
+		soundnotify = (ToggleButton) findViewById(R.id.toggleButton1);
+		soundnotify
+				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+					
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						// TODO Auto-generated method stub
+						if (isChecked) {
+							// Sound Notifications is enabled
+							MusicManager.start(Options.this,
+									MusicManager.MUSIC_MENU);
+							  SharedPreferences.Editor editor = preferences.edit();
+				                editor.putBoolean("tgpref", true); // value to store
+				                editor.commit();
+						} else {
+							// Sound Notifications is disabled
+							
+							SharedPreferences.Editor editor = preferences.edit();
+			                editor.putBoolean("tgpref", false); // value to store
+			                editor.commit();
+							MusicManager.pause();
+						}
+					}
+				});
 
 	}
 
@@ -24,7 +61,18 @@ public class Options extends SherlockActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			boolean tgpref = preferences.getBoolean("tgpref", true);
+			if (tgpref) //if (tgpref) may be enough, not sure
+			{
 			continueMusic = true;
+			soundnotify.setChecked(true);
+			}
+			
+			else
+			{
+				continueMusic = false;
+				soundnotify.setChecked(false);
+			}
 
 		}
 		return super.onKeyDown(keyCode, event);
@@ -52,6 +100,9 @@ public class Options extends SherlockActivity {
 		return (super.onCreateOptionsMenu(menu));
 	}
 
+	/* Boolean Value for sound on/ off */
+	boolean soundOnOff = true;
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -62,6 +113,23 @@ public class Options extends SherlockActivity {
 			return (true);
 		case R.id.gohome:
 			abGoHome();
+			return (true);
+		//case R.id.toggle_sound:
+		case R.id.toggle_sound:
+			if (soundOnOff) {
+				// 
+				item.setIcon(R.drawable.ic_action_volume_muted);
+				// item.setTitle(title1)
+				MusicManager.pause();
+				soundOnOff = false;
+			} else {
+				// 
+				item.setIcon(R.drawable.ic_action_volume_on);
+				// item.setTitle(title2)
+				MusicManager.start(Options.this, MusicManager.MUSIC_MENU);
+
+				soundOnOff = true;
+			}
 			return (true);
 
 		}

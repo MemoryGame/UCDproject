@@ -7,5 +7,20 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainMenu" >
+    
+        <ToggleButton
+        android:id="@+id/toggleButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/check"
+        android:checked="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="ToggleButton"
+        android:textOff=""
+        android:textOn="" />
 
 </RelativeLayout>
