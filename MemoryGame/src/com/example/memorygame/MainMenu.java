@@ -1,7 +1,6 @@
 package com.example.memorygame;
 
 import java.util.List;
-
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.content.ComponentName;

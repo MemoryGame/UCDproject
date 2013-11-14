@@ -24,6 +24,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 	int numButtons = 8;
 	int lives = 4;
 	int patternPosition = 0;
+	int scores = 0;
 	
 	//Two ArrayLists for pattern to guess and user guess
 	ArrayList<Integer> pattern = new ArrayList<Integer>();
@@ -41,6 +42,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		setContentView(R.layout.activity_play_game);
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 
+		scores = getIntent().getIntExtra("currentScore", 0);
+		
 		// start generating the layout 
 		LinearLayout mainLayout = ((LinearLayout)findViewById(R.id.mainLayout));
 		
@@ -154,8 +157,6 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		alert("The Pattern", message);
 		*/
 		
-		
-
 
 	@Override
 	public void onClick(View v) {
@@ -167,6 +168,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 			if(patternPosition==(pattern.size()-1)){
 				// restart this activity again so new pattern is generated for the user to guess
 				Intent i = getIntent();
+				scores +=10;
+				i.putExtra("currentScore", scores);
 				finish();
 				startActivity(i);
 			}
@@ -179,8 +182,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 			lives--;
 			if(lives==0){
 				// start game over activity
-				String m = "Would you like to enter your score?";
-				alerta("GAME OVER", m ,1000);
+				String m = "Your score is: "+ Integer.toString(scores)+"\nenter your score?";
+				alerta("GAME OVER", m ,scores);
 				
 			}
 			else{
@@ -210,12 +213,15 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 	
 	public void alerta(String title, String message,int scores){
 		AlertDialog.Builder builder = new AlertDialog.Builder(PlayGame.this);
+		final int sc = scores;
         builder.setTitle(title)
         .setMessage(message)
         .setCancelable(false)
         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				startActivity(new Intent(PlayGame.this, HighScores.class));		
+				Intent go = new Intent(PlayGame.this, InsertScores.class);
+				go.putExtra("Score", sc);
+				startActivity(go);		
 			}
 		})
 		.setNegativeButton("Nah", new DialogInterface.OnClickListener() {
