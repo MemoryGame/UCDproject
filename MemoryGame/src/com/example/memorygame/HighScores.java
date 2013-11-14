@@ -20,6 +20,10 @@ public class HighScores extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_high_scores);
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
+		
+		DatabaseScores highScores = new DatabaseScores(this);
+		highScores.open();
+		
 
 	}
 
