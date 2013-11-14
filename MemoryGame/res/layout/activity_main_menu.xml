@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="37dp"
         android:onClick="btPlayNow"
         android:text="@string/buttonPlay" />
@@ -21,6 +22,7 @@
     <Button
         android:id="@+id/button_instructions"
         android:onClick="btInstructions"
+        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button_play"
@@ -32,6 +34,7 @@
         android:id="@+id/button_options"
         android:onClick="btOptions"
         android:layout_width="wrap_content"
+        android:textColor="#FFFFFF"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button_instructions"
         android:layout_alignRight="@+id/button_instructions"
@@ -41,6 +44,7 @@
     <Button
         android:id="@+id/button_high_score"
         android:layout_width="wrap_content"
+        android:textColor="#FFFFFF"
         android:onClick="btHighScores"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button_options"

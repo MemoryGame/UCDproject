@@ -7,6 +7,7 @@ import android.app.ActivityManager.RunningTaskInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -27,11 +29,22 @@ public class MainMenu extends SherlockActivity {
 
 	Button btPlayNow, btInstructions, btOptions, btHighScores;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
+		
+		btPlayNow = (Button) findViewById(R.id.button_play);
+		btInstructions = (Button) findViewById(R.id.button_instructions);
+		btOptions = (Button) findViewById(R.id.button_options);
+		btHighScores = (Button) findViewById(R.id.button_high_score);
+		
+		btPlayNow.setBackgroundColor(Color.TRANSPARENT);
+		btInstructions.setBackgroundColor(Color.TRANSPARENT);
+		btOptions.setBackgroundColor(Color.TRANSPARENT);
+		btHighScores.setBackgroundColor(Color.TRANSPARENT);
 
 	}
 
