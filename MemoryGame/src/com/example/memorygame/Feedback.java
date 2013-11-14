@@ -20,8 +20,8 @@ public class Feedback extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.feedback);
+		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 
 	}
 

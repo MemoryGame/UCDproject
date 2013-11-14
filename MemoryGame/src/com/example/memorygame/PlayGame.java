@@ -17,7 +17,12 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-public class PlayGame extends Activity implements OnClickListener {
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+
+public class PlayGame extends SherlockActivity implements OnClickListener {
 	
 	int sequenceLength = 4;
 	int numButtons = 8;
@@ -38,6 +43,7 @@ public class PlayGame extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_play_game);
+		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 
 		// start generating the layout 
 		LinearLayout mainLayout = ((LinearLayout)findViewById(R.id.mainLayout));

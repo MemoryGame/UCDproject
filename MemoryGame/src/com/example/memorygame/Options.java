@@ -23,6 +23,7 @@ public class Options extends SherlockActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_options);
+		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 
 		/* Toggle sound on/off with Button - option from action bar too: to be decided*/
 		preferences = getPreferences(MODE_PRIVATE);

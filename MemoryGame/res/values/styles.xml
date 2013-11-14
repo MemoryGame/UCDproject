@@ -19,6 +19,7 @@
     
     <style name="CustomTheme" parent="Theme.Sherlock.Light.DarkActionBar">
         <item name="android:windowBackground">@drawable/background</item>
+        
     
 </style>
 
