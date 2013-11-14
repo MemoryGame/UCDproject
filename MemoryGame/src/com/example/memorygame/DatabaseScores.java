@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseScores {
 
 	public static final String KEY_ROWID = "_id";
+	public static final String KEY_NAME = "name";
 	public static final String KEY_SCORE = "score";
 	public static final String KEY_DATE = "date";
 
@@ -35,8 +36,9 @@ public class DatabaseScores {
 		public void onCreate(SQLiteDatabase db) {
 			// TODO Auto-generated method stub
 			db.execSQL("CREATE TABLE " + DATABASE_TABLE + " (" + KEY_ROWID
-					+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_SCORE
-					+ " INTEGER NOT NULL, " + KEY_DATE + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP);");
+					+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_NAME
+					+ " STRING NOT NULL, " + KEY_SCORE + " INTEGER NOT NULL, "
+					+ KEY_DATE + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP);");
 		}
 
 		@Override
@@ -62,9 +64,10 @@ public class DatabaseScores {
 		ourHelper.close();
 	}
 
-	public long createEntry(int score) {
+	public long createEntry(String name, int score) {
 		// TODO Auto-generated method stub
 		ContentValues cv = new ContentValues();
+		cv.put(KEY_NAME, name);
 		cv.put(KEY_SCORE, score);
 
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
@@ -72,10 +75,10 @@ public class DatabaseScores {
 
 	public ArrayList<String> getData() {
 		// TODO Auto-generated method stub
-		String[] columns = new String[] { KEY_ROWID, KEY_SCORE, KEY_DATE };
+		String[] columns = new String[] { KEY_ROWID, KEY_NAME, KEY_SCORE, KEY_DATE };
 		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null,
 				null, KEY_SCORE);
-		
+
 		ArrayList<String> result = new ArrayList<String>();
 
 		int iScore = c.getColumnIndex(KEY_SCORE);
@@ -83,7 +86,7 @@ public class DatabaseScores {
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 			
 			String score = c.getString(iScore);
-		
+
 			result.add(score);
 		}
 
