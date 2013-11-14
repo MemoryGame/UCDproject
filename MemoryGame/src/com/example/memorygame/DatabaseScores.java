@@ -73,6 +73,7 @@ public class DatabaseScores {
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
 
+	/**NEED TO BREAK INTO TWO SEPERATE METHODS**/
 	public ArrayList<String> getData() {
 		// TODO Auto-generated method stub
 		String[] columns = new String[] { KEY_ROWID, KEY_NAME, KEY_SCORE, KEY_DATE };
@@ -81,12 +82,15 @@ public class DatabaseScores {
 
 		ArrayList<String> result = new ArrayList<String>();
 
+		int iName = c.getColumnIndex(KEY_NAME);
 		int iScore = c.getColumnIndex(KEY_SCORE);
 
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 			
+			String name = c.getString(iName);
 			String score = c.getString(iScore);
 
+			result.add(name);
 			result.add(score);
 		}
 
