@@ -1,10 +1,14 @@
 package com.example.memorygame;
 
+import java.util.ArrayList;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -21,9 +25,20 @@ public class HighScores extends SherlockActivity {
 		setContentView(R.layout.activity_high_scores);
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 		
+		//Create instance of DatabaseScores class
 		DatabaseScores highScores = new DatabaseScores(this);
+		
 		highScores.open();
 		
+		//Initialise ArrayList to store the results from the getData() method
+		ArrayList<String> scores = highScores.getData();
+		
+		//Create listView to display results from database
+		ListView lv = (ListView) findViewById(R.id.listView1);
+		lv.setAdapter(new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, scores));
+		
+		highScores.close();
 
 	}
 

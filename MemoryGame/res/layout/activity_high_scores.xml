@@ -8,5 +8,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainMenu" >
 
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" >
+
+    </ListView>
    
 </RelativeLayout>
