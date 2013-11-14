@@ -5,7 +5,6 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,9 +17,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 
 public class PlayGame extends SherlockActivity implements OnClickListener {
 	
@@ -65,7 +61,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 
 		// The buttons will have different background colours
 		int[] coloursOff = {0xff0000ff, 0xff00ffff, 0xff888888, 0xff00ff00, 0xffff0000, 0xffffff00, 0xffcccccc, 0xffff00ff};
-		int[] coloursOn = {0xff00ffff, 0xff0000ff, 0xffff8888, 0xff00ff00, 0xff8f0000, 0xff800f00, 0xffcccccc, 0xffff00ff};
+		//int[] coloursOn = {0xff00ffff, 0xff0000ff, 0xffff8888, 0xff00ff00, 0xff8f0000, 0xff800f00, 0xffcccccc, 0xffff00ff};
 
 		// each "row" talked about above is actually a linearLayout
 		LinearLayout[] rows = new LinearLayout[numRows];
@@ -113,25 +109,44 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		}
 		// finish generating the layout 
 		
-		// generate a new pattern
-		pattern.clear();
-		// also want a string version of the pattern that can be printed out to the user
+		// generate a new pattern 
 		for(int i =0; i<sequenceLength;i++){
 			int x = r.nextInt(numButtons);
     		pattern.add(x);
-    		Button b = ((Button)findViewById(x));
-    		final Button fb = b;
-    		final Handler h = new Handler();
-    		Timer t = new Timer();
-    		t.schedule(new TimerTask(){
-    			public void run(){
-    				h.post(new Runnable(){
-    					public void run(){
-    						fb.setText("Rest");
-    					}
-    				});
-    			}
-    		}, 1500);
+    	}
+		
+		// display this new number pattern to the user using buttons
+		// i.e. for each number in the pattern, select the button that has a matching id
+		// temporarily change the text of this button for a few seconds
+		// then change it back again and move onto the next button		
+		final Timer t = new Timer();
+		long timeBetweenChangesMs = 1500;
+		long delay = 1;
+		for(int i = 0; i < sequenceLength;i++){
+			final Button b = ((Button)findViewById(pattern.get(i)));
+			final String bNum = String.valueOf(pattern.get(i));
+			final Handler h = new Handler();
+			delay += timeBetweenChangesMs;
+			t.schedule(new TimerTask(){
+				public void run(){
+					h.post(new Runnable(){
+						public void run(){
+							b.setText("x");
+				        }
+				    });
+				}
+			}, delay);
+			delay += timeBetweenChangesMs;
+			t.schedule(new TimerTask(){
+				public void run(){
+					h.post(new Runnable(){
+						public void run(){
+							b.setText(bNum);
+				        }
+				    });
+				}
+			}, (delay));
+    	}
       	}
 
 		/* display the pattern to the user
@@ -140,7 +155,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		*/
 		
 		
-	}
+
 
 	@Override
 	public void onClick(View v) {
