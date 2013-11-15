@@ -30,8 +30,10 @@ public class HighScores extends SherlockActivity {
 		
 		highScores.open();
 		
-		//Initialise ArrayList to store the results from the getData() method
-		ArrayList<String> scores = highScores.getData();
+		//Initialise ArrayLists to store the results from the two getData() methods
+		ArrayList<String> names = highScores.getNameData();
+		ArrayList<String> scores = highScores.getScoreData();
+		
 		
 		//Create listView to display results from database
 		ListView lv = (ListView) findViewById(R.id.listView1);

@@ -73,24 +73,43 @@ public class DatabaseScores {
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
 
-	/**NEED TO BREAK INTO TWO SEPERATE METHODS**/
-	public ArrayList<String> getData() {
+	/*Two get Methods for retrieving data from SQLite Database and returning it to activity*/
+	public ArrayList<String> getNameData() {
 		// TODO Auto-generated method stub
-		String[] columns = new String[] { KEY_ROWID, KEY_NAME, KEY_SCORE, KEY_DATE };
+		String[] columns = new String[] { KEY_ROWID, KEY_NAME, KEY_SCORE,
+				KEY_DATE };
 		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null,
 				null, KEY_SCORE);
 
 		ArrayList<String> result = new ArrayList<String>();
 
 		int iName = c.getColumnIndex(KEY_NAME);
+
+		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+
+			String name = c.getString(iName);
+
+			result.add(name);
+		}
+
+		return result;
+	}
+
+	public ArrayList<String> getScoreData() {
+		// TODO Auto-generated method stub
+		String[] columns = new String[] { KEY_ROWID, KEY_NAME, KEY_SCORE,
+				KEY_DATE };
+		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null,
+				null, KEY_SCORE);
+
+		ArrayList<String> result = new ArrayList<String>();
+
 		int iScore = c.getColumnIndex(KEY_SCORE);
 
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-			
-			String name = c.getString(iName);
+
 			String score = c.getString(iScore);
 
-			result.add(name);
 			result.add(score);
 		}
 

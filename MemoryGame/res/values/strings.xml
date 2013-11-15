@@ -33,7 +33,8 @@
     <string name="options">Options</string>
     <string name="send">Send</string>
     <string name="action_info">Information</string>
-      <string name="sound_off">Sound Off</string>
+    <string name="sound_off">Sound Off</string>
     <string name="sound_on">Sound On</string>
+    <string name="title_activity_insert_scores">InsertScores</string>
 
 </resources>

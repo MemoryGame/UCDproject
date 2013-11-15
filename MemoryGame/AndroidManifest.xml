@@ -7,7 +7,7 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
-    
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -34,7 +34,7 @@
             android:name="com.example.memorygame.PlayGame"
             android:label="@string/game_page"
             android:theme="@style/CustomTheme" >
-       </activity>
+        </activity>
         <activity
             android:name="com.example.memorygame.Instructions"
             android:label="@string/instructions"
@@ -59,6 +59,14 @@
             android:name="com.example.memorygame.Feedback"
             android:label="@string/feedback"
             android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name="com.example.memorygame.InsertScores"
+            android:label="@string/title_activity_insert_scores"
+            android:parentActivityName="com.example.memorygame" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.memorygame" />
         </activity>
     </application>
 
