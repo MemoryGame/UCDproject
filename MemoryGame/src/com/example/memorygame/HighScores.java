@@ -140,6 +140,7 @@ public class HighScores extends SherlockActivity {
 							public void onClick(DialogInterface dialog, int id) {
 								// open the database and call delete method
 								deleteData();
+								//refresh the activity
 								finish();
 								startActivity(getIntent());
 							}
@@ -163,6 +164,7 @@ public class HighScores extends SherlockActivity {
 
 	}
 
+	//method for deleting the highscore database
 	public void deleteData() {
 		DatabaseScores deleteScores = new DatabaseScores(this);
 		deleteScores.open();
