@@ -21,12 +21,12 @@ public class InsertScores extends SherlockActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_insert_scores);
 
-		//Intent go = getIntent();
-		//int highScore = go.getIntExtra("Score", 0);
+		Intent go = getIntent();
+		int highScore = go.getIntExtra("Score", 0);
 
 		playerName = (EditText) findViewById(R.id.playerName);
 
-		insertScore.setOnClickListener(this);
+		//insertScore.setOnClickListener(this);
 
 	}
 

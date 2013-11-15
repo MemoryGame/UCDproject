@@ -36,8 +36,9 @@ public class DatabaseScores {
 		public void onCreate(SQLiteDatabase db) {
 			// TODO Auto-generated method stub
 			db.execSQL("CREATE TABLE " + DATABASE_TABLE + " (" + KEY_ROWID
-					+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_NAME
-					+ " STRING NOT NULL, " + KEY_SCORE + " INTEGER NOT NULL, "
+					+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
+					+ KEY_NAME + " STRING NOT NULL, " 
+					+ KEY_SCORE + " INTEGER NOT NULL, "
 					+ KEY_DATE + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP);");
 		}
 
@@ -73,7 +74,10 @@ public class DatabaseScores {
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
 
-	/*Two get Methods for retrieving data from SQLite Database and returning it to activity*/
+	/*
+	 * Two get Methods for retrieving data from SQLite Database and returning it
+	 * to activity
+	 */
 	public ArrayList<String> getNameData() {
 		// TODO Auto-generated method stub
 		String[] columns = new String[] { KEY_ROWID, KEY_NAME, KEY_SCORE,

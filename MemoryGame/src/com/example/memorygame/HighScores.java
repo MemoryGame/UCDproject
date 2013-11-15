@@ -23,23 +23,24 @@ public class HighScores extends SherlockActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_high_scores);
-		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
-		
-		//Create instance of DatabaseScores class
+		getSupportActionBar().setBackgroundDrawable(
+				getResources().getDrawable(R.drawable.backgroundactionbar));
+
+		// Create instance of DatabaseScores class
 		DatabaseScores highScores = new DatabaseScores(this);
-		
+
 		highScores.open();
-		
-		//Initialise ArrayLists to store the results from the two getData() methods
+
+		// Initialise ArrayLists to store the results from the two getData()
+		// methods
 		ArrayList<String> names = highScores.getNameData();
 		ArrayList<String> scores = highScores.getScoreData();
-		
-		
-		//Create listView to display results from database
+
+		// Create listView to display results from database
 		ListView lv = (ListView) findViewById(R.id.listView1);
 		lv.setAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, scores));
-		
+
 		highScores.close();
 
 	}
