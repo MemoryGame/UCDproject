@@ -24,6 +24,7 @@
         android:layout_alignLeft="@+id/playerName"
         android:layout_alignRight="@+id/playerName"
         android:layout_below="@+id/playerName"
+        android:onClick="submitScore"
         android:text="Submit Score" />
 
     <TextView

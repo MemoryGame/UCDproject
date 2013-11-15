@@ -5,13 +5,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
-public class InsertScores extends SherlockActivity implements OnClickListener {
+public class InsertScores extends SherlockActivity {
 
 	EditText playerName;
 	Button insertScore;
@@ -21,17 +20,14 @@ public class InsertScores extends SherlockActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_insert_scores);
 
-		Intent go = getIntent();
-		int highScore = go.getIntExtra("Score", 0);
+		//Intent go = getIntent();
+		//int highScore = go.getIntExtra("Score", 0);
 
 		playerName = (EditText) findViewById(R.id.playerName);
 
-		//insertScore.setOnClickListener(this);
-
 	}
 
-	@Override
-	public void onClick(View arg0) {
+	public void submitScore(View v) {
 		// TODO Auto-generated method stub
 		boolean didItWork = true;
 		try {
