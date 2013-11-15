@@ -139,7 +139,9 @@ public class HighScores extends SherlockActivity {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								// open the database and call delete method
-
+								deleteData();
+								finish();
+								startActivity(getIntent());
 							}
 						})
 				.setNegativeButton("Cancel",
@@ -158,6 +160,14 @@ public class HighScores extends SherlockActivity {
 		alertDialog.show();
 
 		return (true);
+
+	}
+
+	public void deleteData() {
+		DatabaseScores deleteScores = new DatabaseScores(this);
+		deleteScores.open();
+		deleteScores.deleteModule();
+		deleteScores.close();
 
 	}
 
