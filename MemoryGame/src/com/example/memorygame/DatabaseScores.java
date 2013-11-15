@@ -116,7 +116,7 @@ public class DatabaseScores {
 		return result;
 	}
 
-	public void deleteModule(String rowID) {
+	public void deleteModule() {
 		// TODO Auto-generated method stub
 		ourDatabase.delete(DATABASE_TABLE, null, null);
 	}
