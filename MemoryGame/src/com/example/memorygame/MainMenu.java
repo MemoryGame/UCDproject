@@ -27,35 +27,27 @@ import com.actionbarsherlock.view.MenuItem;
 
 public class MainMenu extends SherlockActivity {
 
-	
 	Boolean continueMusic = true;// = true;
-	
-	//Options hello = new Options();
+
 	Boolean yo;
-	
-//	boolean tgpref = hello.preferences.getBoolean("tgpref", true);
-//	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainMenu.this);
-//	prefs.getBoolean("tgpref",true);
-//	if (tgpref) //if (tgpref) may be enough, not sure
-//	{
 
 	Button btPlayNow, btInstructions, btOptions, btHighScores;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
-		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
-		
+		getSupportActionBar().setBackgroundDrawable(
+				getResources().getDrawable(R.drawable.backgroundactionbar));
+
 		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
 		yo = sharedPrefs.getBoolean("tgref", true);
-		
+
 		btPlayNow = (Button) findViewById(R.id.button_play);
 		btInstructions = (Button) findViewById(R.id.button_instructions);
 		btOptions = (Button) findViewById(R.id.button_options);
 		btHighScores = (Button) findViewById(R.id.button_high_score);
-		
+
 		btPlayNow.setBackgroundColor(Color.TRANSPARENT);
 		btInstructions.setBackgroundColor(Color.TRANSPARENT);
 		btOptions.setBackgroundColor(Color.TRANSPARENT);
@@ -75,14 +67,13 @@ public class MainMenu extends SherlockActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if (yo) //if (yo) may be enough, not sure
+		if (yo) // if (yo) may be enough, not sure
 		{
-		continueMusic = false;
-		MusicManager.start(this, MusicManager.MUSIC_MENU);
+			continueMusic = false;
+			MusicManager.start(this, MusicManager.MUSIC_MENU);
 		}
-		
-		else
-		{
+
+		else {
 			MusicManager.pause();
 		}
 	}
@@ -111,7 +102,7 @@ public class MainMenu extends SherlockActivity {
 	// android:onClick
 	// OnClickListeners may be more appropriate for situations like fragments
 	public void btPlayNow(View btPlayNow) {
-
+		continueMusic = true;
 		startActivity(new Intent(this, PlayGame.class));
 
 	}

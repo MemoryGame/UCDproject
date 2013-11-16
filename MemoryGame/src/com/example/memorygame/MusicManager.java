@@ -23,8 +23,7 @@ public class MusicManager {
 	private static int previousMusic = -1;
 
 	public static float getMusicVolume(Context context) {
-		// String[] volumes =
-		// context.getResources().getStringArray(R.array.volume_values);
+
 		String volumeString = PreferenceManager.getDefaultSharedPreferences(
 				context).getString(
 				context.getString(R.string.key_pref_music_volume),
@@ -34,7 +33,6 @@ public class MusicManager {
 
 	public static void start(Context context, int music) {
 		MediaPlayer mp;
-		// mp.setDataSource(players.get(music));
 
 		start(context, music, false);
 	}
@@ -125,8 +123,7 @@ public class MusicManager {
 		yp = MediaPlayer.create(context, R.raw.secondbounce);
 		String uriPath = "android.resource://com.example.memorygame/raw/secondbounce";
 		Uri uri = Uri.parse(uriPath);
-		// MediaMetadataRetriever hs = new MediaMetadataRetriever();
-		// hs.setDataSource(context, uri);
+
 		if (mp != null) {
 			if (!mp.isPlaying()) {
 				mp.reset();

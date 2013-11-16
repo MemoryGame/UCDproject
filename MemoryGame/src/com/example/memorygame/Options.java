@@ -30,8 +30,6 @@ public class Options extends SherlockActivity {
 
 		/* Toggle sound on/off with Button - option from action bar too: to be decided*/
 		preferences = getPreferences(MODE_PRIVATE);
-//		sharedPrefs = getSharedPreferences("com.example.memorygame", MODE_PRIVATE);
-//	    soundnotify.setChecked(sharedPrefs.getBoolean("tgpref", true));
 
 		soundnotify = (ToggleButton) findViewById(R.id.toggleButton1);
 		soundnotify2 = (ToggleButton) findViewById(R.id.toggleButton2);
