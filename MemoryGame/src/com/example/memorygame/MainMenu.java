@@ -1,11 +1,14 @@
 package com.example.memorygame;
 
 import java.util.List;
+
+import android.preference.PreferenceManager;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -24,7 +27,17 @@ import com.actionbarsherlock.view.MenuItem;
 
 public class MainMenu extends SherlockActivity {
 
-	Boolean continueMusic = true;
+	
+	Boolean continueMusic = true;// = true;
+	
+	//Options hello = new Options();
+	Boolean yo;
+	
+//	boolean tgpref = hello.preferences.getBoolean("tgpref", true);
+//	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainMenu.this);
+//	prefs.getBoolean("tgpref",true);
+//	if (tgpref) //if (tgpref) may be enough, not sure
+//	{
 
 	Button btPlayNow, btInstructions, btOptions, btHighScores;
 
@@ -34,6 +47,9 @@ public class MainMenu extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
+		
+		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
+		yo = sharedPrefs.getBoolean("tgref", true);
 		
 		btPlayNow = (Button) findViewById(R.id.button_play);
 		btInstructions = (Button) findViewById(R.id.button_instructions);
@@ -59,8 +75,16 @@ public class MainMenu extends SherlockActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		if (yo) //if (yo) may be enough, not sure
+		{
 		continueMusic = false;
 		MusicManager.start(this, MusicManager.MUSIC_MENU);
+		}
+		
+		else
+		{
+			MusicManager.pause();
+		}
 	}
 
 	@Override
