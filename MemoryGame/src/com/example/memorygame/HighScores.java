@@ -23,21 +23,24 @@ public class HighScores extends SherlockActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_high_scores);
-		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
-		
-		//Create instance of DatabaseScores class
+		getSupportActionBar().setBackgroundDrawable(
+				getResources().getDrawable(R.drawable.backgroundactionbar));
+
+		// Create instance of DatabaseScores class
 		DatabaseScores highScores = new DatabaseScores(this);
-		
+
 		highScores.open();
-		
-		//Initialise ArrayList to store the results from the getData() method
-		ArrayList<String> scores = highScores.getData();
-		
-		//Create listView to display results from database
+
+		// Initialise ArrayLists to store the results from the two getData()
+		// methods
+		ArrayList<String> names = highScores.getNameData();
+		ArrayList<String> scores = highScores.getScoreData();
+
+		// Create listView to display results from database
 		ListView lv = (ListView) findViewById(R.id.listView1);
 		lv.setAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, scores));
-		
+
 		highScores.close();
 
 	}
@@ -136,7 +139,10 @@ public class HighScores extends SherlockActivity {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								// open the database and call delete method
-
+								deleteData();
+								//refresh the activity
+								finish();
+								startActivity(getIntent());
 							}
 						})
 				.setNegativeButton("Cancel",
@@ -155,6 +161,15 @@ public class HighScores extends SherlockActivity {
 		alertDialog.show();
 
 		return (true);
+
+	}
+
+	//method for deleting the highscore database
+	public void deleteData() {
+		DatabaseScores deleteScores = new DatabaseScores(this);
+		deleteScores.open();
+		deleteScores.deleteModule();
+		deleteScores.close();
 
 	}
 

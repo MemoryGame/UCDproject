@@ -1,11 +1,14 @@
 package com.example.memorygame;
 
 import java.util.List;
+
+import android.preference.PreferenceManager;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -24,22 +27,27 @@ import com.actionbarsherlock.view.MenuItem;
 
 public class MainMenu extends SherlockActivity {
 
-	Boolean continueMusic = true;
+	Boolean continueMusic = true;// = true;
+
+	Boolean yo;
 
 	Button btPlayNow, btInstructions, btOptions, btHighScores;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
-		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
-		
+		getSupportActionBar().setBackgroundDrawable(
+				getResources().getDrawable(R.drawable.backgroundactionbar));
+
+		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
+		yo = sharedPrefs.getBoolean("tgref", true);
+
 		btPlayNow = (Button) findViewById(R.id.button_play);
 		btInstructions = (Button) findViewById(R.id.button_instructions);
 		btOptions = (Button) findViewById(R.id.button_options);
 		btHighScores = (Button) findViewById(R.id.button_high_score);
-		
+
 		btPlayNow.setBackgroundColor(Color.TRANSPARENT);
 		btInstructions.setBackgroundColor(Color.TRANSPARENT);
 		btOptions.setBackgroundColor(Color.TRANSPARENT);
@@ -59,8 +67,15 @@ public class MainMenu extends SherlockActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		continueMusic = false;
-		MusicManager.start(this, MusicManager.MUSIC_MENU);
+		if (yo) // if (yo) may be enough, not sure
+		{
+			continueMusic = false;
+			MusicManager.start(this, MusicManager.MUSIC_MENU);
+		}
+
+		else {
+			MusicManager.pause();
+		}
 	}
 
 	@Override
@@ -87,7 +102,7 @@ public class MainMenu extends SherlockActivity {
 	// android:onClick
 	// OnClickListeners may be more appropriate for situations like fragments
 	public void btPlayNow(View btPlayNow) {
-
+		continueMusic = true;
 		startActivity(new Intent(this, PlayGame.class));
 
 	}
