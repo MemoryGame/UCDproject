@@ -71,6 +71,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		
 		// create a set of default linearLayout parameters to be given to every linearLayout 
 		LayoutParams llParams = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+		LayoutParams bParams = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
 
 		// add the buttons to each linearLayout row
 		// each button created will be given a unique number starting at 0
@@ -83,14 +84,11 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 			// if we've reached the last linearLayout row and there is an odd number of buttons, add only one button
 			if( i==(numRows-1) && odd){
 				Button btn = new Button(this);
-	        	btn.setText(Integer.toString(buttonNum));
+	        	btn.setLayoutParams(bParams);
+	        	btn.setBackgroundResource(R.drawable.blue_button_off);
 	        	btn.setId(buttonNum);
-	        	// buttonNum is a unique number for the current button
-	        	// use buttonNum as an index to extract a colour from the colours array
-	        	btn.setBackgroundColor(coloursOff[buttonNum]);
 	        	btn.setOnClickListener(this);
 	        	rows[i].addView(btn);
-	        	// every time we add a button buttonNum is increased
 	        	buttonNum++;
 			} 
 			// otherwise add two buttons to the current linearLayout row
@@ -98,11 +96,9 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 				Button[] rowButtons = new Button[2];
 				for(Button btn: rowButtons){
 				    btn = new Button(this);
-		        	btn.setText(Integer.toString(buttonNum));
+		        	btn.setLayoutParams(bParams);
+		        	btn.setBackgroundResource(R.drawable.blue_button_off);
 		        	btn.setId(buttonNum);
-		        	// buttonNum is a unique number for the current button
-		        	// use buttonNum as an index to extract a colour from the colours array
-		        	btn.setBackgroundColor(coloursOff[buttonNum]);
 		        	btn.setOnClickListener(this);
 		        	rows[i].addView(btn);
 		        	buttonNum++;
@@ -134,7 +130,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 				public void run(){
 					h.post(new Runnable(){
 						public void run(){
-							b.setText("x");
+				        	b.setBackgroundResource(R.drawable.blue_button_on);
 				        }
 				    });
 				}
@@ -144,7 +140,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 				public void run(){
 					h.post(new Runnable(){
 						public void run(){
-							b.setText(bNum);
+				        	b.setBackgroundResource(R.drawable.blue_button_off);
 				        }
 				    });
 				}
