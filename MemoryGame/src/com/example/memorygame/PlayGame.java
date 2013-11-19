@@ -64,8 +64,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		}
 
 		// The buttons will have different background colours
-		int[] coloursOff = {0xff0000ff, 0xff00ffff, 0xff888888, 0xff00ff00, 0xffff0000, 0xffffff00, 0xffcccccc, 0xffff00ff};
-		//int[] coloursOn = {0xff00ffff, 0xff0000ff, 0xffff8888, 0xff00ff00, 0xff8f0000, 0xff800f00, 0xffcccccc, 0xffff00ff};
+		final int[] coloursOn = new int[]{R.drawable.blue_button_on, R.drawable.orange_button_on, R.drawable.yellow_button_on, R.drawable.purple_button_on, R.drawable.green_button_on, R.drawable.red_button_on, R.drawable.black_button_on, R.drawable.pink_button_on};
+		final int[] coloursOff = new int[]{R.drawable.blue_button_off, R.drawable.orange_button_off, R.drawable.yellow_button_off, R.drawable.purple_button_off, R.drawable.green_button_off, R.drawable.red_button_off, R.drawable.black_button_off, R.drawable.pink_button_off};
 
 		// each "row" talked about above is actually a linearLayout
 		LinearLayout[] rows = new LinearLayout[numRows];
@@ -86,7 +86,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 			if( i==(numRows-1) && odd){
 				Button btn = new Button(this);
 	        	btn.setLayoutParams(bParams);
-	        	btn.setBackgroundResource(R.drawable.blue_button_off);
+	        	btn.setBackgroundResource(coloursOff[buttonNum]);
 	        	btn.setId(buttonNum);
 	        	rows[i].addView(btn);
 	        	buttonNum++;
@@ -97,7 +97,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 				for(Button btn: rowButtons){
 				    btn = new Button(this);
 		        	btn.setLayoutParams(bParams);
-		        	btn.setBackgroundResource(R.drawable.blue_button_off);
+		        	btn.setBackgroundResource(coloursOff[buttonNum]);
 		        	btn.setId(buttonNum);
 		        	rows[i].addView(btn);
 		        	buttonNum++;
@@ -119,16 +119,16 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		// then change it back again and move onto the next button		
 		final Timer t = new Timer();
 		long delay = 1;
+		final Handler h = new Handler();
 		for(int i = 0; i < sequenceLength;i++){
 			final Button b = ((Button)findViewById(pattern.get(i)));
-			final String bNum = String.valueOf(pattern.get(i));
-			final Handler h = new Handler();
+			final int bNum = pattern.get(i);
 			delay += timeBetweenChangesMs;
 			t.schedule(new TimerTask(){
 				public void run(){
 					h.post(new Runnable(){
 						public void run(){
-				        	b.setBackgroundResource(R.drawable.blue_button_on);
+				        	b.setBackgroundResource(coloursOn[bNum]);
 				        }
 				    });
 				}
@@ -138,27 +138,28 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 				public void run(){
 					h.post(new Runnable(){
 						public void run(){
-				        	b.setBackgroundResource(R.drawable.blue_button_off);
+				        	b.setBackgroundResource(coloursOff[bNum]);
 				        }
 				    });
 				}
 			}, (delay));
     	}
-		/*
-		for(int i = 0; i < sequenceLength;i++){
-			final Button b = ((Button)findViewById(pattern.get(i)));
-			b.setOnClickListener(this);	
-		}
-		*/
-      	}
-
-
-	
-		/* display the pattern to the user
-		String message = "The pattern is: " + patternString;
-		alert("The Pattern", message);
-		*/
 		
+		delay += timeBetweenChangesMs;
+		t.schedule(new TimerTask(){
+			public void run(){
+				h.post(new Runnable(){
+					public void run(){
+						for(int i =0; i<sequenceLength;i++){
+							Button b = ((Button)findViewById(pattern.get(i)));
+							b.setOnClickListener(PlayGame.this);
+				    	}
+				    }
+				});
+			}
+		}, delay);
+
+      	}
 
 	@Override
 	public void onClick(View v) {
