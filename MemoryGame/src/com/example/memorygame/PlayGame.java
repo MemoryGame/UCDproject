@@ -25,6 +25,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 	int lives = 4;
 	int patternPosition = 0;
 	int scores = 0;
+	long timeBetweenChangesMs = 500;
 	
 	//Two ArrayLists for pattern to guess and user guess
 	ArrayList<Integer> pattern = new ArrayList<Integer>();
@@ -87,7 +88,6 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 	        	btn.setLayoutParams(bParams);
 	        	btn.setBackgroundResource(R.drawable.blue_button_off);
 	        	btn.setId(buttonNum);
-	        	btn.setOnClickListener(this);
 	        	rows[i].addView(btn);
 	        	buttonNum++;
 			} 
@@ -99,7 +99,6 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		        	btn.setLayoutParams(bParams);
 		        	btn.setBackgroundResource(R.drawable.blue_button_off);
 		        	btn.setId(buttonNum);
-		        	btn.setOnClickListener(this);
 		        	rows[i].addView(btn);
 		        	buttonNum++;
 				}
@@ -119,7 +118,6 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		// temporarily change the text of this button for a few seconds
 		// then change it back again and move onto the next button		
 		final Timer t = new Timer();
-		long timeBetweenChangesMs = 1500;
 		long delay = 1;
 		for(int i = 0; i < sequenceLength;i++){
 			final Button b = ((Button)findViewById(pattern.get(i)));
@@ -146,8 +144,16 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 				}
 			}, (delay));
     	}
+		/*
+		for(int i = 0; i < sequenceLength;i++){
+			final Button b = ((Button)findViewById(pattern.get(i)));
+			b.setOnClickListener(this);	
+		}
+		*/
       	}
 
+
+	
 		/* display the pattern to the user
 		String message = "The pattern is: " + patternString;
 		alert("The Pattern", message);
