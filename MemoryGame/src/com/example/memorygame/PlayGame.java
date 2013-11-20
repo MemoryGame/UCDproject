@@ -150,8 +150,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 			public void run(){
 				h.post(new Runnable(){
 					public void run(){
-						for(int i =0; i<sequenceLength;i++){
-							Button b = ((Button)findViewById(pattern.get(i)));
+						for(int i =0; i<numButtons;i++){
+							Button b = ((Button)findViewById(i));
 							b.setOnClickListener(PlayGame.this);
 				    	}
 				    }
