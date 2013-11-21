@@ -20,13 +20,16 @@ import com.actionbarsherlock.app.SherlockActivity;
 
 public class PlayGame extends SherlockActivity implements OnClickListener {
 	
+//starting values
 	int sequenceLength = 4;
-	int numButtons = 8;
+	int numButtons = 4;
 	int lives = 4;
 	int patternPosition = 0;
 	int scores = 0;
 	long timeBetweenChangesMs = 500;
-	
+	int difficultyType = 0;
+	int roundCounter= 0;
+		
 	//Two ArrayLists for pattern to guess and user guess
 	ArrayList<Integer> pattern = new ArrayList<Integer>();
 	ArrayList<Integer> userGuess = new ArrayList<Integer>();
@@ -43,8 +46,37 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		setContentView(R.layout.activity_play_game);
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 
-		scores = getIntent().getIntExtra("currentScore", 0);
-		
+	//extract bundled extras for difficulty increase
+		Bundle extras = getIntent().getExtras();
+		if (extras != null){		
+			//set vals do logic here
+			scores = extras.getInt("currentScore");
+			sequenceLength = extras.getInt("seqLen");
+			numButtons = extras.getInt("numBut");
+			timeBetweenChangesMs = extras.getLong("speed");		
+			roundCounter= extras.getInt("roundCtr");
+			difficultyType = extras.getInt("diffType");
+			//set difficulty values here 
+			if(roundCounter ==1){
+				
+				if (difficultyType ==0){
+						timeBetweenChangesMs -=25;
+							difficultyType++;
+					}
+				else if (difficultyType ==1){
+						sequenceLength++;
+						if(numButtons==8){
+								difficultyType=0;
+							}else{
+								difficultyType++;
+								}
+					}
+				else if (difficultyType == 2){
+						numButtons++;
+						difficultyType=0;
+				}
+			}
+		}
 		// start generating the layout 
 		LinearLayout mainLayout = ((LinearLayout)findViewById(R.id.mainLayout));
 		
@@ -172,7 +204,14 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 				// restart this activity again so new pattern is generated for the user to guess
 				Intent i = getIntent();
 				scores +=10;
-				i.putExtra("currentScore", scores);
+				Bundle extras = new Bundle();
+				extras.putInt("currentScore", scores);
+				extras.putInt("seqLen", sequenceLength);
+				extras.putInt("numBut", numButtons);
+				extras.putLong("speed", timeBetweenChangesMs);
+				extras.putInt("diffType", difficultyType);
+				extras.putInt("roundCtr", roundCounter);
+				i.putExtras(extras);
 				finish();
 				startActivity(i);
 			}
