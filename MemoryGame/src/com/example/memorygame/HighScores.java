@@ -3,21 +3,30 @@ package com.example.memorygame;
 import java.util.ArrayList;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.widget.ArrayAdapter;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-public class HighScores extends SherlockActivity {
+public class HighScores extends SherlockActivity implements OnItemClickListener {
 
 	Boolean continueMusic;
+	ListView lv;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,22 +35,9 @@ public class HighScores extends SherlockActivity {
 		getSupportActionBar().setBackgroundDrawable(
 				getResources().getDrawable(R.drawable.backgroundactionbar));
 
-		// Create instance of DatabaseScores class
-		DatabaseScores highScores = new DatabaseScores(this);
-
-		highScores.open();
-
-		// Initialise ArrayLists to store the results from the two getData()
-		// methods
-		ArrayList<String> names = highScores.getNameData();
-		ArrayList<String> scores = highScores.getScoreData();
-
 		// Create listView to display results from database
-		ListView lv = (ListView) findViewById(R.id.listView1);
-		lv.setAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, scores));
-
-		highScores.close();
+		lv = (ListView) findViewById(R.id.listView1);
+		lv.setAdapter(new VivzAdapter(this));
 
 	}
 
@@ -140,7 +136,7 @@ public class HighScores extends SherlockActivity {
 							public void onClick(DialogInterface dialog, int id) {
 								// open the database and call delete method
 								deleteData();
-								//refresh the activity
+								// refresh the activity
 								finish();
 								startActivity(getIntent());
 							}
@@ -164,12 +160,108 @@ public class HighScores extends SherlockActivity {
 
 	}
 
-	//method for deleting the highscore database
+	// method for deleting the highscore database
 	public void deleteData() {
 		DatabaseScores deleteScores = new DatabaseScores(this);
 		deleteScores.open();
 		deleteScores.deleteModule();
 		deleteScores.close();
+
+	}
+
+	class SingleRow {
+		String name;
+		String score;
+		int image;
+		String id;
+
+		SingleRow(String name, String score, int image) {
+			this.name = name;
+			this.score = score;
+			this.image = image;
+
+		}
+	}
+
+	class VivzAdapter extends BaseAdapter {
+
+		ArrayList<SingleRow> list;
+		Context context;
+
+		VivzAdapter(Context c) {
+			context = c;
+			list = new ArrayList<SingleRow>();
+			DatabaseScores info = new DatabaseScores(getBaseContext());
+			info.open();
+			ArrayList<String> names2 = info.getNameData();
+			ArrayList<String> scores2 = info.getScoreData();
+
+			String[] names = new String[names2.size()];
+			String[] scores = new String[scores2.size()];
+
+			names = names2.toArray(names);
+			scores = scores2.toArray(scores);
+
+			int length = names.length;
+
+			int[] images = new int[length];
+
+			for (int i = 0; i < scores.length; i++) {
+
+				images[i] = R.drawable.ic_launcher;
+
+			}
+
+			for (int i = 0; i < scores.length; i++) {
+				list.add(new SingleRow(names[i], scores[i], images[i]));
+			}
+			info.close();
+
+		}
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return list.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub
+			return list.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+
+			LayoutInflater inflater = (LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			View row = inflater.inflate(R.layout.single_row, parent, false);
+			TextView name = (TextView) row.findViewById(R.id.textView1);
+			TextView score = (TextView) row.findViewById(R.id.textView2);
+			ImageView image = (ImageView) row.findViewById(R.id.imageView1);
+
+			SingleRow temp = list.get(position);
+
+			name.setText(temp.name);
+			score.setText(temp.score);
+			image.setImageResource(temp.image);
+
+			return row;
+		}
+
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		// TODO Auto-generated method stub
 
 	}
 

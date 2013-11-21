@@ -83,7 +83,7 @@ public class DatabaseScores {
 		String[] columns = new String[] { KEY_ROWID, KEY_NAME, KEY_SCORE,
 				KEY_DATE };
 		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null,
-				null, KEY_SCORE);
+				null, KEY_SCORE +" DESC");
 
 		ArrayList<String> result = new ArrayList<String>();
 
@@ -104,7 +104,7 @@ public class DatabaseScores {
 		String[] columns = new String[] { KEY_ROWID, KEY_NAME, KEY_SCORE,
 				KEY_DATE };
 		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null,
-				null, KEY_SCORE);
+				null, KEY_SCORE  +" DESC");
 
 		ArrayList<String> result = new ArrayList<String>();
 
