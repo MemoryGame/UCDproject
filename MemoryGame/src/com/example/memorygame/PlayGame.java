@@ -20,7 +20,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 
 public class PlayGame extends SherlockActivity implements OnClickListener {
 	
-//starting values
+	//starting values
 	int sequenceLength = 4;
 	int numButtons = 4;
 	int lives = 4;
@@ -37,8 +37,9 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 	//random num generator
 	Random r = new Random();
 	
-	//create an array of buttons that will be added to the layout
-	//Button[] buttons = new Button[numButtons];
+	// The buttons will have different background colours
+	final int[] coloursOn = new int[]{R.drawable.blue_button_on, R.drawable.orange_button_on, R.drawable.yellow_button_on, R.drawable.purple_button_on, R.drawable.green_button_on, R.drawable.red_button_on, R.drawable.black_button_on, R.drawable.pink_button_on};
+	final int[] coloursOff = new int[]{R.drawable.blue_button_off, R.drawable.orange_button_off, R.drawable.yellow_button_off, R.drawable.purple_button_off, R.drawable.green_button_off, R.drawable.red_button_off, R.drawable.black_button_off, R.drawable.pink_button_off};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		setContentView(R.layout.activity_play_game);
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 
-	//extract bundled extras for difficulty increase
+		//extract bundled extras for difficulty increase
 		Bundle extras = getIntent().getExtras();
 		if (extras != null){		
 			//set vals do logic here
@@ -77,67 +78,10 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 				}
 			}
 		}
-		// start generating the layout 
-		LinearLayout mainLayout = ((LinearLayout)findViewById(R.id.mainLayout));
 		
-	    /*
-	     * The layout will be made up of rows of two buttons side-by-side
-	     * so if there are 6 buttons then there will be 3 rows
-	     * if there are 5 buttons there will also be 3 rows, the last row will only have one button
-	     * */
+		generateLayout();
 		
-		// based on the number of buttons figure out how many rows are needed
-		int numRows = numButtons/2;
-		// if there is an odd number of buttons we need an extra row and set odd == true
-		boolean odd = false;
-		if (numButtons%2 != 0){
-			numRows++;
-			odd=true;
-		}
 
-		// The buttons will have different background colours
-		final int[] coloursOn = new int[]{R.drawable.blue_button_on, R.drawable.orange_button_on, R.drawable.yellow_button_on, R.drawable.purple_button_on, R.drawable.green_button_on, R.drawable.red_button_on, R.drawable.black_button_on, R.drawable.pink_button_on};
-		final int[] coloursOff = new int[]{R.drawable.blue_button_off, R.drawable.orange_button_off, R.drawable.yellow_button_off, R.drawable.purple_button_off, R.drawable.green_button_off, R.drawable.red_button_off, R.drawable.black_button_off, R.drawable.pink_button_off};
-
-		// each "row" talked about above is actually a linearLayout
-		LinearLayout[] rows = new LinearLayout[numRows];
-		
-		// create a set of default linearLayout parameters to be given to every linearLayout 
-		LayoutParams llParams = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
-		LayoutParams bParams = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-
-		// add the buttons to each linearLayout row
-		// each button created will be given a unique number starting at 0
-		int buttonNum = 0;
-		for(int i=0; i<numRows; i++){	
-			rows[i] = new LinearLayout(this);
-			// set parameters for the current linearLayout row
-			rows[i].setOrientation(LinearLayout.HORIZONTAL);
-			rows[i].setLayoutParams(llParams);	
-			// if we've reached the last linearLayout row and there is an odd number of buttons, add only one button
-			if( i==(numRows-1) && odd){
-				Button btn = new Button(this);
-	        	btn.setLayoutParams(bParams);
-	        	btn.setBackgroundResource(coloursOff[buttonNum]);
-	        	btn.setId(buttonNum);
-	        	rows[i].addView(btn);
-	        	buttonNum++;
-			} 
-			// otherwise add two buttons to the current linearLayout row
-			else {
-				Button[] rowButtons = new Button[2];
-				for(Button btn: rowButtons){
-				    btn = new Button(this);
-		        	btn.setLayoutParams(bParams);
-		        	btn.setBackgroundResource(coloursOff[buttonNum]);
-		        	btn.setId(buttonNum);
-		        	rows[i].addView(btn);
-		        	buttonNum++;
-				}
-			} 	
-			mainLayout.addView(rows[i]);
-		}
-		// finish generating the layout 
 		
 		// generate a new pattern 
 		for(int i =0; i<sequenceLength;i++){
@@ -145,6 +89,13 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
     		pattern.add(x);
     	}
 		
+		playSequence();
+		
+
+
+      	}
+
+	private void playSequence() {
 		// display this new number pattern to the user using buttons
 		// i.e. for each number in the pattern, select the button that has a matching id
 		// temporarily change the text of this button for a few seconds
@@ -190,8 +141,68 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 				});
 			}
 		}, delay);
+	}
 
-      	}
+	private void generateLayout() {
+		// start generating the layout 
+		LinearLayout mainLayout = ((LinearLayout)findViewById(R.id.mainLayout));
+		
+	    /*
+	     * The layout will be made up of rows of two buttons side-by-side
+	     * so if there are 6 buttons then there will be 3 rows
+	     * if there are 5 buttons there will also be 3 rows, the last row will only have one button
+	     * */
+		
+		// based on the number of buttons figure out how many rows are needed
+		int numRows = numButtons/2;
+		// if there is an odd number of buttons we need an extra row and set odd == true
+		boolean odd = false;
+		if (numButtons%2 != 0){
+			numRows++;
+			odd=true;
+		}
+		
+		// each "row" talked about above is actually a linearLayout
+		LinearLayout[] rows = new LinearLayout[numRows];
+		
+		// create a set of default linearLayout parameters to be given to every linearLayout 
+		LayoutParams llParams = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+		LayoutParams bParams = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+
+		// add the buttons to each linearLayout row
+		// each button created will be given a unique number starting at 0
+		int buttonNum = 0;
+		for(int i=0; i<numRows; i++){	
+			rows[i] = new LinearLayout(this);
+			// set parameters for the current linearLayout row
+			rows[i].setOrientation(LinearLayout.HORIZONTAL);
+			rows[i].setLayoutParams(llParams);	
+			// if we've reached the last linearLayout row and there is an odd number of buttons, add only one button
+			if( i==(numRows-1) && odd){
+				Button btn = new Button(this);
+	        	btn.setLayoutParams(bParams);
+	        	btn.setBackgroundResource(coloursOff[buttonNum]);
+	        	btn.setId(buttonNum);
+	        	rows[i].addView(btn);
+	        	buttonNum++;
+			} 
+			// otherwise add two buttons to the current linearLayout row
+			else {
+				Button[] rowButtons = new Button[2];
+				for(Button btn: rowButtons){
+				    btn = new Button(this);
+		        	btn.setLayoutParams(bParams);
+		        	btn.setBackgroundResource(coloursOff[buttonNum]);
+		        	btn.setId(buttonNum);
+		        	rows[i].addView(btn);
+		        	buttonNum++;
+				}
+			} 	
+			mainLayout.addView(rows[i]);
+		}
+		// finish generating the layout 
+		
+	}
 
 	@Override
 	public void onClick(View v) {
