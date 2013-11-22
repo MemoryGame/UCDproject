@@ -34,8 +34,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 	ArrayList<Integer> pattern = new ArrayList<Integer>();
 	ArrayList<Integer> userGuess = new ArrayList<Integer>();
 	
-	//random num generator
-	Random r = new Random();
+
 	
 	// The buttons will have different background colours
 	final int[] coloursOn = new int[]{R.drawable.blue_button_on, R.drawable.orange_button_on, R.drawable.yellow_button_on, R.drawable.purple_button_on, R.drawable.green_button_on, R.drawable.red_button_on, R.drawable.black_button_on, R.drawable.pink_button_on};
@@ -80,20 +79,21 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		}
 		
 		generateLayout();
-		
-
-		
-		// generate a new pattern 
-		for(int i =0; i<sequenceLength;i++){
-			int x = r.nextInt(numButtons);
-    		pattern.add(x);
-    	}
-		
+		pattern = newPattern(sequenceLength, numButtons);
 		playSequence();
 		
-
-
       	}
+
+	private ArrayList<Integer> newPattern(int length, int n) {
+		ArrayList<Integer> newPattern = new ArrayList<Integer>();
+		//random number generator
+		Random r = new Random();
+		for(int i =0; i<length;i++){
+			int x = r.nextInt(n);
+    		newPattern.add(x);
+    	}
+		return newPattern;
+	}
 
 	private void playSequence() {
 		// display this new number pattern to the user using buttons
