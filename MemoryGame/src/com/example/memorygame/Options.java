@@ -4,9 +4,11 @@ import java.io.IOException;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
@@ -14,19 +16,46 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 
-public class Options extends SherlockActivity {
+public class Options extends SherlockActivity implements OnClickListener {
 
 	Boolean continueMusic;
 	ToggleButton soundnotify, soundnotify2;
 	SharedPreferences preferences; 
 	SharedPreferences sharedPrefs;
-
+	Button blueButton, blackButton;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_options);
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
+		
+		/* Custom Themes */
+		themeUtils.onActivityCreateSetTheme(this);
+		
+		findViewById(R.id.blackbutton).setOnClickListener(this);
+
+		findViewById(R.id.bluebutton).setOnClickListener(this);
+		
+	
+		
+//		blueButton = (Button) findViewById(R.id.bluebutton);
+////		blueButton.setOnClickListener(l);
+//		blackButton = (Button) findViewById(R.id.blackbutton);
+//		
+//		blueButton.setOnClickListener(new OnClickListener() {
+//			
+//			public void onClick(View v) {
+//
+//				themeUtils.changeToTheme(this, themeUtils.BLUE);
+//
+//			}
+//
+//		});
+		
+		//blueButton.setOnClickListener(this);
 
 		/* Toggle sound on/off with Button - option from action bar too: to be decided*/
 		preferences = getPreferences(MODE_PRIVATE);
@@ -205,4 +234,26 @@ public class Options extends SherlockActivity {
 		startActivity(new Intent(this, About.class));
 
 	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId())
+
+		{
+		case R.id.blackbutton:
+
+			themeUtils.changeToTheme(this, themeUtils.BLACK);
+
+			break;
+
+			case R.id.bluebutton:
+
+			themeUtils.changeToTheme(this, themeUtils.BLUE);
+
+			break;
+		}
+		
+	}
+
+	
 }
