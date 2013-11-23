@@ -38,14 +38,15 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Blue Theme" />
+            android:text="Ocean Theme" />
 
         <Button
             android:id="@+id/blackbutton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="54dp"
             android:layout_below="@+id/bluebutton"
             android:layout_centerHorizontal="true"
-            android:text="Black Theme" />
+            android:text="Dark some sort of Wood Theme" />
 
 </RelativeLayout>

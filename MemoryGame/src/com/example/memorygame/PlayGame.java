@@ -40,8 +40,13 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_play_game);
+		/* Custom Themes */
+		themeUtils.onActivityCreateSetTheme(this);
+		setContentView(R.layout.activity_options);
+		int hello = themeUtils.getcTheme();
+		if (hello == 0) {
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
+		}	
 
 		SharedPreferences settings = getSharedPreferences("settings", 0);
 	    int sequenceLength = settings.getInt("seqLen", 4);
