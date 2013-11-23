@@ -8,5 +8,23 @@
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!-- API 14 theme customizations can go here. -->
     </style>
+    
+       <style name="CustomTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:windowBackground">@drawable/background</item>
+        <item name="android:textColor">#FFF8DC</item>
+        <item name="android:buttonStyle">@style/BlackButton</item>
+        
+
+     
+    </style>
+   <style name="BlueTheme" parent = "android:Theme.Holo.Light.DarkActionBar">
+            <item name="android:windowBackground">@drawable/ocean</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:buttonStyle">@style/BlackButton</item>
+        </style>
+        
+   <style name="BlackButton" parent="@android:style/Widget.Button">
+       <item name="android:textColor">#FFF8DC</item>
+       </style>
 
 </resources>

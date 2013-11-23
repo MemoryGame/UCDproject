@@ -66,10 +66,10 @@ public class MainMenu extends SherlockActivity {
 		btOptions.setBackgroundColor(Color.TRANSPARENT);
 		btHighScores.setBackgroundColor(Color.TRANSPARENT);
 		
-		String playLetter = (String) btPlayNow.getText();
-		
 		/*Big first letter for ocean theme*/
 		if (hello == 1){
+		// Letter P for "Play Now"
+		String playLetter = (String) btPlayNow.getText();
 		SpannableString bigLetter = new SpannableString(playLetter);
 		Drawable bigA = getResources().getDrawable(R.drawable.letter_p);
 		bigA.setBounds(0, 0, bigA.getIntrinsicWidth(),
@@ -78,6 +78,21 @@ public class MainMenu extends SherlockActivity {
 		bigLetter.setSpan(span, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
 		
 		btPlayNow.setText(bigLetter, BufferType.SPANNABLE);
+		
+		// Letter I for "Instructions"
+		
+		// Letter O for "Options"
+		String optionsLetter = (String) btOptions.getText();
+		SpannableString oLetter = new SpannableString(optionsLetter);
+		Drawable bigO = getResources().getDrawable(R.drawable.letter_o);
+		bigO.setBounds(0, 0, bigO.getIntrinsicWidth(),
+				bigO.getIntrinsicHeight());
+		ImageSpan spanO = new ImageSpan(bigO, ImageSpan.ALIGN_BASELINE);
+		oLetter.setSpan(spanO, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+		
+		btOptions.setText(oLetter, BufferType.SPANNABLE);
+		
+		// Letter H for "High Scores"
 		}
 
 	}

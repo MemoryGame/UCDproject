@@ -27,7 +27,7 @@
 
      
     </style>
-   <style name="BlueTheme" parent = "CustomTheme">
+   <style name="BlueTheme" parent = "Theme.Sherlock.Light.DarkActionBar">
             <item name="android:windowBackground">@drawable/ocean</item>
             <item name="android:textColor">#FFFFFF</item>
             <item name="android:buttonStyle">@style/BlackButton</item>
