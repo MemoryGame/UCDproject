@@ -42,7 +42,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		/* Custom Themes */
 		themeUtils.onActivityCreateSetTheme(this);
-		setContentView(R.layout.activity_options);
+		setContentView(R.layout.activity_play_game);
 		int hello = themeUtils.getcTheme();
 		if (hello == 0) {
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
