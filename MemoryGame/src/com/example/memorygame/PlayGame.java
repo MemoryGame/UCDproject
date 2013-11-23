@@ -21,7 +21,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 
 public class PlayGame extends SherlockActivity implements OnClickListener {
 
-	//starting values
+	// starting values
 	int sequenceLengthPARENT = 4;
 	int numButtonsPARENT = 4;
 	int lives = 4;
@@ -30,12 +30,20 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 	long timeBetweenChangesMsPARENT = 500;
 	int difficultyTypePARENT = 0;
 	int roundCounterPARENT = 0;
-		
+
 	ArrayList<Integer> pattern = new ArrayList<Integer>();
-	
+
 	// The buttons will have different background colours
-	int[] buttonsOn = new int[]{R.drawable.blue_button_on, R.drawable.orange_button_on, R.drawable.yellow_button_on, R.drawable.purple_button_on, R.drawable.green_button_on, R.drawable.red_button_on, R.drawable.black_button_on, R.drawable.pink_button_on};
-	int[] buttonsOff = new int[]{R.drawable.blue_button_off, R.drawable.orange_button_off, R.drawable.yellow_button_off, R.drawable.purple_button_off, R.drawable.green_button_off, R.drawable.red_button_off, R.drawable.black_button_off, R.drawable.pink_button_off};
+	int[] buttonsOn = new int[] { R.drawable.blue_button_on,
+			R.drawable.orange_button_on, R.drawable.yellow_button_on,
+			R.drawable.purple_button_on, R.drawable.green_button_on,
+			R.drawable.red_button_on, R.drawable.black_button_on,
+			R.drawable.pink_button_on };
+	int[] buttonsOff = new int[] { R.drawable.blue_button_off,
+			R.drawable.orange_button_off, R.drawable.yellow_button_off,
+			R.drawable.purple_button_off, R.drawable.green_button_off,
+			R.drawable.red_button_off, R.drawable.black_button_off,
+			R.drawable.pink_button_off };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,82 +52,86 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		themeUtils.onActivityCreateSetTheme(this);
 		setContentView(R.layout.activity_play_game);
 		int hello = themeUtils.getcTheme();
-		if (hello == 0) {
-		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
-		}	
+		if (hello == 1) {
+			getSupportActionBar().setBackgroundDrawable(
+					getResources().getDrawable(R.drawable.backgroundactionbar));
+		} else if (hello == 0) {
+			getSupportActionBar().setBackgroundDrawable(
+					getResources().getDrawable(R.drawable.ocean_ab));
+		}
 
 		SharedPreferences settings = getSharedPreferences("settings", 0);
-	    int sequenceLength = settings.getInt("seqLen", 4);
-	    int numButtons = settings.getInt("numBut", 4);
-	    int scores = settings.getInt("currentScore", 0);
-	    long timeBetweenChangesMs = settings.getLong("speed", 500);
-	    int difficultyType = settings.getInt("diffType", 0);
-	    int roundCounter = settings.getInt("roundCtr", 0);
-	    
+		int sequenceLength = settings.getInt("seqLen", 4);
+		int numButtons = settings.getInt("numBut", 4);
+		int scores = settings.getInt("currentScore", 0);
+		long timeBetweenChangesMs = settings.getLong("speed", 500);
+		int difficultyType = settings.getInt("diffType", 0);
+		int roundCounter = settings.getInt("roundCtr", 0);
 
-			if(roundCounter ==1){
-				if (difficultyType ==0){
-						timeBetweenChangesMs -=25;
-							difficultyType++;
-					}
-				else if (difficultyType ==1){
-						sequenceLength++;
-						if(numButtons==8){
-								difficultyType=0;
-							}else{
-								difficultyType++;
-								}
-					}
-				else if (difficultyType == 2){
-						numButtons++;
-						difficultyType=0;
+		if (roundCounter == 1) {
+			if (difficultyType == 0) {
+				timeBetweenChangesMs -= 25;
+				difficultyType++;
+			} else if (difficultyType == 1) {
+				sequenceLength++;
+				if (numButtons == 8) {
+					difficultyType = 0;
+				} else {
+					difficultyType++;
 				}
-				roundCounter=0;
+			} else if (difficultyType == 2) {
+				numButtons++;
+				difficultyType = 0;
 			}
-			else{roundCounter++;}
+			roundCounter = 0;
+		} else {
+			roundCounter++;
+		}
 
-		
 		generateLayout(numButtons, buttonsOff);
 		pattern = newPattern(sequenceLength, numButtons);
-		
+
 		Timer myTimer = new Timer();
 		Handler myHandler = new Handler();
-		
-		long delay = playSequence(myTimer, myHandler, pattern, timeBetweenChangesMs, buttonsOn, buttonsOff);
+
+		long delay = playSequence(myTimer, myHandler, pattern,
+				timeBetweenChangesMs, buttonsOn, buttonsOff);
 		setOnClickListeners(this, myTimer, myHandler, numButtons, delay);
-		
+
 		sequenceLengthPARENT = sequenceLength;
 		numButtonsPARENT = numButtons;
 		scoresPARENT = scores;
 		timeBetweenChangesMsPARENT = timeBetweenChangesMs;
 		difficultyTypePARENT = difficultyType;
 		roundCounterPARENT = roundCounter;
-		
-		
-      	}
 
+	}
 
 	@Override
 	public void onClick(View v) {
-		// get the user's guess i.e. the number of the button that the user has clicked
+		// get the user's guess i.e. the number of the button that the user has
+		// clicked
 		int userGuess = v.getId();
-		// if the current number in the pattern sequence equals the current userGuess
-		if(userGuess==pattern.get(patternPosition)){
-			// if we have reached the end of the pattern sequence then the user has guessed the complete sequence correctly
-			if(patternPosition==(pattern.size()-1)){
-				// restart this activity again so new pattern is generated for the user to guess
-				scoresPARENT +=10;
-				
+		// if the current number in the pattern sequence equals the current
+		// userGuess
+		if (userGuess == pattern.get(patternPosition)) {
+			// if we have reached the end of the pattern sequence then the user
+			// has guessed the complete sequence correctly
+			if (patternPosition == (pattern.size() - 1)) {
+				// restart this activity again so new pattern is generated for
+				// the user to guess
+				scoresPARENT += 10;
+
 				SharedPreferences settings = getSharedPreferences("settings", 0);
-			    SharedPreferences.Editor editor = settings.edit();			    
-			    editor.putInt("currentScore", scoresPARENT);
-			    editor.putInt("seqLen", sequenceLengthPARENT);
-			    editor.putInt("numBut", numButtonsPARENT);
-			    editor.putLong("speed", timeBetweenChangesMsPARENT);
-			    editor.putInt("diffType", difficultyTypePARENT);
-			    editor.putInt("roundCtr", roundCounterPARENT);
-			    editor.commit();				
-				
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putInt("currentScore", scoresPARENT);
+				editor.putInt("seqLen", sequenceLengthPARENT);
+				editor.putInt("numBut", numButtonsPARENT);
+				editor.putLong("speed", timeBetweenChangesMsPARENT);
+				editor.putInt("diffType", difficultyTypePARENT);
+				editor.putInt("roundCtr", roundCounterPARENT);
+				editor.commit();
+
 				Intent i = getIntent();
 				finish();
 				startActivity(i);
@@ -127,179 +139,191 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 			// otherwise move on to the next item in the pattern sequence
 			patternPosition++;
 		}
-		// if the user incorrectly guesses the current item in the pattern sequence 
-		else{
+		// if the user incorrectly guesses the current item in the pattern
+		// sequence
+		else {
 			// reduce lives
 			lives--;
-			if(lives==0){
+			if (lives == 0) {
 				// start game over activity
-				String message = "Your score is: "+ Integer.toString(scoresPARENT)+"\nenter your score?";
+				String message = "Your score is: "
+						+ Integer.toString(scoresPARENT)
+						+ "\nenter your score?";
 				alertGameOver("GAME OVER", message, scoresPARENT);
-				
-			}
-			else{
+
+			} else {
 				// display the number of lives left to the user
 				String message = Integer.toString(lives) + " lives left.";
 				alert("Nope", message);
-				// keep the current pattern but start the user guess from the beginning
+				// keep the current pattern but start the user guess from the
+				// beginning
 				patternPosition = 0;
 			}
 		}
-		
-	}
-	
 
-		
+	}
+
 	private void generateLayout(int numBtns, final int[] colours) {
-		// start generating the layout 
-		LinearLayout mainLayout = ((LinearLayout)findViewById(R.id.mainLayout));	
-	    /*
-	     * The layout will be made up of rows of two buttons side-by-side
-	     * so if there are 6 buttons then there will be 3 rows
-	     * if there are 5 buttons there will also be 3 rows, the last row will only have one button
-	     * */
+		// start generating the layout
+		LinearLayout mainLayout = ((LinearLayout) findViewById(R.id.mainLayout));
+		/*
+		 * The layout will be made up of rows of two buttons side-by-side so if
+		 * there are 6 buttons then there will be 3 rows if there are 5 buttons
+		 * there will also be 3 rows, the last row will only have one button
+		 */
 		// based on the number of buttons figure out how many rows are needed
-		int numRows = numBtns/2;
-		// if there is an odd number of buttons we need an extra row and set odd == true
+		int numRows = numBtns / 2;
+		// if there is an odd number of buttons we need an extra row and set odd
+		// == true
 		boolean odd = false;
-		if (numBtns%2 != 0){
+		if (numBtns % 2 != 0) {
 			numRows++;
-			odd=true;
+			odd = true;
 		}
 		// each "row" talked about above is actually a linearLayout
 		LinearLayout[] rows = new LinearLayout[numRows];
-		// create a set of default linearLayout parameters to be given to every linearLayout 
-		LayoutParams llParams = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
-		LayoutParams bParams = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+		// create a set of default linearLayout parameters to be given to every
+		// linearLayout
+		LayoutParams llParams = new LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT);
+		LayoutParams bParams = new LayoutParams(LayoutParams.WRAP_CONTENT,
+				LayoutParams.WRAP_CONTENT);
 		// add the buttons to each linearLayout row
 		// each button created will be given a unique number starting at 0
 		int buttonNum = 0;
-		for(int i=0; i<numRows; i++){	
+		for (int i = 0; i < numRows; i++) {
 			rows[i] = new LinearLayout(this);
 			// set parameters for the current linearLayout row
 			rows[i].setOrientation(LinearLayout.HORIZONTAL);
-			rows[i].setLayoutParams(llParams);	
-			// if we've reached the last linearLayout row and there is an odd number of buttons, add only one button
-			if( i==(numRows-1) && odd){
+			rows[i].setLayoutParams(llParams);
+			// if we've reached the last linearLayout row and there is an odd
+			// number of buttons, add only one button
+			if (i == (numRows - 1) && odd) {
 				Button btn = new Button(this);
-	        	btn.setLayoutParams(bParams);
-	        	btn.setBackgroundResource(colours[buttonNum]);
-	        	btn.setId(buttonNum);
-	        	rows[i].addView(btn);
-	        	buttonNum++;
-			} 
+				btn.setLayoutParams(bParams);
+				btn.setBackgroundResource(colours[buttonNum]);
+				btn.setId(buttonNum);
+				rows[i].addView(btn);
+				buttonNum++;
+			}
 			// otherwise add two buttons to the current linearLayout row
 			else {
 				Button[] rowButtons = new Button[2];
-				for(Button btn: rowButtons){
-				    btn = new Button(this);
-		        	btn.setLayoutParams(bParams);
-		        	btn.setBackgroundResource(colours[buttonNum]);
-		        	btn.setId(buttonNum);
-		        	rows[i].addView(btn);
-		        	buttonNum++;
+				for (Button btn : rowButtons) {
+					btn = new Button(this);
+					btn.setLayoutParams(bParams);
+					btn.setBackgroundResource(colours[buttonNum]);
+					btn.setId(buttonNum);
+					rows[i].addView(btn);
+					buttonNum++;
 				}
-			} 	
+			}
 			mainLayout.addView(rows[i]);
 		}
-		// finish generating the layout 
+		// finish generating the layout
 	}
 
 	private ArrayList<Integer> newPattern(int length, int n) {
 		ArrayList<Integer> newPattern = new ArrayList<Integer>();
-		//random number generator
+		// random number generator
 		Random r = new Random();
-		for(int i =0; i<length;i++){
+		for (int i = 0; i < length; i++) {
 			int x = r.nextInt(n);
-    		newPattern.add(x);
-    	}
+			newPattern.add(x);
+		}
 		return newPattern;
 	}
 
-	private long playSequence(Timer t, final Handler h, ArrayList<Integer> newPattern, long milliseconds, final int[] on, final int[] off) {
+	private long playSequence(Timer t, final Handler h,
+			ArrayList<Integer> newPattern, long milliseconds, final int[] on,
+			final int[] off) {
 		// display this new number pattern to the user using buttons
-		// i.e. for each number in the pattern, select the button that has a matching id
+		// i.e. for each number in the pattern, select the button that has a
+		// matching id
 		// temporarily change the text of this button for a few seconds
-		// then change it back again and move onto the next button		
+		// then change it back again and move onto the next button
 		long delay = 1;
-		for(int i = 0; i < newPattern.size();i++){
-			final Button b = ((Button)findViewById(newPattern.get(i)));
+		for (int i = 0; i < newPattern.size(); i++) {
+			final Button b = ((Button) findViewById(newPattern.get(i)));
 			final int bNum = newPattern.get(i);
 			delay += milliseconds;
-			t.schedule(new TimerTask(){
-				public void run(){
-					h.post(new Runnable(){
-						public void run(){
-				        	b.setBackgroundResource(on[bNum]);
-				        }
-				    });
+			t.schedule(new TimerTask() {
+				public void run() {
+					h.post(new Runnable() {
+						public void run() {
+							b.setBackgroundResource(on[bNum]);
+						}
+					});
 				}
 			}, delay);
 			delay += milliseconds;
-			t.schedule(new TimerTask(){
-				public void run(){
-					h.post(new Runnable(){
-						public void run(){
-				        	b.setBackgroundResource(off[bNum]);
-				        }
-				    });
+			t.schedule(new TimerTask() {
+				public void run() {
+					h.post(new Runnable() {
+						public void run() {
+							b.setBackgroundResource(off[bNum]);
+						}
+					});
 				}
 			}, (delay));
-    	}
+		}
 		delay += milliseconds;
 		return delay;
 	}
-	
-	private void setOnClickListeners(final PlayGame p, Timer t, final Handler h, final int n, long d) {
-		t.schedule(new TimerTask(){
-			public void run(){
-				h.post(new Runnable(){
-					public void run(){
-						for(int i =0; i<n;i++){
-							Button b = ((Button)findViewById(i));
+
+	private void setOnClickListeners(final PlayGame p, Timer t,
+			final Handler h, final int n, long d) {
+		t.schedule(new TimerTask() {
+			public void run() {
+				h.post(new Runnable() {
+					public void run() {
+						for (int i = 0; i < n; i++) {
+							Button b = ((Button) findViewById(i));
 							b.setOnClickListener(p);
-				    	}
-				    }
+						}
+					}
 				});
 			}
 		}, d);
 	}
 
-	public void alertGameOver(String title, String message, int scores){
+	public void alertGameOver(String title, String message, int scores) {
 		final int sc = scores;
 		AlertDialog.Builder builder = new AlertDialog.Builder(PlayGame.this);
-        builder.setTitle(title)
-        .setMessage(message)
-        .setCancelable(false)
-        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				Intent go = new Intent(PlayGame.this, InsertScores.class);
-				go.putExtra("Score", sc);
-				startActivity(go);		
-			}
-		})
-		.setNegativeButton("Nah", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				startActivity(new Intent(PlayGame.this, MainMenu.class));
-				
-			}
-		});
-        AlertDialog alertGameOver = builder.create();
-        alertGameOver.show();
+		builder.setTitle(title)
+				.setMessage(message)
+				.setCancelable(false)
+				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						Intent go = new Intent(PlayGame.this,
+								InsertScores.class);
+						go.putExtra("Score", sc);
+						startActivity(go);
+					}
+				})
+				.setNegativeButton("Nah",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								startActivity(new Intent(PlayGame.this,
+										MainMenu.class));
+
+							}
+						});
+		AlertDialog alertGameOver = builder.create();
+		alertGameOver.show();
 	}
-	
-	public void alert(String title, String message){
+
+	public void alert(String title, String message) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(PlayGame.this);
-        builder.setTitle(title)
-        .setMessage(message)
-        .setCancelable(false)
-        .setPositiveButton("OK",new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();	
+		builder.setTitle(title).setMessage(message).setCancelable(false)
+				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+		AlertDialog alert = builder.create();
+		alert.show();
 	}
 
 }

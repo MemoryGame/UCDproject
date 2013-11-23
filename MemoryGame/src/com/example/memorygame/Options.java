@@ -34,9 +34,12 @@ public class Options extends SherlockActivity implements OnClickListener {
 		themeUtils.onActivityCreateSetTheme(this);
 		setContentView(R.layout.activity_options);
 		int hello = themeUtils.getcTheme();
-		if (hello == 0) {
+		if (hello == 1) {
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 		}	
+		else if (hello == 0) {
+			getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ocean_ab));
+		}
 	
 		/* Make buttons transparent */
 		blueButton = (Button) findViewById(R.id.bluebutton);
@@ -162,7 +165,7 @@ public class Options extends SherlockActivity implements OnClickListener {
 		super.onResume();
 		int hello = themeUtils.getcTheme();
 		if (hello == 1) {
-		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_background));
+		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 		}	
 		continueMusic = false;
 		MusicManager.start(this, MusicManager.MUSIC_MENU);
@@ -241,11 +244,11 @@ public class Options extends SherlockActivity implements OnClickListener {
 		case R.id.blackbutton:
 
 			themeUtils.changeToTheme(this, themeUtils.BLACK);
-
+	
 			break;
 
 			case R.id.bluebutton:
-				getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_background));
+		
 			themeUtils.changeToTheme(this, themeUtils.BLUE);
 		
 	

@@ -45,13 +45,13 @@ public class MainMenu extends SherlockActivity {
 
 		setContentView(R.layout.activity_main_menu);
 		int hello = themeUtils.getcTheme();
-		if (hello == 0) {
+		if (hello == 1) {
 			getSupportActionBar().setBackgroundDrawable(
 					getResources().getDrawable(R.drawable.backgroundactionbar));
 		}
-		if (hello == 1) {
+		else if (hello == 0) {
 			getSupportActionBar().setBackgroundDrawable(
-					getResources().getDrawable(R.drawable.blue_background));
+					getResources().getDrawable(R.drawable.ocean_ab));
 		}
 		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
 		yo = sharedPrefs.getBoolean("tgref", true);
@@ -67,7 +67,7 @@ public class MainMenu extends SherlockActivity {
 		btHighScores.setBackgroundColor(Color.TRANSPARENT);
 		
 		/*Big first letter for ocean theme*/
-		if (hello == 1){
+		if (hello == 0){
 		// Letter P for "Play Now"
 		String playLetter = (String) btPlayNow.getText();
 		SpannableString bigLetter = new SpannableString(playLetter);

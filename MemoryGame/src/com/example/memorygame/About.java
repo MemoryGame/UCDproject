@@ -20,13 +20,13 @@ public class About extends SherlockActivity {
 		themeUtils.onActivityCreateSetTheme(this);
 		setContentView(R.layout.about);
 		int hello = themeUtils.getcTheme();
-		if (hello == 0) {
+		if (hello == 1) {
 			getSupportActionBar().setBackgroundDrawable(
 					getResources().getDrawable(R.drawable.backgroundactionbar));
 		}
-		if (hello == 1) {
+		else if (hello == 0) {
 			getSupportActionBar().setBackgroundDrawable(
-					getResources().getDrawable(R.drawable.blue_background));
+					getResources().getDrawable(R.drawable.ocean_ab));
 		}
 
 	}

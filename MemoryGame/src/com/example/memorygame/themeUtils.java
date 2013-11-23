@@ -13,9 +13,9 @@ private static int cTheme;
 
 
 
-public final static int BLACK = 0;
+public final static int BLACK = 1;
 
-public final static int BLUE = 1;
+public final static int BLUE = 0;
 
 public static void changeToTheme(Activity activity, int theme)
 

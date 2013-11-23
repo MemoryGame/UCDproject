@@ -34,13 +34,13 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 		themeUtils.onActivityCreateSetTheme(this);
 		setContentView(R.layout.activity_high_scores);
 		int hello = themeUtils.getcTheme();
-		if (hello == 0) {
+		if (hello == 1) {
 			getSupportActionBar().setBackgroundDrawable(
 					getResources().getDrawable(R.drawable.backgroundactionbar));
 		}
-		if (hello == 1) {
+		else if (hello == 0) {
 			getSupportActionBar().setBackgroundDrawable(
-					getResources().getDrawable(R.drawable.blue_background));
+					getResources().getDrawable(R.drawable.ocean_ab));
 		}
 		// Create listView to display results from database
 		lv = (ListView) findViewById(R.id.listView1);
