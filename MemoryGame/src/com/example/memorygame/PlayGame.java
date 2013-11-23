@@ -8,6 +8,7 @@ import java.util.TimerTask;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -19,16 +20,16 @@ import android.widget.LinearLayout;
 import com.actionbarsherlock.app.SherlockActivity;
 
 public class PlayGame extends SherlockActivity implements OnClickListener {
-	
+
 	//starting values
-	int sequenceLength = 4;
-	int numButtons = 4;
+	int sequenceLengthPARENT = 4;
+	int numButtonsPARENT = 4;
 	int lives = 4;
 	int patternPosition = 0;
-	int scores = 0;
-	long timeBetweenChangesMs = 500;
-	int difficultyType = 0;
-	int roundCounter= 0;
+	int scoresPARENT = 0;
+	long timeBetweenChangesMsPARENT = 500;
+	int difficultyTypePARENT = 0;
+	int roundCounterPARENT = 0;
 		
 	ArrayList<Integer> pattern = new ArrayList<Integer>();
 	
@@ -42,19 +43,16 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		setContentView(R.layout.activity_play_game);
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 
-		//extract bundled extras for difficulty increase
-		Bundle extras = getIntent().getExtras();
-		if (extras != null){		
-			//set vals do logic here
-			scores = extras.getInt("currentScore");
-			sequenceLength = extras.getInt("seqLen");
-			numButtons = extras.getInt("numBut");
-			timeBetweenChangesMs = extras.getLong("speed");		
-			roundCounter= extras.getInt("roundCtr");
-			difficultyType = extras.getInt("diffType");
-			//set difficulty values here 
+		SharedPreferences settings = getSharedPreferences("settings", 0);
+	    int sequenceLength = settings.getInt("seqLen", 4);
+	    int numButtons = settings.getInt("numBut", 4);
+	    int scores = settings.getInt("currentScore", 0);
+	    long timeBetweenChangesMs = settings.getLong("speed", 500);
+	    int difficultyType = settings.getInt("diffType", 0);
+	    int roundCounter = settings.getInt("roundCtr", 0);
+	    
+
 			if(roundCounter ==1){
-				
 				if (difficultyType ==0){
 						timeBetweenChangesMs -=25;
 							difficultyType++;
@@ -71,8 +69,10 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 						numButtons++;
 						difficultyType=0;
 				}
+				roundCounter=0;
 			}
-		}
+			else{roundCounter++;}
+
 		
 		generateLayout(numButtons, buttonsOff);
 		pattern = newPattern(sequenceLength, numButtons);
@@ -82,6 +82,14 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		
 		long delay = playSequence(myTimer, myHandler, pattern, timeBetweenChangesMs, buttonsOn, buttonsOff);
 		setOnClickListeners(this, myTimer, myHandler, numButtons, delay);
+		
+		sequenceLengthPARENT = sequenceLength;
+		numButtonsPARENT = numButtons;
+		scoresPARENT = scores;
+		timeBetweenChangesMsPARENT = timeBetweenChangesMs;
+		difficultyTypePARENT = difficultyType;
+		roundCounterPARENT = roundCounter;
+		
 		
       	}
 
@@ -95,16 +103,19 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 			// if we have reached the end of the pattern sequence then the user has guessed the complete sequence correctly
 			if(patternPosition==(pattern.size()-1)){
 				// restart this activity again so new pattern is generated for the user to guess
+				scoresPARENT +=10;
+				
+				SharedPreferences settings = getSharedPreferences("settings", 0);
+			    SharedPreferences.Editor editor = settings.edit();			    
+			    editor.putInt("currentScore", scoresPARENT);
+			    editor.putInt("seqLen", sequenceLengthPARENT);
+			    editor.putInt("numBut", numButtonsPARENT);
+			    editor.putLong("speed", timeBetweenChangesMsPARENT);
+			    editor.putInt("diffType", difficultyTypePARENT);
+			    editor.putInt("roundCtr", roundCounterPARENT);
+			    editor.commit();				
+				
 				Intent i = getIntent();
-				scores +=10;
-				Bundle extras = new Bundle();
-				extras.putInt("currentScore", scores);
-				extras.putInt("seqLen", sequenceLength);
-				extras.putInt("numBut", numButtons);
-				extras.putLong("speed", timeBetweenChangesMs);
-				extras.putInt("diffType", difficultyType);
-				extras.putInt("roundCtr", roundCounter);
-				i.putExtras(extras);
 				finish();
 				startActivity(i);
 			}
@@ -117,8 +128,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 			lives--;
 			if(lives==0){
 				// start game over activity
-				String message = "Your score is: "+ Integer.toString(scores)+"\nenter your score?";
-				alertGameOver("GAME OVER", message, scores);
+				String message = "Your score is: "+ Integer.toString(scoresPARENT)+"\nenter your score?";
+				alertGameOver("GAME OVER", message, scoresPARENT);
 				
 			}
 			else{
