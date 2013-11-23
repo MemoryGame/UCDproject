@@ -30,29 +30,17 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 	int difficultyType = 0;
 	int roundCounter= 0;
 		
-	//Two ArrayLists for pattern to guess and user guess
 	ArrayList<Integer> pattern = new ArrayList<Integer>();
-	ArrayList<Integer> userGuess = new ArrayList<Integer>();
 	
 	// The buttons will have different background colours
-	final int[] buttonsOn = new int[]{R.drawable.blue_button_on, R.drawable.orange_button_on, R.drawable.yellow_button_on, R.drawable.purple_button_on, R.drawable.green_button_on, R.drawable.red_button_on, R.drawable.black_button_on, R.drawable.pink_button_on};
-	final int[] buttonsOff = new int[]{R.drawable.blue_button_off, R.drawable.orange_button_off, R.drawable.yellow_button_off, R.drawable.purple_button_off, R.drawable.green_button_off, R.drawable.red_button_off, R.drawable.black_button_off, R.drawable.pink_button_off};
+	int[] buttonsOn = new int[]{R.drawable.blue_button_on, R.drawable.orange_button_on, R.drawable.yellow_button_on, R.drawable.purple_button_on, R.drawable.green_button_on, R.drawable.red_button_on, R.drawable.black_button_on, R.drawable.pink_button_on};
+	int[] buttonsOff = new int[]{R.drawable.blue_button_off, R.drawable.orange_button_off, R.drawable.yellow_button_off, R.drawable.purple_button_off, R.drawable.green_button_off, R.drawable.red_button_off, R.drawable.black_button_off, R.drawable.pink_button_off};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		/* Custom Themes */
-		themeUtils.onActivityCreateSetTheme(this);
 		setContentView(R.layout.activity_play_game);
-		int hello = themeUtils.getcTheme();
-		if (hello == 0) {
-			getSupportActionBar().setBackgroundDrawable(
-					getResources().getDrawable(R.drawable.backgroundactionbar));
-		}
-		if (hello == 1) {
-			getSupportActionBar().setBackgroundDrawable(
-					getResources().getDrawable(R.drawable.blue_background));
-		}
+		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 
 		//extract bundled extras for difficulty increase
 		Bundle extras = getIntent().getExtras();
@@ -129,59 +117,23 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 			lives--;
 			if(lives==0){
 				// start game over activity
-				String m = "Your score is: "+ Integer.toString(scores)+"\nenter your score?";
-				alerta("GAME OVER", m ,scores);
+				String message = "Your score is: "+ Integer.toString(scores)+"\nenter your score?";
+				alertGameOver("GAME OVER", message, scores);
 				
 			}
 			else{
-			// display the number of lives left to the user
-			String message = Integer.toString(lives) + " lives left.";
-			alert("Nope", message);
-			// keep the current pattern sequence but start the user guess from the beginning
-			patternPosition = 0;
+				// display the number of lives left to the user
+				String message = Integer.toString(lives) + " lives left.";
+				alert("Nope", message);
+				// keep the current pattern but start the user guess from the beginning
+				patternPosition = 0;
 			}
 		}
 		
 	}
 	
-	public void alert(String title, String message){
-		AlertDialog.Builder builder = new AlertDialog.Builder(PlayGame.this);
-        builder.setTitle(title)
-        .setMessage(message)
-        .setCancelable(false)
-        .setPositiveButton("OK",new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();	
-	}
-	
-	public void alerta(String title, String message,int scores){
-		AlertDialog.Builder builder = new AlertDialog.Builder(PlayGame.this);
-		final int sc = scores;
-        builder.setTitle(title)
-        .setMessage(message)
-        .setCancelable(false)
-        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				Intent go = new Intent(PlayGame.this, InsertScores.class);
-				go.putExtra("Score", sc);
-				startActivity(go);		
-			}
-		})
-		.setNegativeButton("Nah", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				startActivity(new Intent(PlayGame.this, MainMenu.class));
-				
-			}
-		});
-        AlertDialog alerta = builder.create();
-        alerta.show();
-	}
 
-	
+		
 	private void generateLayout(int numBtns, final int[] colours) {
 		// start generating the layout 
 		LinearLayout mainLayout = ((LinearLayout)findViewById(R.id.mainLayout));	
@@ -296,6 +248,42 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 			}
 		}, d);
 	}
+
+	public void alertGameOver(String title, String message, int scores){
+		final int sc = scores;
+		AlertDialog.Builder builder = new AlertDialog.Builder(PlayGame.this);
+        builder.setTitle(title)
+        .setMessage(message)
+        .setCancelable(false)
+        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				Intent go = new Intent(PlayGame.this, InsertScores.class);
+				go.putExtra("Score", sc);
+				startActivity(go);		
+			}
+		})
+		.setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				startActivity(new Intent(PlayGame.this, MainMenu.class));
+				
+			}
+		});
+        AlertDialog alertGameOver = builder.create();
+        alertGameOver.show();
+	}
 	
+	public void alert(String title, String message){
+		AlertDialog.Builder builder = new AlertDialog.Builder(PlayGame.this);
+        builder.setTitle(title)
+        .setMessage(message)
+        .setCancelable(false)
+        .setPositiveButton("OK",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();	
+	}
 
 }
