@@ -21,7 +21,7 @@ public static void changeToTheme(Activity activity, int theme)
 
 {
 
-cTheme = theme;
+setcTheme(theme);
 
 activity.finish();
 
@@ -36,7 +36,7 @@ public static void onActivityCreateSetTheme(Activity activity)
 
 {
 
-switch (cTheme)
+switch (getcTheme())
 
 {
 
@@ -56,6 +56,15 @@ break;
 
 }
 
+}
+
+public static int getcTheme() {
+	return cTheme;
+}
+
+public static int setcTheme(int cTheme) {
+	themeUtils.cTheme = cTheme;
+	return cTheme;
 }
 
 }

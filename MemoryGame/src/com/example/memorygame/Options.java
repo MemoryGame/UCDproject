@@ -32,8 +32,10 @@ public class Options extends SherlockActivity implements OnClickListener {
 		/* Custom Themes */
 		themeUtils.onActivityCreateSetTheme(this);
 		setContentView(R.layout.activity_options);
+		int hello = themeUtils.getcTheme();
+		if (hello == 0) {
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
-		
+		}	
 	
 		
 		findViewById(R.id.blackbutton).setOnClickListener(this);
@@ -167,6 +169,10 @@ public class Options extends SherlockActivity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		int hello = themeUtils.getcTheme();
+		if (hello == 1) {
+		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_background));
+		}	
 		continueMusic = false;
 		MusicManager.start(this, MusicManager.MUSIC_MENU);
 	}
@@ -250,6 +256,9 @@ public class Options extends SherlockActivity implements OnClickListener {
 			case R.id.bluebutton:
 
 			themeUtils.changeToTheme(this, themeUtils.BLUE);
+		
+			getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_background));
+				
 
 			break;
 		}
