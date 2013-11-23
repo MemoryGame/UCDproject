@@ -43,23 +43,6 @@ public class Options extends SherlockActivity implements OnClickListener {
 		findViewById(R.id.bluebutton).setOnClickListener(this);
 		
 	
-		
-//		blueButton = (Button) findViewById(R.id.bluebutton);
-////		blueButton.setOnClickListener(l);
-//		blackButton = (Button) findViewById(R.id.blackbutton);
-//		
-//		blueButton.setOnClickListener(new OnClickListener() {
-//			
-//			public void onClick(View v) {
-//
-//				themeUtils.changeToTheme(this, themeUtils.BLUE);
-//
-//			}
-//
-//		});
-		
-		//blueButton.setOnClickListener(this);
-
 		/* Toggle sound on/off with Button - option from action bar too: to be decided*/
 		preferences = getPreferences(MODE_PRIVATE);
 
@@ -153,7 +136,7 @@ public class Options extends SherlockActivity implements OnClickListener {
 				continueMusic = false;
 				soundnotify.setChecked(false);
 			}
-
+			setResult(RESULT_OK);
 		}
 		return super.onKeyDown(keyCode, event);
 	}
@@ -254,10 +237,10 @@ public class Options extends SherlockActivity implements OnClickListener {
 			break;
 
 			case R.id.bluebutton:
-
+				getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_background));
 			themeUtils.changeToTheme(this, themeUtils.BLUE);
 		
-			getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_background));
+	
 				
 
 			break;

@@ -38,10 +38,17 @@ public class MainMenu extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		/* Custom Themes */
 		themeUtils.onActivityCreateSetTheme(this);
-		setContentView(R.layout.activity_main_menu);
-		getSupportActionBar().setBackgroundDrawable(
-				getResources().getDrawable(R.drawable.backgroundactionbar));
 
+		setContentView(R.layout.activity_main_menu);
+		int hello = themeUtils.getcTheme();
+		if (hello == 0) {
+			getSupportActionBar().setBackgroundDrawable(
+					getResources().getDrawable(R.drawable.backgroundactionbar));
+		}
+		if (hello == 1) {
+			getSupportActionBar().setBackgroundDrawable(
+					getResources().getDrawable(R.drawable.blue_background));
+		}
 		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
 		yo = sharedPrefs.getBoolean("tgref", true);
 
@@ -77,6 +84,14 @@ public class MainMenu extends SherlockActivity {
 
 		else {
 			MusicManager.pause();
+		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == 100) {
+			startActivity(new Intent(this, MainMenu.class));
 		}
 	}
 
@@ -118,7 +133,7 @@ public class MainMenu extends SherlockActivity {
 
 	public void btOptions(View btOptions) {
 		continueMusic = true;
-		startActivity(new Intent(this, Options.class));
+		startActivityForResult(new Intent(this, Options.class), 100);
 
 	}
 
