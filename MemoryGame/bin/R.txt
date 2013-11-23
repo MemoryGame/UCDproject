@@ -457,6 +457,7 @@ int string sound_on 0x7f0a002e
 int string title_activity_insert_scores 0x7f0a002f
 int style AppBaseTheme 0x7f0b0059
 int style AppTheme 0x7f0b005a
+int style BlackButton 0x7f0b005d
 int style BlueTheme 0x7f0b005c
 int style CustomTheme 0x7f0b005b
 int style Sherlock___TextAppearance_Small 0x7f0b0046

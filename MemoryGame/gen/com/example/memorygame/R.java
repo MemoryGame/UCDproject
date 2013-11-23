@@ -1192,6 +1192,7 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0b005a;
+        public static final int BlackButton=0x7f0b005d;
         public static final int BlueTheme=0x7f0b005c;
         public static final int CustomTheme=0x7f0b005b;
         public static final int Sherlock___TextAppearance_Small=0x7f0b0046;

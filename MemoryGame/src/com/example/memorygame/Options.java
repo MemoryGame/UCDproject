@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -37,6 +38,11 @@ public class Options extends SherlockActivity implements OnClickListener {
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 		}	
 	
+		/* Make buttons transparent */
+		blueButton = (Button) findViewById(R.id.bluebutton);
+		blackButton = (Button) findViewById(R.id.blackbutton);
+		blueButton.setBackgroundColor(Color.TRANSPARENT);
+		blackButton.setBackgroundColor(Color.TRANSPARENT);
 		
 		findViewById(R.id.blackbutton).setOnClickListener(this);
 
