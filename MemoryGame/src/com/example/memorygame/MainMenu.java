@@ -36,6 +36,8 @@ public class MainMenu extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		/* Custom Themes */
+		themeUtils.onActivityCreateSetTheme(this);
 		setContentView(R.layout.activity_main_menu);
 		getSupportActionBar().setBackgroundDrawable(
 				getResources().getDrawable(R.drawable.backgroundactionbar));

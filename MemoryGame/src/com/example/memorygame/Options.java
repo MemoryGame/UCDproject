@@ -29,11 +29,12 @@ public class Options extends SherlockActivity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		/* Custom Themes */
+		themeUtils.onActivityCreateSetTheme(this);
 		setContentView(R.layout.activity_options);
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
 		
-		/* Custom Themes */
-		themeUtils.onActivityCreateSetTheme(this);
+	
 		
 		findViewById(R.id.blackbutton).setOnClickListener(this);
 
