@@ -14,10 +14,14 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView.BufferType;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -61,6 +65,20 @@ public class MainMenu extends SherlockActivity {
 		btInstructions.setBackgroundColor(Color.TRANSPARENT);
 		btOptions.setBackgroundColor(Color.TRANSPARENT);
 		btHighScores.setBackgroundColor(Color.TRANSPARENT);
+		
+		String playLetter = (String) btPlayNow.getText();
+		
+		/*Big first letter for ocean theme*/
+		if (hello == 1){
+		SpannableString bigLetter = new SpannableString(playLetter);
+		Drawable bigA = getResources().getDrawable(R.drawable.letter_p);
+		bigA.setBounds(0, 0, bigA.getIntrinsicWidth(),
+				bigA.getIntrinsicHeight());
+		ImageSpan span = new ImageSpan(bigA, ImageSpan.ALIGN_BASELINE);
+		bigLetter.setSpan(span, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+		
+		btPlayNow.setText(bigLetter, BufferType.SPANNABLE);
+		}
 
 	}
 

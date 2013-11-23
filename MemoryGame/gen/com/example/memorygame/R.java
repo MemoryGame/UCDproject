@@ -930,20 +930,21 @@ containing a value of this type.
         public static final int ic_action_volume_on=0x7f020081;
         public static final int ic_launcher=0x7f020082;
         public static final int info=0x7f020083;
-        public static final int ocean=0x7f020084;
-        public static final int orange_button_off=0x7f020085;
-        public static final int orange_button_on=0x7f020086;
-        public static final int pink_button_off=0x7f020087;
-        public static final int pink_button_on=0x7f020088;
-        public static final int purple_button_off=0x7f020089;
-        public static final int purple_button_on=0x7f02008a;
-        public static final int red_button_off=0x7f02008b;
-        public static final int red_button_on=0x7f02008c;
-        public static final int save=0x7f02008d;
-        public static final int send=0x7f02008e;
-        public static final int splash=0x7f02008f;
-        public static final int yellow_button_off=0x7f020090;
-        public static final int yellow_button_on=0x7f020091;
+        public static final int letter_p=0x7f020084;
+        public static final int ocean=0x7f020085;
+        public static final int orange_button_off=0x7f020086;
+        public static final int orange_button_on=0x7f020087;
+        public static final int pink_button_off=0x7f020088;
+        public static final int pink_button_on=0x7f020089;
+        public static final int purple_button_off=0x7f02008a;
+        public static final int purple_button_on=0x7f02008b;
+        public static final int red_button_off=0x7f02008c;
+        public static final int red_button_on=0x7f02008d;
+        public static final int save=0x7f02008e;
+        public static final int send=0x7f02008f;
+        public static final int splash=0x7f020090;
+        public static final int yellow_button_off=0x7f020091;
+        public static final int yellow_button_on=0x7f020092;
     }
     public static final class id {
         public static final int about=0x7f05004d;

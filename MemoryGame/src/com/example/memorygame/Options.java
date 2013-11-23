@@ -44,6 +44,8 @@ public class Options extends SherlockActivity implements OnClickListener {
 		blueButton.setBackgroundColor(Color.TRANSPARENT);
 		blackButton.setBackgroundColor(Color.TRANSPARENT);
 		
+		
+		
 		findViewById(R.id.blackbutton).setOnClickListener(this);
 
 		findViewById(R.id.bluebutton).setOnClickListener(this);
