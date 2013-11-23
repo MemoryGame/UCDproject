@@ -397,7 +397,16 @@ int menu high_scores_menu 0x7f0c0002
 int menu insert_scores 0x7f0c0003
 int menu main_menu 0x7f0c0004
 int menu options_menu 0x7f0c0005
-int raw secondbounce 0x7f040000
+int raw button1 0x7f040000
+int raw button2 0x7f040001
+int raw button3 0x7f040002
+int raw button4 0x7f040003
+int raw button5 0x7f040004
+int raw button6 0x7f040005
+int raw button7 0x7f040006
+int raw button8 0x7f040007
+int raw secondbounce 0x7f040008
+int raw wronganswer 0x7f040009
 int string about 0x7f0a000d
 int string about_this_app 0x7f0a000e
 int string abs__action_bar_home_description 0x7f0a0000

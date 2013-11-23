@@ -25,6 +25,7 @@
         <activity
             android:name="com.example.memorygame.MainMenu"
             android:label="@string/main_menu"
+            android:screenOrientation="portrait"
             android:theme="@style/CustomTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -33,6 +34,7 @@
         <activity
             android:name="com.example.memorygame.PlayGame"
             android:label="@string/game_page"
+            android:screenOrientation="portrait"
             android:theme="@style/CustomTheme" >
             <intent-filter>
                 <action android:name="com.example.memorygame.PLAYGAME" />
@@ -43,31 +45,37 @@
         <activity
             android:name="com.example.memorygame.Instructions"
             android:label="@string/instructions"
+            android:screenOrientation="portrait"
             android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="com.example.memorygame.Options"
             android:label="@string/options"
+            android:screenOrientation="portrait"
             android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="com.example.memorygame.HighScores"
             android:label="@string/high_scores"
+            android:screenOrientation="portrait"
             android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="com.example.memorygame.About"
             android:label="@string/about"
+            android:screenOrientation="portrait"
             android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="com.example.memorygame.Feedback"
             android:label="@string/feedback"
+            android:screenOrientation="portrait"
             android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="com.example.memorygame.InsertScores"
             android:label="@string/title_activity_insert_scores"
+            android:screenOrientation="portrait"
             android:parentActivityName="com.example.memorygame" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

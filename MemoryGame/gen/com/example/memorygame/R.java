@@ -1076,7 +1076,16 @@ containing a value of this type.
         public static final int options_menu=0x7f0c0005;
     }
     public static final class raw {
-        public static final int secondbounce=0x7f040000;
+        public static final int button1=0x7f040000;
+        public static final int button2=0x7f040001;
+        public static final int button3=0x7f040002;
+        public static final int button4=0x7f040003;
+        public static final int button5=0x7f040004;
+        public static final int button6=0x7f040005;
+        public static final int button7=0x7f040006;
+        public static final int button8=0x7f040007;
+        public static final int secondbounce=0x7f040008;
+        public static final int wronganswer=0x7f040009;
     }
     public static final class string {
         public static final int about=0x7f0a000d;
