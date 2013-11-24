@@ -55,10 +55,15 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		if (hello == 1) {
 			getSupportActionBar().setBackgroundDrawable(
 					getResources().getDrawable(R.drawable.backgroundactionbar));
-		} else if (hello == 0) {
+		} else if (hello == 2) {
 			getSupportActionBar().setBackgroundDrawable(
 					getResources().getDrawable(R.drawable.ocean_ab));
 		}
+		else if (hello == 0) {
+			getSupportActionBar().setBackgroundDrawable(
+					getResources().getDrawable(R.drawable.xmas_ab));
+		}
+		
 
 		SharedPreferences settings = getSharedPreferences("settings", 0);
 		int sequenceLength = settings.getInt("seqLen", 4);

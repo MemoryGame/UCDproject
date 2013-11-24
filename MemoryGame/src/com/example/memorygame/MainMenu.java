@@ -49,9 +49,13 @@ public class MainMenu extends SherlockActivity {
 			getSupportActionBar().setBackgroundDrawable(
 					getResources().getDrawable(R.drawable.backgroundactionbar));
 		}
-		else if (hello == 0) {
+		else if (hello == 2) {
 			getSupportActionBar().setBackgroundDrawable(
 					getResources().getDrawable(R.drawable.ocean_ab));
+		}
+		else if (hello == 0) {
+			getSupportActionBar().setBackgroundDrawable(
+					getResources().getDrawable(R.drawable.xmas_ab));
 		}
 		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
 		yo = sharedPrefs.getBoolean("tgref", true);
@@ -68,7 +72,7 @@ public class MainMenu extends SherlockActivity {
 		
 		/*Big first letters*/
 		switch (hello){
-		case 0:
+		case 2:
 			// Letter P for "Play Now"
 			String playLetter = (String) btPlayNow.getText();
 			SpannableString bigLetter = new SpannableString(playLetter);
@@ -98,7 +102,7 @@ public class MainMenu extends SherlockActivity {
 		case 1:
 			
 			break;
-		case 2:
+		case 0:
 			// Letter P for "Play Now"
 			String xmasplayLetter = (String) btPlayNow.getText();
 			SpannableString xmasbigLetter = new SpannableString(xmasplayLetter);

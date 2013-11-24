@@ -38,9 +38,13 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 			getSupportActionBar().setBackgroundDrawable(
 					getResources().getDrawable(R.drawable.backgroundactionbar));
 		}
-		else if (hello == 0) {
+		else if (hello == 2) {
 			getSupportActionBar().setBackgroundDrawable(
 					getResources().getDrawable(R.drawable.ocean_ab));
+		}
+		else if (hello == 0) {
+			getSupportActionBar().setBackgroundDrawable(
+					getResources().getDrawable(R.drawable.xmas_ab));
 		}
 		// Create listView to display results from database
 		lv = (ListView) findViewById(R.id.listView1);

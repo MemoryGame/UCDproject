@@ -26,7 +26,7 @@
             android:name="com.example.memorygame.MainMenu"
             android:label="@string/main_menu"
             android:screenOrientation="portrait"
-            android:theme="@style/BlueTheme" >
+            android:theme="@style/xmas" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.ParentActivity" />
@@ -35,7 +35,7 @@
             android:name="com.example.memorygame.PlayGame"
             android:label="@string/game_page"
             android:screenOrientation="portrait"
-            android:theme="@style/BlueTheme" >
+            android:theme="@style/xmas" >
             <intent-filter>
                 <action android:name="com.example.memorygame.PLAYGAME" />
 
@@ -46,31 +46,31 @@
             android:name="com.example.memorygame.Instructions"
             android:label="@string/instructions"
             android:screenOrientation="portrait"
-            android:theme="@style/BlueTheme" >
+            android:theme="@style/xmas" >
         </activity>
         <activity
             android:name="com.example.memorygame.Options"
             android:label="@string/options"
             android:screenOrientation="portrait"
-            android:theme="@style/BlueTheme" >
+            android:theme="@style/xmas" >
         </activity>
         <activity
             android:name="com.example.memorygame.HighScores"
             android:label="@string/high_scores"
             android:screenOrientation="portrait"
-            android:theme="@style/BlueTheme" >
+            android:theme="@style/xmas" >
         </activity>
         <activity
             android:name="com.example.memorygame.About"
             android:label="@string/about"
             android:screenOrientation="portrait"
-            android:theme="@style/BlueTheme" >
+            android:theme="@style/xmas" >
         </activity>
         <activity
             android:name="com.example.memorygame.Feedback"
             android:label="@string/feedback"
             android:screenOrientation="portrait"
-            android:theme="@style/BlueTheme" >
+            android:theme="@style/xmas" >
         </activity>
         <activity
             android:name="com.example.memorygame.InsertScores"
