@@ -17,7 +17,6 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.Window;
 
 public class Options extends SherlockActivity implements OnClickListener {
 
@@ -51,10 +50,10 @@ public class Options extends SherlockActivity implements OnClickListener {
 		
 		
 		
-		findViewById(R.id.blackbutton).setOnClickListener(this);
+		blueButton.setOnClickListener(this);
 
-		findViewById(R.id.bluebutton).setOnClickListener(this);
-		findViewById(R.id.xmasbutton).setOnClickListener(this);
+		blackButton.setOnClickListener(this);
+		xmasButton.setOnClickListener(this);
 		
 	
 		/* Toggle sound on/off with Button - option from action bar too: to be decided*/
@@ -238,6 +237,18 @@ public class Options extends SherlockActivity implements OnClickListener {
 		startActivity(new Intent(this, About.class));
 
 	}
+//	public void blueTheme(){
+//		themeUtils.changeToTheme(Options.this, themeUtils.BLUE);
+//	}
+//	
+//	public void blackTheme(){
+//		themeUtils.changeToTheme(Options.this, themeUtils.BLACK);
+//	}
+//	
+//	public void xmasTheme(){
+//		themeUtils.changeToTheme(Options.this, themeUtils.XMAS);
+//	}
+
 
 	@Override
 	public void onClick(View v) {
@@ -270,6 +281,7 @@ public class Options extends SherlockActivity implements OnClickListener {
 		}
 		
 	}
+	
 
 	
 }
