@@ -23,6 +23,7 @@
         <item name="android:windowBackground">@drawable/background</item>
         <item name="android:textColor">#FFF8DC</item>
         <item name="android:buttonStyle">@style/BlackButton</item>
+      
         
 
      
@@ -33,6 +34,11 @@
             <item name="android:buttonStyle">@style/BlackButton</item>
         </style>
         
+      <style name="xmas" parent = "Theme.Sherlock.Light.DarkActionBar">
+            <item name="android:windowBackground">@drawable/xmas_background</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:buttonStyle">@style/BlackButton</item>
+        </style>
    <style name="BlackButton" parent="@android:style/Widget.Button">
        <item name="android:textColor">#FFF8DC</item>
    </style>

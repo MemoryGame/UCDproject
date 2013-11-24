@@ -25,7 +25,7 @@ public class Options extends SherlockActivity implements OnClickListener {
 	ToggleButton soundnotify, soundnotify2;
 	SharedPreferences preferences; 
 	SharedPreferences sharedPrefs;
-	Button blueButton, blackButton;
+	Button blueButton, blackButton, xmasButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +44,17 @@ public class Options extends SherlockActivity implements OnClickListener {
 		/* Make buttons transparent */
 		blueButton = (Button) findViewById(R.id.bluebutton);
 		blackButton = (Button) findViewById(R.id.blackbutton);
+		xmasButton = (Button) findViewById(R.id.xmasbutton);
 		blueButton.setBackgroundColor(Color.TRANSPARENT);
 		blackButton.setBackgroundColor(Color.TRANSPARENT);
+		xmasButton.setBackgroundColor(Color.TRANSPARENT);
 		
 		
 		
 		findViewById(R.id.blackbutton).setOnClickListener(this);
 
 		findViewById(R.id.bluebutton).setOnClickListener(this);
+		findViewById(R.id.xmasbutton).setOnClickListener(this);
 		
 	
 		/* Toggle sound on/off with Button - option from action bar too: to be decided*/
@@ -255,6 +258,15 @@ public class Options extends SherlockActivity implements OnClickListener {
 				
 
 			break;
+			
+			case R.id.xmasbutton:
+				
+				themeUtils.changeToTheme(this, themeUtils.XMAS);
+			
+		
+					
+
+				break;
 		}
 		
 	}

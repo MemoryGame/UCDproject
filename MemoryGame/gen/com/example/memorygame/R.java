@@ -945,11 +945,12 @@ containing a value of this type.
         public static final int save=0x7f020090;
         public static final int send=0x7f020091;
         public static final int splash=0x7f020092;
-        public static final int yellow_button_off=0x7f020093;
-        public static final int yellow_button_on=0x7f020094;
+        public static final int xmas_background=0x7f020093;
+        public static final int yellow_button_off=0x7f020094;
+        public static final int yellow_button_on=0x7f020095;
     }
     public static final class id {
-        public static final int about=0x7f05004d;
+        public static final int about=0x7f05004e;
         public static final int abs__action_bar=0x7f050024;
         public static final int abs__action_bar_container=0x7f050023;
         public static final int abs__action_bar_subtitle=0x7f050015;
@@ -989,8 +990,8 @@ containing a value of this type.
         public static final int abs__textButton=0x7f050017;
         public static final int abs__title=0x7f05001f;
         public static final int abs__up=0x7f05000b;
-        public static final int action_info=0x7f050050;
-        public static final int action_settings=0x7f05004b;
+        public static final int action_info=0x7f050051;
+        public static final int action_settings=0x7f05004c;
         public static final int blackbutton=0x7f050041;
         public static final int bluebutton=0x7f050040;
         public static final int button1=0x7f050039;
@@ -998,40 +999,41 @@ containing a value of this type.
         public static final int button_instructions=0x7f05003b;
         public static final int button_options=0x7f05003c;
         public static final int button_play=0x7f05003a;
-        public static final int cancel=0x7f05004e;
+        public static final int cancel=0x7f05004f;
         public static final int disableHome=0x7f050009;
-        public static final int discard=0x7f050051;
+        public static final int discard=0x7f050052;
         public static final int edit_query=0x7f05002a;
-        public static final int edit_text1=0x7f050044;
-        public static final int edit_text2=0x7f050045;
-        public static final int edit_text3=0x7f050046;
-        public static final int feedback=0x7f05004a;
-        public static final int gohome=0x7f05004c;
+        public static final int edit_text1=0x7f050045;
+        public static final int edit_text2=0x7f050046;
+        public static final int edit_text3=0x7f050047;
+        public static final int feedback=0x7f05004b;
+        public static final int gohome=0x7f05004d;
         public static final int homeAsUp=0x7f050006;
-        public static final int imageView1=0x7f050047;
-        public static final int image_view1=0x7f050049;
+        public static final int imageView1=0x7f050048;
+        public static final int image_view1=0x7f05004a;
         public static final int listMode=0x7f050002;
         public static final int listView1=0x7f050036;
-        public static final int mainLayout=0x7f050042;
+        public static final int mainLayout=0x7f050043;
         public static final int normal=0x7f050001;
         public static final int playerName=0x7f050037;
         public static final int rootLayout=0x7f050011;
         public static final int scrollView1=0x7f050010;
-        public static final int send_email=0x7f05004f;
+        public static final int send_email=0x7f050050;
         public static final int showCustom=0x7f050008;
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
         public static final int tabMode=0x7f050003;
         public static final int textView1=0x7f050038;
-        public static final int textView2=0x7f050048;
+        public static final int textView2=0x7f050049;
         public static final int textview1=0x7f050012;
         public static final int textview2=0x7f050013;
         public static final int toggleButton1=0x7f05003e;
         public static final int toggleButton2=0x7f05003f;
-        public static final int toggle_sound=0x7f050052;
-        public static final int tv1=0x7f050043;
+        public static final int toggle_sound=0x7f050053;
+        public static final int tv1=0x7f050044;
         public static final int useLogo=0x7f050004;
         public static final int wrap_content=0x7f050000;
+        public static final int xmasbutton=0x7f050042;
     }
     public static final class integer {
         public static final int abs__max_action_buttons=0x7f090000;
@@ -1196,7 +1198,7 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0b005a;
-        public static final int BlackButton=0x7f0b005d;
+        public static final int BlackButton=0x7f0b005e;
         public static final int BlueTheme=0x7f0b005c;
         public static final int CustomTheme=0x7f0b005b;
         public static final int Sherlock___TextAppearance_Small=0x7f0b0046;
@@ -1288,6 +1290,7 @@ containing a value of this type.
         public static final int Widget_Sherlock_SearchAutoCompleteTextView=0x7f0b0034;
         public static final int Widget_Sherlock_Spinner_DropDown_ActionBar=0x7f0b0024;
         public static final int Widget_Sherlock_TextView_SpinnerItem=0x7f0b0032;
+        public static final int xmas=0x7f0b005d;
     }
     public static final class styleable {
         /**  Attributes used to style the Action Bar. 

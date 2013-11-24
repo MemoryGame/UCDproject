@@ -48,5 +48,14 @@
             android:layout_below="@+id/bluebutton"
             android:layout_centerHorizontal="true"
             android:text="Dark some sort of Wood Theme" />
+        
+                <Button
+            android:id="@+id/xmasbutton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="54dp"
+            android:layout_below="@+id/blackbutton"
+            android:layout_centerHorizontal="true"
+            android:text="Christmas Theme" />
 
 </RelativeLayout>

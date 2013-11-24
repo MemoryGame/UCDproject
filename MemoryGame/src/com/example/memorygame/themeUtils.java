@@ -17,6 +17,7 @@ public final static int BLACK = 1;
 
 public final static int BLUE = 0;
 
+public final static int XMAS = 2;
 public static void changeToTheme(Activity activity, int theme)
 
 {
@@ -51,6 +52,12 @@ break;
 case BLUE:
 
 activity.setTheme(R.style.BlueTheme);
+
+break;
+
+case XMAS:
+
+activity.setTheme(R.style.xmas);
 
 break;
 

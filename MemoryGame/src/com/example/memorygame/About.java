@@ -2,7 +2,10 @@ package com.example.memorygame;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.KeyEvent;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -12,6 +15,7 @@ import com.actionbarsherlock.view.MenuItem;
 public class About extends SherlockActivity {
 
 	Boolean continueMusic;
+	TextView richTextView1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,8 @@ public class About extends SherlockActivity {
 			getSupportActionBar().setBackgroundDrawable(
 					getResources().getDrawable(R.drawable.ocean_ab));
 		}
+		
+
 
 	}
 
