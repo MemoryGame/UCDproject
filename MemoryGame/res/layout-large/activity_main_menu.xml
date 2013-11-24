@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainMenu" >
+
+    <Button
+        android:id="@+id/button_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="37dp"
+        android:onClick="btPlayNow"
+        android:text="@string/buttonPlay" />
+
+    <Button
+        android:id="@+id/button_instructions"
+        android:onClick="btInstructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:layout_alignLeft="@+id/button_play"
+        android:layout_alignRight="@+id/button_play"
+        android:layout_below="@+id/button_play"
+        android:text="@string/buttonInstructions" />
+
+    <Button
+        android:id="@+id/button_options"
+        android:onClick="btOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:layout_alignLeft="@+id/button_instructions"
+        android:layout_alignRight="@+id/button_instructions"
+        android:layout_below="@+id/button_instructions"
+        android:text="@string/buttonOptions" />
+
+    <Button
+        android:id="@+id/button_high_score"
+        android:layout_width="wrap_content"
+        android:onClick="btHighScores"
+        android:layout_marginTop="37dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button_options"
+        android:layout_alignRight="@+id/button_options"
+        android:layout_below="@+id/button_options"
+        android:text="@string/buttonScores" />
+
+</RelativeLayout>
