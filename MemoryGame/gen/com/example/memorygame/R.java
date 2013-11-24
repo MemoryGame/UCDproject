@@ -949,11 +949,12 @@ containing a value of this type.
         public static final int red_button_on=0x7f020094;
         public static final int save=0x7f020095;
         public static final int send=0x7f020096;
-        public static final int splash=0x7f020097;
-        public static final int xmas_ab=0x7f020098;
-        public static final int xmas_background=0x7f020099;
-        public static final int yellow_button_off=0x7f02009a;
-        public static final int yellow_button_on=0x7f02009b;
+        public static final int snowman=0x7f020097;
+        public static final int splash=0x7f020098;
+        public static final int xmas_ab=0x7f020099;
+        public static final int xmas_background=0x7f02009a;
+        public static final int yellow_button_off=0x7f02009b;
+        public static final int yellow_button_on=0x7f02009c;
     }
     public static final class id {
         public static final int about=0x7f05004e;
