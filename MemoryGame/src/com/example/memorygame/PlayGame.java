@@ -303,6 +303,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 						Intent go = new Intent(PlayGame.this,
 								InsertScores.class);
 						go.putExtra("Score", sc);
+						setDefaults();
 						startActivity(go);
 					}
 				})
@@ -310,6 +311,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int which) {
+								setDefaults();
 								startActivity(new Intent(PlayGame.this,
 										MainMenu.class));
 
@@ -329,6 +331,18 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 				});
 		AlertDialog alert = builder.create();
 		alert.show();
+	}
+	
+	private void setDefaults(){
+		SharedPreferences settings = getSharedPreferences("settings", 0);
+	    SharedPreferences.Editor editor = settings.edit();			    
+	    editor.putInt("currentScore", 0);
+	    editor.putInt("seqLen", 4);
+	    editor.putInt("numBut", 4);
+	    editor.putLong("speed", 500);
+	    editor.putInt("diffType", 0);
+	    editor.putInt("roundCtr", 0);
+	    editor.commit();
 	}
 
 }
