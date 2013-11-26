@@ -49,7 +49,7 @@
             android:layout_marginTop="54dp"
             android:layout_below="@+id/bluebutton"
             android:layout_centerHorizontal="true"
-            android:text="Dark some sort of Wood Theme" />
+            android:text="Horror Theme" />
         
                 <Button
             android:id="@+id/xmasbutton"
