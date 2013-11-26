@@ -46,18 +46,7 @@ public class MainMenu extends SherlockActivity {
 		setContentView(R.layout.activity_main_menu);
 		getSupportActionBar().setBackgroundDrawable(null);
 		int hello = themeUtils.getcTheme();
-//		if (hello == 1) {
-//			getSupportActionBar().setBackgroundDrawable(
-//					getResources().getDrawable(R.drawable.backgroundactionbar));
-//		}
-//		else if (hello == 2) {
-//			getSupportActionBar().setBackgroundDrawable(
-//					getResources().getDrawable(R.drawable.ocean_ab));
-//		}
-//		else if (hello == 0) {
-//			getSupportActionBar().setBackgroundDrawable(
-//					getResources().getDrawable(R.drawable.xmas_ab));
-//		}
+
 		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
 		yo = sharedPrefs.getBoolean("tgref", true);
 

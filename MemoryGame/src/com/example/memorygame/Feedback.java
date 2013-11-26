@@ -24,18 +24,7 @@ public class Feedback extends SherlockActivity {
 		themeUtils.onActivityCreateSetTheme(this);
 		setContentView(R.layout.feedback);
 		int hello = themeUtils.getcTheme();
-		if (hello == 1) {
-			getSupportActionBar().setBackgroundDrawable(
-					getResources().getDrawable(R.drawable.backgroundactionbar));
-		}
-		else if (hello == 2) {
-			getSupportActionBar().setBackgroundDrawable(
-					getResources().getDrawable(R.drawable.ocean_ab));
-		}
-		else if (hello == 0) {
-			getSupportActionBar().setBackgroundDrawable(
-					getResources().getDrawable(R.drawable.xmas_ab));
-		}
+		getSupportActionBar().setBackgroundDrawable(null);
 
 	}
 
