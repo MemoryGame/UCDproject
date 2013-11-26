@@ -174,6 +174,7 @@ public class MainMenu extends SherlockActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == 100) {
 			startActivity(new Intent(this, MainMenu.class));
+			this.finish();
 		}
 	}
 
