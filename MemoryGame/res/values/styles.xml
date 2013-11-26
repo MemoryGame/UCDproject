@@ -2,47 +2,54 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     -->
-    <style name="AppBaseTheme" parent="Theme.Sherlock.Light.DarkActionBar">
+    <style name="AppBaseTheme" parent="Theme.Sherlock">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
+
         -->
+                <item name="windowActionBarOverlay">true</item>
+            <item name="android:windowFullscreen">true</item>
     </style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+                <item name="windowActionBarOverlay">true</item>
+            <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="CustomTheme" parent="Theme.Sherlock">
         <item name="android:windowBackground">@drawable/background</item>
         <item name="android:textColor">#FFF8DC</item>
         <item name="android:buttonStyle">@style/BlackButton</item>
-        <item name="windowActionBarOverlay">true</item>
-        <item name="android:windowFullscreen">true</item>
-    </style>
+             <item name="windowActionBarOverlay">true</item>
+            <item name="android:windowFullscreen">true</item>
+      
+        
 
-    <style name="BlueTheme" parent="Theme.Sherlock">
-        <item name="android:windowBackground">@drawable/ocean</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:buttonStyle">@style/BlackButton</item>
-        <item name="windowActionBarOverlay">true</item>
-        <item name="android:windowFullscreen">true</item>
+     
     </style>
-
-    <style name="xmas" parent="Theme.Sherlock">
-        <item name="android:windowBackground">@drawable/xmas_background</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:buttonStyle">@style/BlackButton</item>
-        <item name="windowActionBarOverlay">true</item>
-        <item name="android:windowFullscreen">true</item>
-    </style>
-
-    <style name="BlackButton" parent="@android:style/Widget.Button">
-        <item name="android:textColor">#FFF8DC</item>
-    </style>
-
+   <style name="BlueTheme" parent = "Theme.Sherlock">
+            <item name="android:windowBackground">@drawable/ocean</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:buttonStyle">@style/BlackButton</item>
+                 <item name="windowActionBarOverlay">true</item>
+            <item name="android:windowFullscreen">true</item>
+        </style>
+        
+      <style name="xmas" parent = "Theme.Sherlock">
+            <item name="android:windowBackground">@drawable/xmas_background</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:buttonStyle">@style/BlackButton</item>
+            <item name="windowActionBarOverlay">true</item>
+            <item name="android:windowFullscreen">true</item>
+        </style>
+   <style name="BlackButton" parent="@android:style/Widget.Button">
+       <item name="android:textColor">#FFF8DC</item>
+   </style>
 </resources>

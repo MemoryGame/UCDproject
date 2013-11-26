@@ -160,10 +160,7 @@ public class Options extends SherlockActivity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		int hello = themeUtils.getcTheme();
-		if (hello == 1) {
-		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroundactionbar));
-		}	
+		
 		continueMusic = false;
 		MusicManager.start(this, MusicManager.MUSIC_MENU);
 	}
