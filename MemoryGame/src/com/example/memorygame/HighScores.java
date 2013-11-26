@@ -41,7 +41,7 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 
 	}
 
-	/* require override to continue music on back button pressed */
+	/* Require override to continue music on back button pressed */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -124,10 +124,10 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 				HighScores.this);
 
-		// set title
+		// Set Title
 		alertDialogBuilder.setTitle("High Scores will be erased!");
 
-		// set dialog message
+		// Set dialog message
 		alertDialogBuilder
 				.setMessage("Are you sure?")
 				.setCancelable(false)
@@ -150,17 +150,17 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 							}
 						});
 
-		// create alert dialog
+		// Create alert dialog
 		AlertDialog alertDialog = alertDialogBuilder.create();
 
-		// show it
+		// Show it
 		alertDialog.show();
 
 		return (true);
 
 	}
 
-	// method for deleting the highscore database
+	/* Method for deleting the High Score database */
 	public void deleteData() {
 		DatabaseScores deleteScores = new DatabaseScores(this);
 		deleteScores.open();
@@ -169,6 +169,7 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 
 	}
 
+	/* Start of Custom ListView Layout */
 	class SingleRow {
 		String name;
 		String score;
@@ -206,10 +207,12 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 
 			int[] images = new int[length];
 
+			int j = 1;
+			
 			for (int i = 0; i < scores.length; i++) {
-
-				images[i] = R.drawable.ic_launcher;
-
+				
+				images[i] = R.drawable.rank_image0+j;
+				j++;
 			}
 
 			for (int i = 0; i < scores.length; i++) {
@@ -218,7 +221,7 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 			info.close();
 
 		}
-
+		
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
@@ -258,6 +261,7 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 		}
 
 	}
+	/* End of Custom ListView Layout */
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {

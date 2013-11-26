@@ -78,12 +78,14 @@ public class DatabaseScores {
 	 * Two get Methods for retrieving data from SQLite Database and returning it
 	 * to activity
 	 */
+	
+	/* Method to return ArrayList of the Names on leaderboard */
 	public ArrayList<String> getNameData() {
 		// TODO Auto-generated method stub
 		String[] columns = new String[] { KEY_ROWID, KEY_NAME, KEY_SCORE,
 				KEY_DATE };
 		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null,
-				null, KEY_SCORE +" DESC");
+				null, KEY_SCORE +" DESC", "20");
 
 		ArrayList<String> result = new ArrayList<String>();
 
@@ -99,12 +101,13 @@ public class DatabaseScores {
 		return result;
 	}
 
+	/* Method to return ArrayList of the scores on leaderboard */
 	public ArrayList<String> getScoreData() {
 		// TODO Auto-generated method stub
 		String[] columns = new String[] { KEY_ROWID, KEY_NAME, KEY_SCORE,
 				KEY_DATE };
 		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null,
-				null, KEY_SCORE  +" DESC");
+				null, KEY_SCORE  +" DESC", "20");
 
 		ArrayList<String> result = new ArrayList<String>();
 
@@ -120,6 +123,7 @@ public class DatabaseScores {
 		return result;
 	}
 
+	/* Method to wipe leaderboard */
 	public void deleteModule() {
 		// TODO Auto-generated method stub
 		ourDatabase.delete(DATABASE_TABLE, null, null);
