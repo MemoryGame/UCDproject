@@ -181,8 +181,9 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		// linearLayout
 		LayoutParams llParams = new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT);
-		LayoutParams bParams = new LayoutParams(LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT);
+		final float scale = getApplicationContext().getResources().getDisplayMetrics().density;
+		int pixels = (int) (90 * scale + 0.5f);
+		LayoutParams bParams = new LayoutParams(pixels,pixels);
 		// add the buttons to each linearLayout row
 		// each button created will be given a unique number starting at 0
 		int buttonNum = 0;
