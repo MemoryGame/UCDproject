@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -179,18 +179,16 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		LinearLayout[] rows = new LinearLayout[numRows];
 		// create a set of default linearLayout parameters to be given to every
 		// linearLayout
-		LayoutParams llParams = new LayoutParams(LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT);
+		LayoutParams llParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		final float scale = getApplicationContext().getResources().getDisplayMetrics().density;
 		int pixels = (int) (90 * scale + 0.5f);
-		LayoutParams bParams = new LayoutParams(pixels,pixels);
+		LayoutParams bParams = new LayoutParams(pixels, pixels);
 		// add the buttons to each linearLayout row
 		// each button created will be given a unique number starting at 0
 		int buttonNum = 0;
 		for (int i = 0; i < numRows; i++) {
 			rows[i] = new LinearLayout(this);
 			// set parameters for the current linearLayout row
-			rows[i].setOrientation(LinearLayout.HORIZONTAL);
 			rows[i].setLayoutParams(llParams);
 			// if we've reached the last linearLayout row and there is an odd
 			// number of buttons, add only one button
