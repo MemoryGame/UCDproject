@@ -179,7 +179,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		LinearLayout[] rows = new LinearLayout[numRows];
 		// create a set of default linearLayout parameters to be given to every
 		// linearLayout
-		LayoutParams llParams = new LayoutParams(LayoutParams.MATCH_PARENT,
+		LayoutParams llParams = new LayoutParams(LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
 		final float scale = getApplicationContext().getResources().getDisplayMetrics().density;
 		int pixels = (int) (90 * scale + 0.5f);
