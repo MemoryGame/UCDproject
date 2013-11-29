@@ -48,8 +48,6 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			R.drawable.red_button_off, R.drawable.black_button_off,
 			R.drawable.pink_button_off };
 
-	//final MediaPlayer applesound = MediaPlayer.create(this, R.raw.apple)
-	//applesound.start();
 	int[] buttonSound = new int[] { R.raw.wronganswer, R.raw.button2, 
 			R.raw.button3, R.raw.button4, R.raw.button5, 
 			R.raw.button6, R.raw.button7, R.raw.button8 };
@@ -72,21 +70,22 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		int difficultyType = settings.getInt("diffType", 0);
 		int roundCounter = settings.getInt("roundCtr", 0);
 
-		if (roundCounter == 1) {
+		//game difficulty logic based on number of rounds sucessfull
+		if (roundCounter == 2) {
 			if (difficultyType == 0) {
-				timeBetweenChangesMs -= 25;
+				timeBetweenChangesMs -= 15;		//speed increase
 				difficultyType++;
 			} else if (difficultyType == 1) {
-				sequenceLength++;
+				sequenceLength++;				//pat len increase
 				if (numButtons == 8) {
 					difficultyType = 0;
 				} else {
 					difficultyType++;
 				}
 			} else if (difficultyType == 2) {
-				numButtons++;
+				numButtons++;					//num but increase
 				difficultyType = 0;
-			}
+			}	
 			roundCounter = 0;
 		} else {
 			roundCounter++;
@@ -113,8 +112,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
     @Override
     public boolean onTouch(View v, MotionEvent event) {
     	int buttonNum = v.getId();
-    	//applesound.start();
-        if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+    	 if (event.getAction() == MotionEvent.ACTION_DOWN ) {
             v.setBackgroundResource(buttonsOn[buttonNum]);
             return false;
         }
@@ -130,17 +128,22 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		// get the user's guess i.e. the number of the button that the user has
 		// clicked
 		int userGuess = v.getId();
-    	MediaPlayer currentSound = MediaPlayer.create(this, buttonSound[userGuess]);
-        currentSound.start();
-		// if the current number in the pattern sequence equals the current
-		// userGuess
+		
+		//play button sound 
+    	MediaPlayer currentSound = MediaPlayer.create(this, R.raw.wronganswer);
+    	currentSound.setVolume(1.0f, 1.0f);
+        //currentSound.start();
+    //    currentSound.stop();
+        
+        
+		// if the current number in the pattern sequence equals the current userGuess
 		if (userGuess == pattern.get(patternPosition)) {
 			// if we have reached the end of the pattern sequence then the user
 			// has guessed the complete sequence correctly
 			if (patternPosition == (pattern.size() - 1)) {
 				// restart this activity again so new pattern is generated for
 				// the user to guess
-				scoresPARENT += 10;
+				scoresPARENT += 100;
 
 				SharedPreferences settings = getSharedPreferences("settings", 0);
 				SharedPreferences.Editor editor = settings.edit();
@@ -173,6 +176,9 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 
 			} else {
 				// display the number of lives left to the user
+				currentSound = MediaPlayer.create(this, R.raw.wronganswer);
+		    	currentSound.setVolume(1.0f, 1.0f);
+		        currentSound.start();
 				String message = Integer.toString(lives) + " lives left.";
 				alert("Nope", message);
 				// keep the current pattern but start the user guess from the
@@ -347,6 +353,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		alert.show();
 	}
 	
+	//set defaults clears pref of game setting once game over	
 	private void setDefaults(){
 		SharedPreferences settings = getSharedPreferences("settings", 0);
 	    SharedPreferences.Editor editor = settings.edit();			    
