@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -47,6 +48,12 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			R.drawable.red_button_off, R.drawable.black_button_off,
 			R.drawable.pink_button_off };
 
+	//final MediaPlayer applesound = MediaPlayer.create(this, R.raw.apple)
+	//applesound.start();
+	int[] buttonSound = new int[] { R.raw.wronganswer, R.raw.button2, 
+			R.raw.button3, R.raw.button4, R.raw.button5, 
+			R.raw.button6, R.raw.button7, R.raw.button8 };
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -106,6 +113,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
     @Override
     public boolean onTouch(View v, MotionEvent event) {
     	int buttonNum = v.getId();
+    	//applesound.start();
         if (event.getAction() == MotionEvent.ACTION_DOWN ) {
             v.setBackgroundResource(buttonsOn[buttonNum]);
             return false;
@@ -122,6 +130,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		// get the user's guess i.e. the number of the button that the user has
 		// clicked
 		int userGuess = v.getId();
+    	MediaPlayer currentSound = MediaPlayer.create(this, buttonSound[userGuess]);
+        currentSound.start();
 		// if the current number in the pattern sequence equals the current
 		// userGuess
 		if (userGuess == pattern.get(patternPosition)) {
