@@ -11,15 +11,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.LinearLayout.LayoutParams;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
-public class PlayGame extends SherlockActivity implements OnClickListener {
+public class PlayGame extends SherlockActivity implements OnClickListener, OnTouchListener {
 
 	// starting values
 	int sequenceLengthPARENT = 4;
@@ -89,9 +91,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		Timer myTimer = new Timer();
 		Handler myHandler = new Handler();
 
-		long delay = playSequence(myTimer, myHandler, pattern,
-				timeBetweenChangesMs, buttonsOn, buttonsOff);
-		setOnClickListeners(this, myTimer, myHandler, numButtons, delay);
+		long delay = playSequence(myTimer, myHandler, pattern, timeBetweenChangesMs, buttonsOn, buttonsOff);
+		setListeners(this, myTimer, myHandler, numButtons, delay);
 
 		sequenceLengthPARENT = sequenceLength;
 		numButtonsPARENT = numButtons;
@@ -101,6 +102,20 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		roundCounterPARENT = roundCounter;
 
 	}
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+    	int buttonNum = v.getId();
+        if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+            v.setBackgroundResource(buttonsOn[buttonNum]);
+            return false;
+        }
+        if (event.getAction() == MotionEvent.ACTION_UP ) {
+            v.setBackgroundResource(buttonsOff[buttonNum]);
+            return false;
+        }
+        return false;
+    }
 
 	@Override
 	public void onClick(View v) {
@@ -265,14 +280,14 @@ public class PlayGame extends SherlockActivity implements OnClickListener {
 		return delay;
 	}
 
-	private void setOnClickListeners(final PlayGame p, Timer t,
-			final Handler h, final int n, long d) {
+	private void setListeners(final PlayGame p, Timer t, final Handler h, final int n, long d) {
 		t.schedule(new TimerTask() {
 			public void run() {
 				h.post(new Runnable() {
 					public void run() {
 						for (int i = 0; i < n; i++) {
 							Button b = ((Button) findViewById(i));
+							b.setOnTouchListener(p);
 							b.setOnClickListener(p);
 						}
 					}
