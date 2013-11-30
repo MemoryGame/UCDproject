@@ -92,50 +92,50 @@ public class MainMenu extends SherlockActivity {
 		case 1:  // ***************** HORROR LETTERS ************************ //
 			
 			// Letter P for "Play Now"
-						String horrorplayLetter = (String) btPlayNow.getText();
-						SpannableString horrorbigLetter = new SpannableString(horrorplayLetter);
-						Drawable horrorbigA = getResources().getDrawable(R.drawable.letter_p_horror);
-						horrorbigA.setBounds(0, 0, horrorbigA.getIntrinsicWidth(),
-								horrorbigA.getIntrinsicHeight());
-						ImageSpan horrorspan = new ImageSpan(horrorbigA, ImageSpan.ALIGN_BASELINE);
-						horrorbigLetter.setSpan(horrorspan, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-						
-						btPlayNow.setText(horrorbigLetter, BufferType.SPANNABLE);
-						
-						// Letter I for "Instructions"
-						
-						String horrorinstructionsLetter = (String) btInstructions.getText();
-						SpannableString horroriLetter = new SpannableString(horrorinstructionsLetter);
-						Drawable horrorbigi = getResources().getDrawable(R.drawable.letter_i_horror);
-						horrorbigi.setBounds(0, 0, horrorbigi.getIntrinsicWidth(),
-								horrorbigi.getIntrinsicHeight());
-						ImageSpan horrorspani = new ImageSpan(horrorbigi, ImageSpan.ALIGN_BASELINE);
-						horroriLetter.setSpan(horrorspani, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-						
-						btInstructions.setText(horroriLetter, BufferType.SPANNABLE);
-						
-						// Letter O for "Options"
-						String horroroptionsLetter = (String) btOptions.getText();
-						SpannableString horroroLetter = new SpannableString(horroroptionsLetter);
-						Drawable horrorbigO = getResources().getDrawable(R.drawable.letter_o_horror);
-						horrorbigO.setBounds(0, 0, horrorbigO.getIntrinsicWidth(),
-								horrorbigO.getIntrinsicHeight());
-						ImageSpan horrorspanO = new ImageSpan(horrorbigO, ImageSpan.ALIGN_BASELINE);
-						horroroLetter.setSpan(horrorspanO, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-						
-						btOptions.setText(horroroLetter, BufferType.SPANNABLE);
-						
-						// Letter H for "High Scores"
-						
-						String horrorscoresLetter = (String) btHighScores.getText();
-						SpannableString horrorhLetter = new SpannableString(horrorscoresLetter);
-						Drawable horrorbigH = getResources().getDrawable(R.drawable.letter_h_horror);
-						horrorbigH.setBounds(0, 0, horrorbigH.getIntrinsicWidth(),
-								horrorbigH.getIntrinsicHeight());
-						ImageSpan horrorspanH = new ImageSpan(horrorbigH, ImageSpan.ALIGN_BASELINE);
-						horrorhLetter.setSpan(horrorspanH, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-						
-						btHighScores.setText(horrorhLetter, BufferType.SPANNABLE);
+			String horrorplayLetter = (String) btPlayNow.getText();
+			SpannableString horrorbigLetter = new SpannableString(horrorplayLetter);
+			Drawable horrorbigA = getResources().getDrawable(R.drawable.letter_p_horror);
+			horrorbigA.setBounds(0, 0, horrorbigA.getIntrinsicWidth(),
+					horrorbigA.getIntrinsicHeight());
+			ImageSpan horrorspan = new ImageSpan(horrorbigA, ImageSpan.ALIGN_BASELINE);
+			horrorbigLetter.setSpan(horrorspan, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+			
+			btPlayNow.setText(horrorbigLetter, BufferType.SPANNABLE);
+			
+			// Letter I for "Instructions"
+			
+			String horrorinstructionsLetter = (String) btInstructions.getText();
+			SpannableString horroriLetter = new SpannableString(horrorinstructionsLetter);
+			Drawable horrorbigi = getResources().getDrawable(R.drawable.letter_i_horror);
+			horrorbigi.setBounds(0, 0, horrorbigi.getIntrinsicWidth(),
+					horrorbigi.getIntrinsicHeight());
+			ImageSpan horrorspani = new ImageSpan(horrorbigi, ImageSpan.ALIGN_BASELINE);
+			horroriLetter.setSpan(horrorspani, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+			
+			btInstructions.setText(horroriLetter, BufferType.SPANNABLE);
+			
+			// Letter O for "Options"
+			String horroroptionsLetter = (String) btOptions.getText();
+			SpannableString horroroLetter = new SpannableString(horroroptionsLetter);
+			Drawable horrorbigO = getResources().getDrawable(R.drawable.letter_o_horror);
+			horrorbigO.setBounds(0, 0, horrorbigO.getIntrinsicWidth(),
+					horrorbigO.getIntrinsicHeight());
+			ImageSpan horrorspanO = new ImageSpan(horrorbigO, ImageSpan.ALIGN_BASELINE);
+			horroroLetter.setSpan(horrorspanO, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+			
+			btOptions.setText(horroroLetter, BufferType.SPANNABLE);
+			
+			// Letter H for "High Scores"
+			
+			String horrorscoresLetter = (String) btHighScores.getText();
+			SpannableString horrorhLetter = new SpannableString(horrorscoresLetter);
+			Drawable horrorbigH = getResources().getDrawable(R.drawable.letter_h_horror);
+			horrorbigH.setBounds(0, 0, horrorbigH.getIntrinsicWidth(),
+					horrorbigH.getIntrinsicHeight());
+			ImageSpan horrorspanH = new ImageSpan(horrorbigH, ImageSpan.ALIGN_BASELINE);
+			horrorhLetter.setSpan(horrorspanH, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+			
+			btHighScores.setText(horrorhLetter, BufferType.SPANNABLE);
 			
 			break;
 		case 0:   // ***************** XMAS LETTERS ************************ //
