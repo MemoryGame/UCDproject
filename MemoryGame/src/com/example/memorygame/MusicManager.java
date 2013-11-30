@@ -17,6 +17,7 @@ public class MusicManager {
 	public static final int MUSIC_MENU = 0;
 	public static final int MUSIC_GAME = 1;
 	public static final int MUSIC_END_GAME = 2;
+	public static final int MUSIC_CHRISTMAS = 3;
 
 	private static HashMap<Integer, MediaPlayer> players = new HashMap();
 	private static int currentMusic = -1;
@@ -33,13 +34,17 @@ public class MusicManager {
 
 	public static void start(Context context, int music) {
 		MediaPlayer mp;
-
 		start(context, music, false);
 	}
 
 	public static void startagain(Context context, int music)
 			throws IllegalStateException, IOException {
 		startagain(context, music, false);
+	}
+	
+	public static void startagainXmas(Context context, int music)
+			throws IllegalStateException, IOException {
+		startagainXmas(context, music, false);
 	}
 
 	public static void start(Context context, int music, boolean force) {
@@ -70,11 +75,11 @@ public class MusicManager {
 			}
 		} else {
 			if (music == MUSIC_MENU) {
-				mp = MediaPlayer.create(context, R.raw.secondbounce);
+				mp = MediaPlayer.create(context, R.raw.xmas);
 			} else if (music == MUSIC_GAME) {
-				mp = MediaPlayer.create(context, R.raw.secondbounce);
+				mp = MediaPlayer.create(context, R.raw.xmas);
 			} else if (music == MUSIC_END_GAME) {
-				mp = MediaPlayer.create(context, R.raw.secondbounce);
+				mp = MediaPlayer.create(context, R.raw.xmas);
 			} else {
 				Log.e(TAG, "unsupported music number - " + music);
 				return;
@@ -129,6 +134,7 @@ public class MusicManager {
 				mp.reset();
 				mp.setDataSource(context, uri);
 				mp.prepare();
+				mp.setLooping(true);
 				mp.start();
 			}
 		} else {
@@ -138,6 +144,70 @@ public class MusicManager {
 				mp = MediaPlayer.create(context, R.raw.secondbounce);
 			} else if (music == MUSIC_END_GAME) {
 				mp = MediaPlayer.create(context, R.raw.secondbounce);
+			} else {
+				Log.e(TAG, "unsupported music number - " + music);
+				return;
+			}
+			players.put(music, mp);
+			float volume = getMusicVolume(context);
+			Log.d(TAG, "Setting music volume to " + volume);
+			mp.setVolume(volume, volume);
+			if (mp == null) {
+				Log.e(TAG, "player was not created successfully");
+			} else {
+				try {
+					mp.setLooping(true);
+					mp.start();
+				} catch (Exception e) {
+					Log.e(TAG, e.getMessage(), e);
+				}
+			}
+		}
+	}
+	
+	public static void startagainXmas(Context context, int music, boolean force)
+			throws IllegalStateException, IOException {
+		if (!force && currentMusic > -1) {
+			// already playing some music and not forced to change
+			return;
+		}
+		if (music == MUSIC_PREVIOUS) {
+			Log.d(TAG, "Using previous music [" + previousMusic + "]");
+			music = previousMusic;
+		}
+		if (currentMusic == music) {
+			// already playing this music
+			return;
+		}
+		if (currentMusic != -1) {
+			previousMusic = currentMusic;
+			Log.d(TAG, "Previous music was [" + previousMusic + "]");
+			// playing some other music, pause it and change
+			pause();
+		}
+		currentMusic = music;
+		Log.d(TAG, "Current music is now [" + currentMusic + "]");
+		MediaPlayer mp = players.get(music);
+		//MediaPlayer yp;
+		//yp = MediaPlayer.create(context, R.raw.secondbounce);
+		String uriPath = "android.resource://com.example.memorygame/raw/xmas";
+		Uri uri = Uri.parse(uriPath);
+
+		if (mp != null) {
+			if (!mp.isPlaying()) {
+				mp.reset();
+				mp.setDataSource(context, uri);
+				mp.prepare();
+				mp.setLooping(true);
+				mp.start();
+			}
+		} else {
+			if (music == MUSIC_MENU) {
+				mp = MediaPlayer.create(context, R.raw.xmas);
+			} else if (music == MUSIC_GAME) {
+				mp = MediaPlayer.create(context, R.raw.xmas);
+			} else if (music == MUSIC_END_GAME) {
+				mp = MediaPlayer.create(context, R.raw.xmas);
 			} else {
 				Log.e(TAG, "unsupported music number - " + music);
 				return;

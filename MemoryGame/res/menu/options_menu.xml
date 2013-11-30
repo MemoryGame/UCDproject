@@ -13,11 +13,6 @@
         android:showAsAction="ifRoom"
         android:title="@string/goHome"/>
     
-           <item
-        android:id="@+id/toggle_sound"
-        android:orderInCategory="97"
-        android:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_volume_on"
-        android:title="@string/sound_on"/>
+
 
 </menu>

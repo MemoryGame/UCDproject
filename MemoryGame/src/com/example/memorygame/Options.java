@@ -5,13 +5,18 @@ import java.io.IOException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
+import android.widget.TextView.BufferType;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -21,7 +26,8 @@ import com.actionbarsherlock.view.MenuItem;
 public class Options extends SherlockActivity implements OnClickListener {
 
 	Boolean continueMusic;
-	ToggleButton soundnotify, soundnotify2;
+	Boolean musicIsXmas, musicIsHorror, musicIsOcean, musicIsNormal;
+	ToggleButton soundnotify;
 	SharedPreferences preferences; 
 	SharedPreferences sharedPrefs;
 	Button blueButton, blackButton, xmasButton;
@@ -44,6 +50,32 @@ public class Options extends SherlockActivity implements OnClickListener {
 		blackButton.setBackgroundColor(Color.TRANSPARENT);
 		xmasButton.setBackgroundColor(Color.TRANSPARENT);
 		
+		/* Decide what music will be started again */
+		int whatTheme = themeUtils.getcTheme();
+		
+		switch (whatTheme){
+		case 2:   // ***************** OCEAN THEME ************************ //
+		musicIsXmas = false;
+		musicIsHorror = false;
+		musicIsOcean = true;
+		musicIsNormal = false;
+		break;
+		case 1:  // ***************** HORROR THEME ************************ //
+		musicIsXmas = false;
+		musicIsHorror = true;
+		musicIsOcean = false;
+		musicIsNormal = false;	
+		
+			
+			break;
+		case 0:   // ***************** XMAS THEME ************************ //
+		musicIsXmas = true;
+		musicIsHorror = false;
+		musicIsOcean = false;
+		musicIsNormal = false;	
+			
+			break;
+		}
 		
 		
 		blueButton.setOnClickListener(this);
@@ -56,7 +88,7 @@ public class Options extends SherlockActivity implements OnClickListener {
 		preferences = getPreferences(MODE_PRIVATE);
 
 		soundnotify = (ToggleButton) findViewById(R.id.toggleButton1);
-		soundnotify2 = (ToggleButton) findViewById(R.id.toggleButton2);
+		
 		soundnotify
 				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -69,8 +101,15 @@ public class Options extends SherlockActivity implements OnClickListener {
 						if (isChecked) {
 							// Sound Notifications is enabled
 							try {
+							if (musicIsXmas)
+								{
+									MusicManager.startagainXmas(Options.this,
+											MusicManager.MUSIC_MENU);
+								}
+							else{
 								MusicManager.startagain(Options.this,
 										MusicManager.MUSIC_MENU);
+							}
 							} catch (IllegalStateException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -92,40 +131,7 @@ public class Options extends SherlockActivity implements OnClickListener {
 					}
 				});
 		
-		soundnotify2
-		.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-			
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				// TODO Auto-generated method stub
-				if (isChecked) {
-					// Sound Notifications is enabled
-					try {
-						MusicManager.startagain(Options.this,
-								MusicManager.MUSIC_MENU);
-					} catch (IllegalStateException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					  SharedPreferences.Editor editor = preferences.edit();
-		                editor.putBoolean("tgpref", true); // value to store
-		                editor.commit();
-				} else {
-					// Sound Notifications is disabled
-					
-					SharedPreferences.Editor editor = preferences.edit();
-	                editor.putBoolean("tgpref", false); // value to store
-	                editor.commit();
-					MusicManager.stop();
-				}
-			}
-		});
+		
 
 	}
 
@@ -186,32 +192,7 @@ public class Options extends SherlockActivity implements OnClickListener {
 			return (true);
 		case R.id.gohome:
 			abGoHome();
-			return (true);
-		//case R.id.toggle_sound:
-		case R.id.toggle_sound:
-			if (soundOnOff) {
-				// 
-				item.setIcon(R.drawable.ic_action_volume_muted);
-				// item.setTitle(title1)
-				MusicManager.stop();
-				soundOnOff = false;
-			} else {
-				// 
-				item.setIcon(R.drawable.ic_action_volume_on);
-				// item.setTitle(title2)
-				try {
-					MusicManager.startagain(Options.this, MusicManager.MUSIC_MENU);
-				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				soundOnOff = true;
-			}
-			return (true);
+			return (true);		
 
 		}
 
@@ -266,6 +247,19 @@ public class Options extends SherlockActivity implements OnClickListener {
 			case R.id.xmasbutton:
 				
 				themeUtils.changeToTheme(this, themeUtils.XMAS);
+				MusicManager.stop();
+				// Sound Notifications is enabled
+				try {
+					MusicManager.startagainXmas(Options.this,
+							MusicManager.MUSIC_MENU);
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				musicIsXmas = true;
 			
 		
 					
