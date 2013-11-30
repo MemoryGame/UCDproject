@@ -54,11 +54,12 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		/* Custom Themes */
 		themeUtils.onActivityCreateSetTheme(this);
+		super.onCreate(savedInstanceState);
+	
 		setContentView(R.layout.activity_play_game);
-		int hello = themeUtils.getcTheme();
+	
 		getSupportActionBar().setBackgroundDrawable(null);
 		
 

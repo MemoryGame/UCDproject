@@ -17,11 +17,10 @@ public class InsertScores extends SherlockActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		/* Custom Themes */
+		themeUtils.onActivityCreateSetTheme(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_insert_scores);
-
-		//Intent go = getIntent();
-		//int highScore = go.getIntExtra("Score", 0);
 
 		playerName = (EditText) findViewById(R.id.playerName);
 

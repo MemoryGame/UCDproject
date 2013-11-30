@@ -30,10 +30,12 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		/* Custom Themes */
 		themeUtils.onActivityCreateSetTheme(this);
+		super.onCreate(savedInstanceState);
+	
 		setContentView(R.layout.activity_high_scores);
-		int hello = themeUtils.getcTheme();
+	
 		getSupportActionBar().setBackgroundDrawable(null);
 		// Create listView to display results from database
 		lv = (ListView) findViewById(R.id.listView1);

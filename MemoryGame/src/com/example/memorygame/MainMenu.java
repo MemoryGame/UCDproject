@@ -39,13 +39,13 @@ public class MainMenu extends SherlockActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		/* Custom Themes */
 		themeUtils.onActivityCreateSetTheme(this);
-
+		super.onCreate(savedInstanceState);
+	
 		setContentView(R.layout.activity_main_menu);
 		getSupportActionBar().setBackgroundDrawable(null);
-		int hello = themeUtils.getcTheme();
+		int whatTheme = themeUtils.getcTheme();
 
 		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
 		yo = sharedPrefs.getBoolean("tgref", true);
@@ -61,7 +61,7 @@ public class MainMenu extends SherlockActivity {
 		btHighScores.setBackgroundColor(Color.TRANSPARENT);
 		
 		/*Big first letters*/
-		switch (hello){
+		switch (whatTheme){
 		case 2:   // ***************** OCEAN OR KIDS LETTERS ************************ //
 			// Letter P for "Play Now"
 			String playLetter = (String) btPlayNow.getText();

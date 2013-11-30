@@ -15,11 +15,12 @@ public class Instructions extends SherlockActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		/* Custom Themes */
 		themeUtils.onActivityCreateSetTheme(this);
+		super.onCreate(savedInstanceState);
+	
 		setContentView(R.layout.activity_instructions);
-		int hello = themeUtils.getcTheme();
+		
 		getSupportActionBar().setBackgroundDrawable(null);
 
 	}
