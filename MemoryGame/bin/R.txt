@@ -420,9 +420,10 @@ int raw button5a 0x7f040004
 int raw button6a 0x7f040005
 int raw button8a 0x7f040006
 int raw buttona7a 0x7f040007
-int raw secondbounce 0x7f040008
-int raw wronganswer 0x7f040009
-int raw xmas 0x7f04000a
+int raw correct 0x7f040008
+int raw secondbounce 0x7f040009
+int raw wronganswer 0x7f04000a
+int raw xmas 0x7f04000b
 int string about 0x7f0a000d
 int string about_this_app 0x7f0a000e
 int string abs__action_bar_home_description 0x7f0a0000

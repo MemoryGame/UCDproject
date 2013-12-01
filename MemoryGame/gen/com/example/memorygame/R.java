@@ -1099,9 +1099,10 @@ containing a value of this type.
         public static final int button6a=0x7f040005;
         public static final int button8a=0x7f040006;
         public static final int buttona7a=0x7f040007;
-        public static final int secondbounce=0x7f040008;
-        public static final int wronganswer=0x7f040009;
-        public static final int xmas=0x7f04000a;
+        public static final int correct=0x7f040008;
+        public static final int secondbounce=0x7f040009;
+        public static final int wronganswer=0x7f04000a;
+        public static final int xmas=0x7f04000b;
     }
     public static final class string {
         public static final int about=0x7f0a000d;
