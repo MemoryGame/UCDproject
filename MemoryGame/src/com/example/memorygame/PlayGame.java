@@ -48,9 +48,9 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			R.drawable.red_button_off, R.drawable.black_button_off,
 			R.drawable.pink_button_off };
 
-	int[] buttonSound = new int[] { R.raw.wronganswer, R.raw.button2, 
-			R.raw.button3, R.raw.button4, R.raw.button5, 
-			R.raw.button6, R.raw.button7, R.raw.button8 };
+	int[] buttonSound = new int[] { R.raw.button1a, R.raw.button2a, 
+			R.raw.button3a, R.raw.button4a, R.raw.button5a, 
+			R.raw.button6a, R.raw.buttona7a, R.raw.button8a };
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -131,10 +131,10 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		int userGuess = v.getId();
 		
 		//play button sound 
-    	MediaPlayer currentSound = MediaPlayer.create(this, R.raw.wronganswer);
+    	MediaPlayer currentSound = MediaPlayer.create(this, buttonSound[userGuess]);
     	currentSound.setVolume(1.0f, 1.0f);
-        //currentSound.start();
-    //    currentSound.stop();
+        currentSound.start();
+        currentSound.release();
         
         
 		// if the current number in the pattern sequence equals the current userGuess
