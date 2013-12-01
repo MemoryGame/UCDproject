@@ -6,6 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,7 +20,6 @@ import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
@@ -195,7 +195,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 
 	}
 
-	private void generateLayout(int numBtns, final int[] colours) {
+	private void generateLayout(int numBtns, final int[] colours) {		
 		// start generating the layout
 		LinearLayout mainLayout = ((LinearLayout) findViewById(R.id.mainLayout));
 		/*
@@ -217,9 +217,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		// create a set of default linearLayout parameters to be given to every
 		// linearLayout
 		LayoutParams llParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		final float scale = getApplicationContext().getResources().getDisplayMetrics().density;
-		int pixels = (int) (90 * scale + 0.5f);
-		LayoutParams bParams = new LayoutParams(pixels, pixels);
+		LayoutParams bParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, 0.50f);
 		// add the buttons to each linearLayout row
 		// each button created will be given a unique number starting at 0
 		int buttonNum = 0;
@@ -230,7 +228,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			// if we've reached the last linearLayout row and there is an odd
 			// number of buttons, add only one button
 			if (i == (numRows - 1) && odd) {
-				Button btn = new Button(this);
+				FixedAspectRatioButton btn = new FixedAspectRatioButton(this);
 				btn.setLayoutParams(bParams);
 				btn.setBackgroundResource(colours[buttonNum]);
 				btn.setId(buttonNum);
@@ -239,9 +237,9 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			}
 			// otherwise add two buttons to the current linearLayout row
 			else {
-				Button[] rowButtons = new Button[2];
-				for (Button btn : rowButtons) {
-					btn = new Button(this);
+				FixedAspectRatioButton[] rowButtons = new FixedAspectRatioButton[2];
+				for (FixedAspectRatioButton btn : rowButtons) {
+					btn = new FixedAspectRatioButton(this);
 					btn.setLayoutParams(bParams);
 					btn.setBackgroundResource(colours[buttonNum]);
 					btn.setId(buttonNum);
@@ -373,4 +371,55 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	    editor.commit();
 	}
 
+}
+
+//Source: aleb on GitHub src/com/triposo/barone/FixedAspectRatioFrameLayout.java
+class FixedAspectRatioButton extends Button{
+	
+	private float aspectRatio;
+	
+	FixedAspectRatioButton(Context context){
+		super(context);
+	}	
+	
+  @Override protected void onMeasure (int widthMeasureSpec, int heightMeasureSpec){
+  	
+  	aspectRatio = 1.0000f;
+  	
+  	int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+  	int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+  	int receivedWidth = MeasureSpec.getSize(widthMeasureSpec);
+  	int receivedHeight = MeasureSpec.getSize(heightMeasureSpec);
+  	
+  	int measuredWidth;
+  	int measuredHeight;
+  	boolean widthDynamic;
+  	
+  	if (heightMode == MeasureSpec.EXACTLY) {
+  		if (widthMode == MeasureSpec.EXACTLY) {
+  			widthDynamic = receivedWidth == 0;
+  		} else {
+  			widthDynamic = true;
+  	    }
+  	} else if (widthMode == MeasureSpec.EXACTLY) {
+  		widthDynamic = false;
+  	} else {
+  	    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+  	    return;
+  	}
+  	
+  	if (widthDynamic) {
+  		// Width is dynamic.
+  		int w = (int) (receivedHeight * aspectRatio);
+  		measuredWidth = MeasureSpec.makeMeasureSpec(w, MeasureSpec.EXACTLY);
+  		measuredHeight = heightMeasureSpec;
+  	} else {
+  		// Height is dynamic.
+  		measuredWidth = widthMeasureSpec;
+  		int h = (int) (receivedWidth / aspectRatio);
+  		measuredHeight = MeasureSpec.makeMeasureSpec(h, MeasureSpec.EXACTLY);
+  	}
+  	super.onMeasure(measuredWidth, measuredHeight);
+  }
+  
 }
