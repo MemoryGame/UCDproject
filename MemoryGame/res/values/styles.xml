@@ -43,7 +43,7 @@
         </style>
         
       <style name="xmas" parent = "Theme.Sherlock">
-            <item name="android:windowBackground">@drawable/xmas_background</item>
+            <item name="android:windowBackground">@drawable/xmas_background_full</item>
             <item name="android:textColor">#FFFFFF</item>
             <item name="android:buttonStyle">@style/BlackButton</item>
             <item name="windowActionBarOverlay">true</item>
