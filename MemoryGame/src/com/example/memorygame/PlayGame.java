@@ -134,7 +134,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
     	MediaPlayer currentSound = MediaPlayer.create(this, buttonSound[userGuess]);
     	currentSound.setVolume(1.0f, 1.0f);
         currentSound.start();
-        currentSound.release();
+       // currentSound.release();
         
         
 		// if the current number in the pattern sequence equals the current userGuess
