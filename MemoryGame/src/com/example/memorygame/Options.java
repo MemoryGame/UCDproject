@@ -26,7 +26,7 @@ import com.actionbarsherlock.view.MenuItem;
 public class Options extends SherlockActivity implements OnClickListener {
 
 	Boolean continueMusic;
-	Boolean musicIsXmas, musicIsHorror, musicIsOcean, musicIsNormal;
+	Boolean musicIsXmas, musicIsHorror, musicIsOcean;
 	ToggleButton soundnotify;
 	SharedPreferences preferences; 
 	SharedPreferences sharedPrefs;
@@ -58,13 +58,13 @@ public class Options extends SherlockActivity implements OnClickListener {
 		musicIsXmas = false;
 		musicIsHorror = false;
 		musicIsOcean = true;
-		musicIsNormal = false;
+	
 		break;
 		case 1:  // ***************** HORROR THEME ************************ //
 		musicIsXmas = false;
 		musicIsHorror = true;
 		musicIsOcean = false;
-		musicIsNormal = false;	
+		
 		
 			
 			break;
@@ -72,7 +72,7 @@ public class Options extends SherlockActivity implements OnClickListener {
 		musicIsXmas = true;
 		musicIsHorror = false;
 		musicIsOcean = false;
-		musicIsNormal = false;	
+	
 			
 			break;
 		}
@@ -106,6 +106,11 @@ public class Options extends SherlockActivity implements OnClickListener {
 									MusicManager.startagainXmas(Options.this,
 											MusicManager.MUSIC_MENU);
 								}
+							else if(musicIsHorror){
+								MusicManager.startagainHorror(Options.this,
+										MusicManager.MUSIC_MENU);
+							}
+							
 							else{
 								MusicManager.startagain(Options.this,
 										MusicManager.MUSIC_MENU);
@@ -146,11 +151,11 @@ public class Options extends SherlockActivity implements OnClickListener {
 			soundnotify.setChecked(true);
 			}
 			
-			else
-			{
-				continueMusic = false;
-				soundnotify.setChecked(false);
-			}
+//			else
+//			{
+//				continueMusic = false;
+//				soundnotify.setChecked(false);
+//			}
 			setResult(RESULT_OK);
 		}
 		return super.onKeyDown(keyCode, event);
@@ -232,13 +237,40 @@ public class Options extends SherlockActivity implements OnClickListener {
 		case R.id.blackbutton:
 
 			themeUtils.changeToTheme(this, themeUtils.BLACK);
+			
+			MusicManager.stop();
+			// Sound Notifications is enabled
+			try {
+				MusicManager.startagainHorror(Options.this,
+						MusicManager.MUSIC_MENU);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			musicIsHorror = true;
 	
 			break;
 
 			case R.id.bluebutton:
 		
 			themeUtils.changeToTheme(this, themeUtils.BLUE);
-		
+			
+			MusicManager.stop();
+			// Sound Notifications is enabled
+			try {
+				MusicManager.startagain(Options.this,
+						MusicManager.MUSIC_MENU);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			musicIsOcean = true;
 	
 				
 
