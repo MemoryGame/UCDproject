@@ -19,6 +19,7 @@ import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
@@ -157,6 +158,10 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				editor.commit();
 
 				Intent i = getIntent();
+				currentSound = MediaPlayer.create(this, R.raw.correct);
+		    	currentSound.setVolume(1.0f, 1.0f);
+		        currentSound.start();
+								
 				finish();
 				startActivity(i);
 			}
@@ -326,6 +331,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 						go.putExtra("Score", sc);
 						setDefaults();
 						startActivity(go);
+						finish();
 					}
 				})
 				.setNegativeButton("Nah",
@@ -335,7 +341,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 								setDefaults();
 								startActivity(new Intent(PlayGame.this,
 										MainMenu.class));
-
+								finish();
 							}
 						});
 		AlertDialog alertGameOver = builder.create();
