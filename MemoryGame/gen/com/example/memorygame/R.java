@@ -1207,6 +1207,7 @@ containing a value of this type.
         public static final int BlackButton=0x7f0b005e;
         public static final int BlueTheme=0x7f0b005c;
         public static final int CustomTheme=0x7f0b005b;
+        public static final int KidsButton=0x7f0b005f;
         public static final int Sherlock___TextAppearance_Small=0x7f0b0046;
         public static final int Sherlock___Theme=0x7f0b0051;
         public static final int Sherlock___Theme_DarkActionBar=0x7f0b0053;

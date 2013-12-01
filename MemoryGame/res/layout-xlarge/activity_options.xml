@@ -37,7 +37,7 @@
             android:layout_centerVertical="true"
             android:layout_below="@+id/toggleButton1"
             android:onClick="blueTheme"
-            android:text="Ocean Theme" />
+            android:text="Kids Theme" />
 
         <Button
             android:id="@+id/blackbutton"
