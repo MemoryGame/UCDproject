@@ -71,30 +71,39 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		long timeBetweenChangesMs = settings.getLong("speed", 500);
 		int difficultyType = settings.getInt("diffType", 0);
 		int roundCounter = settings.getInt("roundCtr", 0);
+		String patternString = settings.getString("patternStr", null);
 
-		//game difficulty logic based on number of rounds sucessfull
-		if (roundCounter == 2) {
-			if (difficultyType == 0) {
-				timeBetweenChangesMs -= 15;		//speed increase
-				difficultyType++;
-			} else if (difficultyType == 1) {
-				sequenceLength++;				//pat len increase
-				if (numButtons == 8) {
-					difficultyType = 0;
-				} else {
-					difficultyType++;
-				}
-			} else if (difficultyType == 2) {
-				numButtons++;					//num but increase
-				difficultyType = 0;
-			}	
-			roundCounter = 0;
-		} else {
-			roundCounter++;
-		}
 
 		generateLayout(numButtons, buttonsOff);
-		pattern = newPattern(sequenceLength, numButtons);
+		
+		//pattern = newPattern(sequenceLength, numButtons);
+		if( patternString!=null ){
+			pattern = StringToIntArrayList(patternString);
+		} else {
+			System.out.println("New pattern generated");
+			//game difficulty logic based on number of rounds sucessfull
+			if (roundCounter == 2) {
+				if (difficultyType == 0) {
+					timeBetweenChangesMs -= 15;		//speed increase
+					difficultyType++;
+				} else if (difficultyType == 1) {
+					sequenceLength++;				//pat len increase
+					if (numButtons == 8) {
+						difficultyType = 0;
+					} else {
+						difficultyType++;
+					}
+				} else if (difficultyType == 2) {
+					numButtons++;					//num but increase
+					difficultyType = 0;
+				}	
+				roundCounter = 0;
+			} else {
+				roundCounter++;
+			}
+			pattern = newPattern(sequenceLength, numButtons);
+		}
+
 
 		Timer myTimer = new Timer();
 		Handler myHandler = new Handler();
@@ -131,15 +140,34 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		// clicked
 		int userGuess = v.getId();
 		
-		//play button sound 
-    	MediaPlayer currentSound = MediaPlayer.create(this, buttonSound[userGuess]);
-    	currentSound.setVolume(1.0f, 1.0f);
-        currentSound.start();
-       // currentSound.release();
-        
-        
-		// if the current number in the pattern sequence equals the current userGuess
-		if (userGuess == pattern.get(patternPosition)) {
+		if(userGuess == R.id.replayButton)
+		{
+			String patternString = IntArrayListToString(pattern);
+
+			SharedPreferences settings = getSharedPreferences("settings", 0);
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putInt("currentScore", scoresPARENT);
+			editor.putInt("seqLen", sequenceLengthPARENT);
+			editor.putInt("numBut", numButtonsPARENT);
+			editor.putLong("speed", timeBetweenChangesMsPARENT);
+			editor.putInt("diffType", difficultyTypePARENT);
+			editor.putInt("roundCtr", roundCounterPARENT);
+			editor.putString("patternStr", patternString);
+			editor.commit();
+
+			Intent i = getIntent();							
+			finish();
+			startActivity(i);
+
+		} else if (userGuess == pattern.get(patternPosition)) {
+			// if the current number in the pattern sequence equals the current userGuess
+			
+			//play button sound 
+	    	MediaPlayer currentSound = MediaPlayer.create(this, buttonSound[userGuess]);
+	    	currentSound.setVolume(1.0f, 1.0f);
+	        currentSound.start();
+	       // currentSound.release();
+			
 			// if we have reached the end of the pattern sequence then the user
 			// has guessed the complete sequence correctly
 			if (patternPosition == (pattern.size() - 1)) {
@@ -155,6 +183,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				editor.putLong("speed", timeBetweenChangesMsPARENT);
 				editor.putInt("diffType", difficultyTypePARENT);
 				editor.putInt("roundCtr", roundCounterPARENT);
+				editor.putString("pattern", null);
 				editor.commit();
 
 				Intent i = getIntent();
@@ -167,11 +196,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			}
 			// otherwise move on to the next item in the pattern sequence
 			patternPosition++;
-		}
-		// if the user incorrectly guesses the current item in the pattern
-		// sequence
-		else {
-			// reduce lives
+		} else {
+			// if the user incorrectly guesses the current item in the pattern reduce lives
 			lives--;
 			if (lives == 0) {
 				// start game over activity
@@ -182,7 +208,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 
 			} else {
 				// display the number of lives left to the user
-				currentSound = MediaPlayer.create(this, R.raw.wronganswer);
+				MediaPlayer currentSound = MediaPlayer.create(this, R.raw.wronganswer);
 		    	currentSound.setVolume(1.0f, 1.0f);
 		        currentSound.start();
 				String message = Integer.toString(lives) + " lives left.";
@@ -310,6 +336,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 							b.setOnTouchListener(p);
 							b.setOnClickListener(p);
 						}
+						Button replayButton = ((Button) findViewById(R.id.replayButton));
+						replayButton.setOnClickListener(p);
 					}
 				});
 			}
@@ -369,6 +397,23 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	    editor.putInt("diffType", 0);
 	    editor.putInt("roundCtr", 0);
 	    editor.commit();
+	}
+	
+	String IntArrayListToString( ArrayList<Integer> a ){
+		String s = "";
+		for (Integer i: a){
+			s = s + i.toString();
+		}
+		return s;
+	}
+	
+	ArrayList<Integer> StringToIntArrayList( String s ){
+		ArrayList<Integer> a = new ArrayList<Integer>();
+		for (char c: s.toCharArray()){
+			int n = c - 48; 
+			a.add(n);
+		}
+		return a;
 	}
 
 }
