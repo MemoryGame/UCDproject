@@ -60,6 +60,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				R.raw.button3a, R.raw.button4a, R.raw.button5a, 
 				R.raw.button6a, R.raw.buttona7a, R.raw.button8a };
 		
+		// don't need this line
 		gameData = reset(gameData);
 		
 		// If a preferences file by this name does not exist, it will be created when you retrieve an editor 
@@ -411,7 +412,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	    editor.putInt("numButtons", (Integer)hm.get("numButtons"));
 	    editor.putLong("timeBetweenChangesMs", (Long)hm.get("timeBetweenChangesMs"));
 	    editor.putInt("difficultyType", (Integer)hm.get("difficultyType"));
-	    editor.putInt("roundCounter", (Integer)hm.get("rounCounter"));
+	    editor.putInt("roundCounter", (Integer)hm.get("roundCounter"));
 	    editor.commit();
 	}
 	
