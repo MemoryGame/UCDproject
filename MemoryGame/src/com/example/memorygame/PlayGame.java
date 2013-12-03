@@ -1,6 +1,7 @@
 package com.example.memorygame;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,63 +25,54 @@ import android.widget.LinearLayout.LayoutParams;
 import com.actionbarsherlock.app.SherlockActivity;
 
 public class PlayGame extends SherlockActivity implements OnClickListener, OnTouchListener {
-
-	// starting values
-	int sequenceLengthPARENT = 4;
-	int numButtonsPARENT = 4;
-	int lives = 4;
-	int patternPosition = 0;
-	int scoresPARENT = 0;
-	long timeBetweenChangesMsPARENT = 500;
-	int difficultyTypePARENT = 0;
-	int roundCounterPARENT = 0;
-
+	
+	HashMap<String,Object> gameData = new HashMap<String,Object>();
 	ArrayList<Integer> pattern = new ArrayList<Integer>();
 
 	// The buttons will have different background colours
-	int[] buttonsOn = new int[] { R.drawable.blue_button_on,
-			R.drawable.orange_button_on, R.drawable.yellow_button_on,
-			R.drawable.purple_button_on, R.drawable.green_button_on,
-			R.drawable.red_button_on, R.drawable.black_button_on,
-			R.drawable.pink_button_on };
-	int[] buttonsOff = new int[] { R.drawable.blue_button_off,
-			R.drawable.orange_button_off, R.drawable.yellow_button_off,
-			R.drawable.purple_button_off, R.drawable.green_button_off,
-			R.drawable.red_button_off, R.drawable.black_button_off,
-			R.drawable.pink_button_off };
-
-	int[] buttonSound = new int[] { R.raw.button1a, R.raw.button2a, 
-			R.raw.button3a, R.raw.button4a, R.raw.button5a, 
-			R.raw.button6a, R.raw.buttona7a, R.raw.button8a };
+	int[] buttonsOn = new int[8];
+	int[] buttonsOff = new int[8];
+	int[] buttonSound = new int[8];
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		/* Custom Themes */
 		themeUtils.onActivityCreateSetTheme(this);
 		super.onCreate(savedInstanceState);
-	
 		setContentView(R.layout.activity_play_game);
-	
 		getSupportActionBar().setBackgroundDrawable(null);
 		
-
-		SharedPreferences settings = getSharedPreferences("settings", 0);
-		int sequenceLength = settings.getInt("seqLen", 4);
-		int numButtons = settings.getInt("numBut", 4);
-		int scores = settings.getInt("currentScore", 0);
-		long timeBetweenChangesMs = settings.getLong("speed", 500);
-		int difficultyType = settings.getInt("diffType", 0);
-		int roundCounter = settings.getInt("roundCtr", 0);
-		String patternString = settings.getString("patternStr", null);
-
-
-		generateLayout(numButtons, buttonsOff);
 		
-		//pattern = newPattern(sequenceLength, numButtons);
-		if( patternString!=null ){
-			pattern = StringToIntArrayList(patternString);
-		} else {
-			System.out.println("New pattern generated");
+		buttonsOff = new int[] { R.drawable.blue_button_off,
+				R.drawable.orange_button_off, R.drawable.yellow_button_off,
+				R.drawable.purple_button_off, R.drawable.green_button_off,
+				R.drawable.red_button_off, R.drawable.black_button_off,
+				R.drawable.pink_button_off };		
+		
+		buttonsOn = new int[] { R.drawable.blue_button_on,
+				R.drawable.orange_button_on, R.drawable.yellow_button_on,
+				R.drawable.purple_button_on, R.drawable.green_button_on,
+				R.drawable.red_button_on, R.drawable.black_button_on,
+				R.drawable.pink_button_on };	
+		
+		buttonSound = new int[] { R.raw.button1a, R.raw.button2a, 
+				R.raw.button3a, R.raw.button4a, R.raw.button5a, 
+				R.raw.button6a, R.raw.buttona7a, R.raw.button8a };
+		
+		gameData = reset(gameData);
+		
+		// If a preferences file by this name does not exist, it will be created when you retrieve an editor 
+		SharedPreferences settings = getSharedPreferences("settings", 0);
+		int sequenceLength = settings.getInt("sequenceLength", (Integer)gameData.get("sequenceLength"));
+		int numButtons = settings.getInt("numButtons", (Integer)gameData.get("numButtons"));
+		int score = settings.getInt("score", (Integer)gameData.get("score"));
+		int difficultyType = settings.getInt("difficultyType", (Integer)gameData.get("difficultyType"));
+		int roundCounter = settings.getInt("roundCounter", (Integer)gameData.get("roundCounter"));
+		long timeBetweenChangesMs = settings.getLong("timeBetweenChangesMs", (Long)gameData.get("timeBetweenChangesMs"));
+		String patternString = settings.getString("patternString", null);
+		
+		if( patternString==null ){
 			//game difficulty logic based on number of rounds sucessfull
 			if (roundCounter == 2) {
 				if (difficultyType == 0) {
@@ -88,7 +80,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 					difficultyType++;
 				} else if (difficultyType == 1) {
 					sequenceLength++;				//pat len increase
-					if (numButtons == 8) {
+					if (numButtons == 6) {
 						difficultyType = 0;
 					} else {
 						difficultyType++;
@@ -102,21 +94,30 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				roundCounter++;
 			}
 			pattern = newPattern(sequenceLength, numButtons);
+			System.out.println("New pattern generated");
+		} else {
+			pattern = StringToIntArrayList(patternString);
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putString("patternStr", null);
+			editor.commit();
 		}
 
 
+		generateLayout(numButtons, buttonsOff);
+		
 		Timer myTimer = new Timer();
 		Handler myHandler = new Handler();
 
 		long delay = playSequence(myTimer, myHandler, pattern, timeBetweenChangesMs, buttonsOn, buttonsOff);
 		setListeners(this, myTimer, myHandler, numButtons, delay);
 
-		sequenceLengthPARENT = sequenceLength;
-		numButtonsPARENT = numButtons;
-		scoresPARENT = scores;
-		timeBetweenChangesMsPARENT = timeBetweenChangesMs;
-		difficultyTypePARENT = difficultyType;
-		roundCounterPARENT = roundCounter;
+		gameData.put("sequenceLength", sequenceLength);
+		gameData.put("numButtons", numButtons);
+		gameData.put("score", score);
+		gameData.put("difficultyType", difficultyType);
+		gameData.put("roundCounter", roundCounter);
+		gameData.put("timeBetweenChangesMs", timeBetweenChangesMs);
+		
 
 	}
 
@@ -146,20 +147,20 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 
 			SharedPreferences settings = getSharedPreferences("settings", 0);
 			SharedPreferences.Editor editor = settings.edit();
-			editor.putInt("currentScore", scoresPARENT);
-			editor.putInt("seqLen", sequenceLengthPARENT);
-			editor.putInt("numBut", numButtonsPARENT);
-			editor.putLong("speed", timeBetweenChangesMsPARENT);
-			editor.putInt("diffType", difficultyTypePARENT);
-			editor.putInt("roundCtr", roundCounterPARENT);
-			editor.putString("patternStr", patternString);
+			editor.putInt("score", (Integer)gameData.get("score"));
+			editor.putInt("sequenceLength", (Integer)gameData.get("sequenceLength"));
+			editor.putInt("numButtons", (Integer)gameData.get("numButtons"));
+			editor.putInt("difficultyType", (Integer)gameData.get("difficultyType"));
+			editor.putInt("roundCounter", (Integer)gameData.get("roundCounter"));
+			editor.putLong("timeBetweenChangesMs", (Long)gameData.get("timeBetweenChangesMs"));
+			editor.putString("patternString", patternString);
 			editor.commit();
 
 			Intent i = getIntent();							
 			finish();
 			startActivity(i);
 
-		} else if (userGuess == pattern.get(patternPosition)) {
+		} else if (userGuess == pattern.get((Integer)gameData.get("patternPosition"))) {
 			// if the current number in the pattern sequence equals the current userGuess
 			
 			//play button sound 
@@ -170,22 +171,26 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			
 			// if we have reached the end of the pattern sequence then the user
 			// has guessed the complete sequence correctly
-			if (patternPosition == (pattern.size() - 1)) {
+	        
+			if ((Integer)gameData.get("patternPosition") == (pattern.size() - 1)) {
 				// restart this activity again so new pattern is generated for
 				// the user to guess
-				scoresPARENT += 100;
+
+				
+
+				gameData.put("score", ((Integer)gameData.get("score")+100));
 
 				SharedPreferences settings = getSharedPreferences("settings", 0);
 				SharedPreferences.Editor editor = settings.edit();
-				editor.putInt("currentScore", scoresPARENT);
-				editor.putInt("seqLen", sequenceLengthPARENT);
-				editor.putInt("numBut", numButtonsPARENT);
-				editor.putLong("speed", timeBetweenChangesMsPARENT);
-				editor.putInt("diffType", difficultyTypePARENT);
-				editor.putInt("roundCtr", roundCounterPARENT);
-				editor.putString("pattern", null);
-				editor.commit();
-
+				editor.putInt("score", (Integer)gameData.get("score"));
+				editor.putInt("sequenceLength", (Integer)gameData.get("sequenceLength"));
+				editor.putInt("numButtons", (Integer)gameData.get("numButtons"));
+				editor.putInt("difficultyType", (Integer)gameData.get("difficultyType"));
+				editor.putInt("roundCounter", (Integer)gameData.get("roundCounter"));
+				editor.putLong("timeBetweenChangesMs", (Long)gameData.get("timeBetweenChangesMs"));
+				editor.putString("patternString", null);
+				editor.commit();				
+				
 				Intent i = getIntent();
 				currentSound = MediaPlayer.create(this, R.raw.correct);
 		    	currentSound.setVolume(1.0f, 1.0f);
@@ -195,27 +200,27 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				startActivity(i);
 			}
 			// otherwise move on to the next item in the pattern sequence
-			patternPosition++;
+	        gameData.put("patternPosition", ((Integer)gameData.get("patternPosition")+1));
 		} else {
 			// if the user incorrectly guesses the current item in the pattern reduce lives
-			lives--;
-			if (lives == 0) {
+	        gameData.put("lives", ((Integer)gameData.get("lives")-1));
+			if ((Integer)gameData.get("lives") == 0) {
 				// start game over activity
 				String message = "Your score is: "
-						+ Integer.toString(scoresPARENT)
+						+ (Integer)gameData.get("score")
 						+ "\nenter your score?";
-				alertGameOver("GAME OVER", message, scoresPARENT);
+				alertGameOver("GAME OVER", message, (Integer)gameData.get("score"));
 
 			} else {
 				// display the number of lives left to the user
 				MediaPlayer currentSound = MediaPlayer.create(this, R.raw.wronganswer);
 		    	currentSound.setVolume(1.0f, 1.0f);
 		        currentSound.start();
-				String message = Integer.toString(lives) + " lives left.";
+				String message = (Integer)gameData.get("lives") + " lives left.";
 				alert("Nope", message);
 				// keep the current pattern but start the user guess from the
 				// beginning
-				patternPosition = 0;
+		        gameData.put("patternPosition", Integer.valueOf(0));
 			}
 		}
 
@@ -260,6 +265,13 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				btn.setId(buttonNum);
 				rows[i].addView(btn);
 				buttonNum++;
+				
+				/*
+				FixedAspectRatioButton fakeBtn = new FixedAspectRatioButton(this);
+				fakeBtn.setLayoutParams(bParams);
+				fakeBtn.setBackgroundResource(R.drawable.no_button);
+				rows[i].addView(btn);
+				*/				
 			}
 			// otherwise add two buttons to the current linearLayout row
 			else {
@@ -337,6 +349,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 							b.setOnClickListener(p);
 						}
 						Button replayButton = ((Button) findViewById(R.id.replayButton));
+						replayButton.setBackgroundResource(R.drawable.replay_button);
+						replayButton.setText("");
 						replayButton.setOnClickListener(p);
 					}
 				});
@@ -344,8 +358,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		}, d);
 	}
 
-	public void alertGameOver(String title, String message, int scores) {
-		final int sc = scores;
+	public void alertGameOver(String title, String message, int score) {
+		final int sc = score;
 		AlertDialog.Builder builder = new AlertDialog.Builder(PlayGame.this);
 		builder.setTitle(title)
 				.setMessage(message)
@@ -355,7 +369,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 						Intent go = new Intent(PlayGame.this,
 								InsertScores.class);
 						go.putExtra("Score", sc);
-						setDefaults();
+						gameData = reset(gameData);
+						setDefaults(gameData);
 						startActivity(go);
 						finish();
 					}
@@ -364,7 +379,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int which) {
-								setDefaults();
+								gameData = reset(gameData);
+								setDefaults(gameData);
 								startActivity(new Intent(PlayGame.this,
 										MainMenu.class));
 								finish();
@@ -387,16 +403,29 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	}
 	
 	//set defaults clears pref of game setting once game over	
-	private void setDefaults(){
+	private void setDefaults( HashMap<String,Object> hm ){
 		SharedPreferences settings = getSharedPreferences("settings", 0);
 	    SharedPreferences.Editor editor = settings.edit();			    
-	    editor.putInt("currentScore", 0);
-	    editor.putInt("seqLen", 4);
-	    editor.putInt("numBut", 4);
-	    editor.putLong("speed", 500);
-	    editor.putInt("diffType", 0);
-	    editor.putInt("roundCtr", 0);
+	    editor.putInt("score", (Integer)hm.get("score"));
+	    editor.putInt("sequenceLength", (Integer)hm.get("sequenceLength"));
+	    editor.putInt("numButtons", (Integer)hm.get("numButtons"));
+	    editor.putLong("timeBetweenChangesMs", (Long)hm.get("timeBetweenChangesMs"));
+	    editor.putInt("difficultyType", (Integer)hm.get("difficultyType"));
+	    editor.putInt("roundCounter", (Integer)hm.get("rounCounter"));
 	    editor.commit();
+	}
+	
+	HashMap<String,Object> reset( HashMap<String,Object> hm ){
+		hm.put("sequenceLength", Integer.valueOf(4));
+		hm.put("numButtons", Integer.valueOf(6));
+		hm.put("lives", Integer.valueOf(4));
+		hm.put("patternPosition", Integer.valueOf(0));
+		hm.put("score", Integer.valueOf(0));
+		hm.put("difficultyType", Integer.valueOf(0));
+		hm.put("roundCounter", Integer.valueOf(0));
+		hm.put("timeBetweenChangesMs", Long.valueOf(500));
+		hm.put("patternString", null);		
+		return hm;
 	}
 	
 	String IntArrayListToString( ArrayList<Integer> a ){
