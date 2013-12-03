@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
@@ -23,7 +24,7 @@ public class InsertScores extends SherlockActivity {
 		setContentView(R.layout.activity_insert_scores);
 
 		playerName = (EditText) findViewById(R.id.playerName);
-
+		
 	}
 
 	public void submitScore(View v) {

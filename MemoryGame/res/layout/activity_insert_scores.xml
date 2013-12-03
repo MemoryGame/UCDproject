@@ -25,7 +25,8 @@
         android:layout_alignRight="@+id/playerName"
         android:layout_below="@+id/playerName"
         android:onClick="submitScore"
-        android:text="Submit Score" />
+        android:text="Submit Score"
+        android:textColor="#000000" />
 
     <TextView
         android:id="@+id/textView1"

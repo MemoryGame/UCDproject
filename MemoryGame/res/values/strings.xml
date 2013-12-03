@@ -2,11 +2,14 @@
 <resources>
 
     <string name="about">About</string>
-    <string name="about_this_app">Assignment 3 Description</string>
+    <string name="about_this_app">App Information</string>
     <string name="action_settings">Settings</string>
     <string name="app_name">Memory Game</string>
-    <string name="credits">Credits:</string>
-    <string name="appdescription">"All about the app.\n\nPlease note that this application is for educational purposes only (need this unless all resources are royalty free)."</string>
+    <string name="how_to_play">How To Play</string>
+    <string name="game_explanation">"The aim of the game is simple.\n\nYou have three lives.\n\nThe lights will flash in a sequence, watch them carefully.\n\nOnce the sequence is complete, you must enter the sequence exactly how you saw it to complete the level.\n\nIt may appear easy at first, but the patterns get longer, faster and the number of lights increase.\n\nCan you beat the memory game?"</string>
+    <string name="credits">"Credits:\nEoin O'Connor\nKate Hanahoe\nPeter Cosgrave\nAndrew Doyle\nPearse Cassidy"</string>
+    <string name="appdescription">"Developed as part of Mobile Application Development course for Msc Computer Science UCD 2013."</string>
+    <string name="disclaimer">"Disclaimer: Please note that this application is for educational purposes only."</string>
     <string name="buttonInstructions">INSTRUCTIONS</string>
     <string name="buttonOptions">OPTIONS</string>
     <string name="buttonPlay">PLAY NOW</string>
