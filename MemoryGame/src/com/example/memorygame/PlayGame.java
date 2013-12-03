@@ -286,7 +286,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 							b.setOnClickListener(p);
 						}
 						Button replayButton = ((Button) findViewById(R.id.replayButton));
-						replayButton.setBackgroundResource(R.drawable.replay_button);
+						replayButton.setBackgroundResource(R.drawable.ic_launcher);
 						replayButton.setText("");
 						replayButton.setOnClickListener(p);
 					}
