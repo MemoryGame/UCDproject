@@ -98,7 +98,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		} else {
 			pattern = StringToIntArrayList(patternString);
 			SharedPreferences.Editor editor = settings.edit();
-			editor.putString("patternStr", null);
+			editor.putString("patternString", null);
 			editor.commit();
 		}
 
@@ -160,6 +160,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			finish();
 			startActivity(i);
 
+		// userGuess == gm.getNumberAtCurrentPosition();
 		} else if (userGuess == pattern.get((Integer)gameData.get("patternPosition"))) {
 			// if the current number in the pattern sequence equals the current userGuess
 			
@@ -168,15 +169,12 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	    	currentSound.setVolume(1.0f, 1.0f);
 	        currentSound.start();
 	       // currentSound.release();
-			
 			// if we have reached the end of the pattern sequence then the user
 			// has guessed the complete sequence correctly
-	        
+	        // gm.getNumberAtCurrentPosition() == (gm.getSequenceLength-1)
 			if ((Integer)gameData.get("patternPosition") == (pattern.size() - 1)) {
 				// restart this activity again so new pattern is generated for
 				// the user to guess
-
-				
 
 				gameData.put("score", ((Integer)gameData.get("score")+100));
 
@@ -200,9 +198,11 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				startActivity(i);
 			}
 			// otherwise move on to the next item in the pattern sequence
+			//gm.incrementPatternPosition()
 	        gameData.put("patternPosition", ((Integer)gameData.get("patternPosition")+1));
 		} else {
 			// if the user incorrectly guesses the current item in the pattern reduce lives
+			//gm.decrementLives()
 	        gameData.put("lives", ((Integer)gameData.get("lives")-1));
 			if ((Integer)gameData.get("lives") == 0) {
 				// start game over activity
@@ -497,3 +497,246 @@ class FixedAspectRatioButton extends Button{
   }
   
 }
+
+class GameData{
+	
+	private ArrayList<Integer> pattern;
+	//private HashMap<String,Object> data;
+	private SharedPreferences settings;
+	private SharedPreferences.Editor editor;
+	
+	private final int defaultSequenceLength = 4;
+	private final int defaultNumButtons = 6;
+	private final int defaultLives = 4;
+	private final int defaultPatternPosition = 0;
+	private final int defaultScore = 0;
+	private final int defaultDifficultyType = 0;
+	private final int defaultRoundCounter = 0;
+	private final long defaultTimeBetweenChangesMs = 500;
+	private final String defaultPatternString = null;
+	
+	private int sequenceLength;
+	private int numButtons;
+	private int lives;
+	private int patternPosition;
+	private int score;
+	private int difficultyType;
+	private int roundCounter;
+	private long timeBetweenChangesMs;
+	private String patternString;		
+	
+	GameData(Context context){
+		settings = context.getSharedPreferences("settings", 0);
+		editor = settings.edit();		
+		
+		sequenceLength = settings.getInt("sequenceLength", defaultSequenceLength);
+		numButtons = settings.getInt("numButtons", defaultNumButtons);
+		score = settings.getInt("score", defaultScore);
+		difficultyType = settings.getInt("difficultyType", defaultDifficultyType);
+		roundCounter = settings.getInt("roundCounter", defaultRoundCounter);
+		timeBetweenChangesMs = settings.getLong("timeBetweenChangesMs", defaultTimeBetweenChangesMs);
+		patternString = settings.getString("patternString", defaultPatternString);		
+	}
+	
+	/* Getter methods */
+	
+	int getSequenceLength(){
+		return sequenceLength;
+	}
+	int getNumButtons(){
+		return numButtons;
+	}
+	int getLives(){
+		return lives;
+	}
+	int getPatternPosition(){
+		return patternPosition;
+	}
+	int getScore(){
+		return score;
+	}
+	int getDifficultyType(){
+		return difficultyType;
+	}	
+	int getRoundCounter(){
+		return roundCounter;
+	}
+	long getTimeBetweenChangesMs(){
+		return timeBetweenChangesMs;
+	}
+	String getPatternString(){
+		return patternString;
+	}
+
+	/* Setter methods */
+	
+	void setSequenceLength(int i){
+		sequenceLength = i;
+	}
+	void setNumButtons(int i){
+		numButtons = i;
+	}
+	void setLives(int i){
+		lives = i;
+	}
+	void setPatternPosition(int i){
+		patternPosition = i;
+	}
+	void setScore(int i){
+		score = i;
+	}
+	void setDifficultyType(int i){
+		difficultyType = i;
+	}	
+	void setRoundCounter(int i){
+		roundCounter = i;
+	}
+	void setTimeBetweenChangesMs(long l){
+		timeBetweenChangesMs = l;
+	}
+	void setPatternString(String s){
+		patternString = s;
+	}	
+
+	/* Committer methods (made that up!) */	
+	
+	void commitSequenceLength(){
+		editor.putInt("sequenceLength", sequenceLength);
+	    editor.commit();		
+	}
+	void commitNumButtons(){
+		editor.putInt("numButtons", numButtons);
+	    editor.commit();
+	}
+	void commitLives(){
+		editor.putInt("lives", lives);
+	    editor.commit();
+	}
+	void commitPatternPosition(){
+		editor.putInt("patternPosition", patternPosition);
+	    editor.commit();
+	}
+	void commitScore(){
+		editor.putInt("score", score);
+	    editor.commit();
+	}
+	void commitDifficultyType(){
+		editor.putInt("difficultyType", difficultyType);
+	    editor.commit();
+	}	
+	void commitRoundCounter(){
+		editor.putInt("roundCounter", roundCounter);
+	    editor.commit();
+	}
+	void commitTimeBetweenChangesMs(){
+		editor.putLong("timeBetweenChangesMs", timeBetweenChangesMs);
+	    editor.commit();
+	}
+	void commitPatternString(){
+		editor.putString("patternString", patternString);
+	    editor.commit();
+	}	
+	
+	
+	void increaseScoreBy(int i){
+		score += i;
+	}
+	
+	void incrementPatternPosition(){
+		patternPosition++;
+	}
+	
+	void decrementLives(){
+		lives--;
+	}	
+	
+	void reset(){
+		sequenceLength = defaultSequenceLength;
+		numButtons = defaultNumButtons;
+		lives = defaultLives;
+		patternPosition = defaultPatternPosition;
+		score = defaultScore;
+		difficultyType = defaultDifficultyType;
+		roundCounter = defaultRoundCounter;
+		timeBetweenChangesMs = defaultTimeBetweenChangesMs;
+		patternString = defaultPatternString;				
+	}
+	
+	void commit(){		
+		editor.putInt("sequenceLength", sequenceLength);
+		editor.putInt("numButtons", numButtons);
+		editor.putInt("lives", lives);
+		editor.putInt("patternPosition", patternPosition);
+		editor.putInt("score", score);
+		editor.putInt("difficultyType", difficultyType);
+		editor.putInt("roundCounter", roundCounter);
+		editor.putLong("timeBetweenChangesMs", timeBetweenChangesMs);
+		editor.putString("patternString", patternString);	
+	    editor.commit();			
+	}	
+	
+	void setDifficulty(){
+		//game difficulty logic based on number of rounds successfull
+		if (roundCounter == 2) {
+			if (difficultyType == 0) {
+				timeBetweenChangesMs -= 15;		//speed increase
+				difficultyType++;
+			} else if (difficultyType == 1) {
+				sequenceLength++;				//pattern length increase
+				if (numButtons == 6) {
+					difficultyType = 0;
+				} else {
+					difficultyType++;
+				}
+			} else if (difficultyType == 2) {
+				numButtons++;					//number of buttons increase
+				difficultyType = 0;
+			}	
+			roundCounter = 0;
+		} else {
+			roundCounter++;
+		}
+		this.newPattern();
+		System.out.println("New pattern generated");		
+		
+	}
+	
+	void newPattern() {
+		// random number generator
+		Random r = new Random();
+		for (int i = 0; i < sequenceLength; i++) {
+			int x = r.nextInt(numButtons);
+			pattern.add(x);
+		}
+	}	
+	
+	void reUsePattern(){
+		pattern = StringToIntArrayList(patternString);
+		editor.putString("patternString", null);
+		editor.commit();
+	}
+	
+	String IntArrayListToString( ArrayList<Integer> a ){
+		String s = "";
+		for (Integer i: a){
+			s = s + i.toString();
+		}
+		return s;
+	}
+	
+	ArrayList<Integer> StringToIntArrayList( String s ){
+		ArrayList<Integer> a = new ArrayList<Integer>();
+		for (char c: s.toCharArray()){
+			int n = c - 48; 
+			a.add(n);
+		}
+		return a;
+	}	
+	
+	int getNumberAtCurrentPosition(){
+		return pattern.get(patternPosition);
+	}
+	
+}
+
+
