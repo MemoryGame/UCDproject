@@ -76,6 +76,15 @@ public class MainMenu extends SherlockActivity {
 			
 			// Letter I for "Instructions"
 			
+			String instructionsLetter = (String) btInstructions.getText();
+			SpannableString iLetter = new SpannableString(instructionsLetter);
+			Drawable bigi = getResources().getDrawable(R.drawable.letter_i);
+			bigi.setBounds(0, 0, bigi.getIntrinsicWidth(),
+					bigi.getIntrinsicHeight());
+			ImageSpan spani = new ImageSpan(bigi, ImageSpan.ALIGN_BASELINE);
+			iLetter.setSpan(spani, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+			
+			btInstructions.setText(iLetter, BufferType.SPANNABLE);
 			// Letter O for "Options"
 			String optionsLetter = (String) btOptions.getText();
 			SpannableString oLetter = new SpannableString(optionsLetter);
@@ -88,6 +97,16 @@ public class MainMenu extends SherlockActivity {
 			btOptions.setText(oLetter, BufferType.SPANNABLE);
 			
 			// Letter H for "High Scores"
+			
+			String scoresLetter = (String) btHighScores.getText();
+			SpannableString hLetter = new SpannableString(scoresLetter);
+			Drawable bigH = getResources().getDrawable(R.drawable.letter_h);
+			bigH.setBounds(0, 0, bigH.getIntrinsicWidth(),
+					bigH.getIntrinsicHeight());
+			ImageSpan spanH = new ImageSpan(bigH, ImageSpan.ALIGN_BASELINE);
+			hLetter.setSpan(spanH, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+			
+			btHighScores.setText(hLetter, BufferType.SPANNABLE);
 			break;
 		case 1:  // ***************** HORROR LETTERS ************************ //
 			
