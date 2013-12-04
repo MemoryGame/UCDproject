@@ -409,7 +409,7 @@ class GameData{
 	private SharedPreferences.Editor editor;
 	
 	private final int defaultSequenceLength = 4;
-	private final int defaultNumButtons = 6;
+	private final int defaultNumButtons = 4;
 	private final int defaultLives = 4;
 	private final int defaultPatternPosition = 0;
 	private final int defaultScore = 0;
@@ -596,7 +596,7 @@ class GameData{
 				difficultyType++;
 			} else if (difficultyType == 1) {
 				sequenceLength++;				//pattern length increase
-				if (numButtons == 6) {
+				if (numButtons == 8) {
 					difficultyType = 0;
 				} else {
 					difficultyType++;
