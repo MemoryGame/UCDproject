@@ -207,7 +207,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		// create a set of default linearLayout parameters to be given to every
 		// linearLayout
 		LayoutParams llParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		LayoutParams bParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, 0.50f);
+		LayoutParams vParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, 0.50f);
 		// add the buttons to each linearLayout row
 		// each button created will be given a unique number starting at 0
 		int buttonNum = 0;
@@ -219,25 +219,24 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			// number of buttons, add only one button
 			if (i == (numRows - 1) && odd) {
 				FixedAspectRatioButton btn = new FixedAspectRatioButton(this);
-				btn.setLayoutParams(bParams);
+				btn.setLayoutParams(vParams);
 				btn.setBackgroundResource(colours[buttonNum]);
 				btn.setId(buttonNum);
 				rows[i].addView(btn);
 				buttonNum++;
 				
-				/*
-				FixedAspectRatioButton fakeBtn = new FixedAspectRatioButton(this);
-				fakeBtn.setLayoutParams(bParams);
-				fakeBtn.setBackgroundResource(R.drawable.no_button);
-				rows[i].addView(btn);
-				*/				
+				
+				TextView fake = new TextView(this);
+				fake.setLayoutParams(vParams);
+				rows[i].addView(fake);
+							
 			}
 			// otherwise add two buttons to the current linearLayout row
 			else {
 				FixedAspectRatioButton[] rowButtons = new FixedAspectRatioButton[2];
 				for (FixedAspectRatioButton btn : rowButtons) {
 					btn = new FixedAspectRatioButton(this);
-					btn.setLayoutParams(bParams);
+					btn.setLayoutParams(vParams);
 					btn.setBackgroundResource(colours[buttonNum]);
 					btn.setId(buttonNum);
 					rows[i].addView(btn);
