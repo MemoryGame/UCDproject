@@ -154,51 +154,36 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 
 	@Override
 	public void onClick(View v) {
-		// get the user's guess i.e. the number of the button that the user has
-		// clicked
-		int userGuess = v.getId();
+		// get the button selected i.e. the number of the button that the user has clicked
+		int buttonSelected = v.getId();
 		
-		if(userGuess == R.id.replayButton)
+		if(buttonSelected == R.id.replayButton)
 		{
-
-			gameDataObj.commitSequenceLength();
-			gameDataObj.commitScore();
-			gameDataObj.commitNumButtons();
-			gameDataObj.commitDifficultyType();
-			gameDataObj.commitRoundCounter();
-			gameDataObj.commitTimeBetweenChangesMs();
-			gameDataObj.commitLives();
 			gameDataObj.copyPatternArrayListIntoPatternString();
-			gameDataObj.commitPatternString();
+			gameDataObj.commit();
+			Intent i = getIntent();		
 			
-			Intent i = getIntent();							
 			finish();
 			startActivity(i);
-
-		} else if (userGuess == gameDataObj.getNumberAtCurrentPosition()) {
-			// if the current number in the pattern sequence equals the current userGuess
+			
+		} else if (buttonSelected == gameDataObj.getNumberAtCurrentPosition()) {
+			
+			// the current number in the pattern sequence equals the current buttonSelected
+			// in other words the user has guessed correctly
 			
 			//play button sound 
-	    	MediaPlayer currentSound = MediaPlayer.create(this, buttonSound[userGuess]);
+	    	MediaPlayer currentSound = MediaPlayer.create(this, buttonSound[buttonSelected]);
 	    	currentSound.setVolume(1.0f, 1.0f);
 	        currentSound.start();
-	       // currentSound.release();
+	        // currentSound.release();
 	        
-			// if we have reached the end of the pattern sequence then the user
-			// has guessed the complete sequence correctly
 	        if (gameDataObj.getPatternPosition() == (gameDataObj.getSequenceLength()-1)) {
-				// restart this activity again so new pattern is generated for
-				// the user to guess
-
+	        	
+				// we have reached the end of the pattern sequence 
+				// set the current pattern to null and restart this activity 
 				gameDataObj.increaseScoreBy(100);
-				gameDataObj.commitSequenceLength();
-				gameDataObj.commitScore();
-				gameDataObj.commitNumButtons();
-				gameDataObj.commitDifficultyType();
-				gameDataObj.commitRoundCounter();
-				gameDataObj.commitLives();
-				gameDataObj.commitTimeBetweenChangesMs();
-				gameDataObj.wipePatternString();
+				gameDataObj.setPatternString(null);
+				gameDataObj.commit();
 				
 				Intent i = getIntent();
 				currentSound = MediaPlayer.create(this, R.raw.correct);
@@ -208,29 +193,38 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				finish();
 				startActivity(i);
 			}
-			// otherwise move on to the next item in the pattern sequence
+			// increase patternPosition so next item in the sequence will be checked next
 			gameDataObj.incrementPatternPosition();
+			
 		} else {
-			// if the user incorrectly guesses the current item in the pattern reduce lives
+			
+			// if the user incorrectly guesses the current item in the pattern so reduce lives
 			gameDataObj.decrementLives();
+			// reset the text of the TextView that displays the lives to the user
 			TextView tvLives = (TextView) findViewById(R.id.LivesVals);
 			tvLives.setText(String.valueOf(gameDataObj.getLives()));
 	        
 			if(gameDataObj.getLives()==0){
-				// start game over activity
+				
+				// the game is over so show the GameOver alert dialogue box
+				// IMPORTANT: this dialogue box will redirect the user to the main menu or insert scores activity
 				String message = "Your score is: " + gameDataObj.getScore() + "\nenter your score?";
 				gameAlerterObj.alertGameOver("GAME OVER", message, gameDataObj.getScore());
+				
 
 			} else {
-				// display the number of lives left to the user
+				
 				MediaPlayer currentSound = MediaPlayer.create(this, R.raw.wronganswer);
 		    	currentSound.setVolume(1.0f, 1.0f);
 		        currentSound.start();
+		        
+				// display the number of lives left to the user
 				String message = gameDataObj.getLives() + " lives left.";
 				gameAlerterObj.alert("Nope", message);
-				// keep the current pattern but start the user guess from the
-				// beginning
+				
+				// start the user guess from the beginning
 				gameDataObj.setPatternPosition(0);
+				
 			}
 		}
 
