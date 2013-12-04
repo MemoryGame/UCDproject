@@ -1118,6 +1118,7 @@ containing a value of this type.
         public static final int xmas=0x7f04000c;
     }
     public static final class string {
+        public static final int LivesTvVal=0x7f0a0036;
         public static final int about=0x7f0a000d;
         public static final int about_this_app=0x7f0a000e;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1192,10 +1193,12 @@ containing a value of this type.
         public static final int key_pref_music_volume=0x7f0a001d;
         public static final int main_menu=0x7f0a002d;
         public static final int options=0x7f0a002e;
+        public static final int scoresTvVal=0x7f0a0035;
         public static final int send=0x7f0a002f;
         public static final int sound_off=0x7f0a0031;
         public static final int sound_on=0x7f0a0032;
         public static final int title_activity_insert_scores=0x7f0a0033;
+        public static final int waitButtonText=0x7f0a0034;
     }
     public static final class style {
         /** 
