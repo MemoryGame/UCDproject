@@ -121,7 +121,7 @@ public class Feedback extends SherlockActivity {
 				+ name.getText().toString() + '\n' + "Email Address: "
 				+ mailaddress.getText().toString() + '\n' + "Comment: "
 				+ comment.getText().toString() + '\n' + '\n'
-				+ "Sent from the Memory Game Timetable Android App.");
+				+ "Sent from the Memory Game Android App.");
 
 		/* Send it off to the Activity-Chooser */
 		startActivity(Intent.createChooser(email2, "Send mail..."));
