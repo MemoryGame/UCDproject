@@ -21,6 +21,7 @@ import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
@@ -60,6 +61,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 
 		gameDataObj = new GameData(this);
 		
+		//handling replay button
 		if( gameDataObj.getPatternString() == null ){
 			gameDataObj.setDifficulty();
 			gameDataObj.newPattern();
@@ -67,15 +69,20 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		} else {
 			gameDataObj.reusePattern();
 		}
-
-		generateLayout(gameDataObj.getNumButtons(), buttonsOff);
 		
+		
+		generateLayout(gameDataObj.getNumButtons(), buttonsOff);
+	
 		Timer myTimer = new Timer();
 		Handler myHandler = new Handler();
 
 		long delay = playSequence(myTimer, myHandler, gameDataObj.getPattern(), gameDataObj.getTimeBetweenChangesMs(), buttonsOn, buttonsOff);
 		setListeners(this, myTimer, myHandler, gameDataObj.getNumButtons(), delay);
 		
+		TextView tvScores = (TextView) findViewById(R.id.ScoreVal);
+		tvScores.setText(String.valueOf(gameDataObj.getScore()));
+		TextView tvLives = (TextView) findViewById(R.id.LivesVals);
+		tvLives.setText(String.valueOf(gameDataObj.getLives()));
 	}
 
     @Override
@@ -153,6 +160,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		} else {
 			// if the user incorrectly guesses the current item in the pattern reduce lives
 			gameDataObj.decrementLives();
+			TextView tvLives = (TextView) findViewById(R.id.LivesVals);
+			tvLives.setText(String.valueOf(gameDataObj.getLives()));
 	        
 			if(gameDataObj.getLives()==0){
 				// start game over activity
@@ -303,8 +312,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				.setCancelable(false)
 				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						Intent go = new Intent(PlayGame.this,
-								InsertScores.class);
+						Intent go = new Intent(PlayGame.this, InsertScores.class);
 						go.putExtra("Score", sc);
 						gameDataObj.reset();
 						gameDataObj.commit();
