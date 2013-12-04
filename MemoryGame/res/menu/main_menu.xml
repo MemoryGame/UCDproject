@@ -1,12 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/action_settings"
-        android:icon="@drawable/ic_action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom"
-        android:text="@string/action_settings"/>
-    <item
+      <item
         android:id="@+id/action_info"
         android:icon="@drawable/info"
         android:orderInCategory="99"
