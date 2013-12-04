@@ -65,9 +65,11 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		if( gameDataObj.getPatternString() == null ){
 			gameDataObj.setDifficulty();
 			gameDataObj.newPattern();
+			gameDataObj.setLives(4);
 			System.out.println("THE PATTERN IS: " + gameDataObj.getPattern());
 		} else {
 			gameDataObj.reusePattern();
+			
 		}
 		
 		
@@ -114,7 +116,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			gameDataObj.commitDifficultyType();
 			gameDataObj.commitRoundCounter();
 			gameDataObj.commitTimeBetweenChangesMs();
-			
+			gameDataObj.commitLives();
 			gameDataObj.copyPatternArrayListIntoPatternString();
 			gameDataObj.commitPatternString();
 			
@@ -130,20 +132,20 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	    	currentSound.setVolume(1.0f, 1.0f);
 	        currentSound.start();
 	       // currentSound.release();
+	        
 			// if we have reached the end of the pattern sequence then the user
 			// has guessed the complete sequence correctly
-	        
-			if (gameDataObj.getPatternPosition() == (gameDataObj.getSequenceLength()-1)) {
+	        if (gameDataObj.getPatternPosition() == (gameDataObj.getSequenceLength()-1)) {
 				// restart this activity again so new pattern is generated for
 				// the user to guess
 
 				gameDataObj.increaseScoreBy(100);
-
 				gameDataObj.commitSequenceLength();
 				gameDataObj.commitScore();
 				gameDataObj.commitNumButtons();
 				gameDataObj.commitDifficultyType();
 				gameDataObj.commitRoundCounter();
+				gameDataObj.commitLives();
 				gameDataObj.commitTimeBetweenChangesMs();
 				gameDataObj.wipePatternString();
 				
@@ -440,7 +442,8 @@ class GameData{
 		difficultyType = settings.getInt("difficultyType", defaultDifficultyType);
 		roundCounter = settings.getInt("roundCounter", defaultRoundCounter);
 		timeBetweenChangesMs = settings.getLong("timeBetweenChangesMs", defaultTimeBetweenChangesMs);
-		patternString = settings.getString("patternString", defaultPatternString);		
+		patternString = settings.getString("patternString", defaultPatternString);	
+		lives =settings.getInt("lives", lives);
 	}
 	
 	/* Getter methods */
