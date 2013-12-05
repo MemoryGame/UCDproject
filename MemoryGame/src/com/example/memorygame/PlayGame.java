@@ -26,6 +26,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	Timer gameTimer;
 	Handler gameHandler;
 	PlayGame thisPlayGame;
+	MediaPlayer currentSound;
 	long delay;
 		
 	@Override
@@ -130,12 +131,14 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
         return false;
     }
 
+    
 	@Override
 	public void onClick(View v) {
 		// get the button selected i.e. the number of the button that the user has clicked
 		int buttonSelected = v.getId();
 		
-		if(buttonSelected == R.id.replayButton)
+    	
+    	if(buttonSelected == R.id.replayButton)
 		{
 			gameDataObj.copyPatternArrayListIntoPatternString();
 			gameDataObj.commit();
@@ -150,10 +153,10 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			// in other words the user has guessed correctly
 			
 			//play button sound 
-	    	MediaPlayer currentSound = MediaPlayer.create(this, GameButton.buttonSound[buttonSelected]);
+	    	currentSound = MediaPlayer.create(this, GameButton.buttonSound[buttonSelected]);
+	    	//currentSound.release();
 	    	currentSound.setVolume(1.0f, 1.0f);
 	        currentSound.start();
-	        // currentSound.release();
 	        
 	        if (gameDataObj.getPatternPosition() == (gameDataObj.getSequenceLength()-1)) {
 	        	
@@ -167,7 +170,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				currentSound = MediaPlayer.create(this, R.raw.correct);
 		    	currentSound.setVolume(1.0f, 1.0f);
 		        currentSound.start();
-								
+		       								
 				finish();
 				startActivity(i);
 			}
@@ -192,9 +195,10 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 
 			} else {
 				
-				MediaPlayer currentSound = MediaPlayer.create(this, R.raw.wronganswer);
+				currentSound = MediaPlayer.create(this, R.raw.wronganswer);
 		    	currentSound.setVolume(1.0f, 1.0f);
 		        currentSound.start();
+		        currentSound.release();
 		        
 				// display the number of lives left to the user
 				String message = gameDataObj.getLives() + " lives left.";
@@ -272,6 +276,10 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+protected void onDestroy(){
+	super.onDestroy();
+	currentSound.release();
+}
 }
 
 
