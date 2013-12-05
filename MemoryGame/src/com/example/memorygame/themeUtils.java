@@ -1,7 +1,6 @@
 package com.example.memorygame;
 
 import android.app.Activity;
-
 import android.content.Intent;
 
 // Sets the theme

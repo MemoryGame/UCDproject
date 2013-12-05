@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import android.content.Context;
-import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.preference.PreferenceManager;

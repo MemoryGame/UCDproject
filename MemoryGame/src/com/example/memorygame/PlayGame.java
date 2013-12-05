@@ -26,12 +26,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	Handler gameHandler;
 	PlayGame thisPlayGame;
 	long delay;
-	
-	// The buttons will have different background colours
-	int[] buttonsOn = new int[8];
-	int[] buttonsOff = new int[8];
-	int[] buttonSound = new int[8];
-	
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -41,22 +36,6 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		gameHandler = new Handler();
 		thisPlayGame = this;	
 		delay = 1;		
-		
-		buttonsOff = new int[] { R.drawable.blue_button_off,
-				R.drawable.orange_button_off, R.drawable.yellow_button_off,
-				R.drawable.purple_button_off, R.drawable.green_button_off,
-				R.drawable.red_button_off, R.drawable.black_button_off,
-				R.drawable.pink_button_off };		
-		
-		buttonsOn = new int[] { R.drawable.blue_button_on,
-				R.drawable.orange_button_on, R.drawable.yellow_button_on,
-				R.drawable.purple_button_on, R.drawable.green_button_on,
-				R.drawable.red_button_on, R.drawable.black_button_on,
-				R.drawable.pink_button_on };	
-		
-		buttonSound = new int[] { R.raw.button1a, R.raw.button2a, 
-				R.raw.button3a, R.raw.button4a, R.raw.button5a, 
-				R.raw.button6a, R.raw.buttona7a, R.raw.button8a };
 
 		/* Custom Themes */
 		themeUtils.onActivityCreateSetTheme(this);
@@ -71,10 +50,9 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			gameDataObj.setLives(4);
 		} else {
 			gameDataObj.reusePattern();
-			
 		}
 		
-		generateLayout(gameDataObj.getNumButtons(), buttonsOff);
+		generateLayout(gameDataObj.getNumButtons(), GameButton.buttonsOff);
 	
 		/*
 		 * Play the sequence
@@ -82,15 +60,14 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		 */
 		for (int i = 0; i < gameDataObj.getPattern().size(); i++) {
 			
-			final Button b = ((Button) findViewById(gameDataObj.getPattern().get(i)));
-			final int bNum = gameDataObj.getPattern().get(i);
+			final GameButton b = ((GameButton)findViewById(gameDataObj.getPattern().get(i)));
 			
 			delay += gameDataObj.getTimeBetweenChangesMs();
 			gameTimer.schedule(new TimerTask() {
 				public void run() {
 					gameHandler.post(new Runnable() {
 						public void run() {
-							b.setBackgroundResource(buttonsOn[bNum]);
+							b.turnOn();
 						}
 					});
 				}
@@ -101,14 +78,13 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				public void run() {
 					gameHandler.post(new Runnable() {
 						public void run() {
-							b.setBackgroundResource(buttonsOff[bNum]);
+							b.turnOff();
 						}
 					});
 				}
 			}, (delay));
 		}
 		delay += gameDataObj.getTimeBetweenChangesMs();	
-		
 
 		/*
 		 * Set the listeners
@@ -119,11 +95,11 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				gameHandler.post(new Runnable() {
 					public void run() {
 						for (int i = 0; i < gameDataObj.getNumButtons(); i++) {
-							Button b = ((Button) findViewById(i));
+							GameButton b = ((GameButton) findViewById(i));
 							b.setOnTouchListener(thisPlayGame);
 							b.setOnClickListener(thisPlayGame);
 						}
-						Button replayButton = ((Button) findViewById(R.id.replayButton));
+						Button replayButton = ((Button)findViewById(R.id.replayButton));
 						replayButton.setBackgroundResource(R.drawable.ic_launcher);
 						replayButton.setText("");
 						replayButton.setOnClickListener(thisPlayGame);
@@ -140,13 +116,13 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-    	int buttonNum = v.getId();
+    	GameButton b = (GameButton)v;
     	 if (event.getAction() == MotionEvent.ACTION_DOWN ) {
-            v.setBackgroundResource(buttonsOn[buttonNum]);
+            b.turnOn();
             return false;
         }
         if (event.getAction() == MotionEvent.ACTION_UP ) {
-            v.setBackgroundResource(buttonsOff[buttonNum]);
+            b.turnOff();
             return false;
         }
         return false;
@@ -172,7 +148,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			// in other words the user has guessed correctly
 			
 			//play button sound 
-	    	MediaPlayer currentSound = MediaPlayer.create(this, buttonSound[buttonSelected]);
+	    	MediaPlayer currentSound = MediaPlayer.create(this, GameButton.buttonSound[buttonSelected]);
 	    	currentSound.setVolume(1.0f, 1.0f);
 	        currentSound.start();
 	        // currentSound.release();
@@ -252,38 +228,34 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		// create a set of default linearLayout parameters to be given to every
 		// linearLayout
 		LayoutParams llParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		LayoutParams vParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, 0.50f);
 		// add the buttons to each linearLayout row
 		// each button created will be given a unique number starting at 0
-		int buttonNum = 0;
+		int buttonNumber = 0;
 		for (int i = 0; i < numRows; i++) {
+			
 			rows[i] = new LinearLayout(this);
 			// set parameters for the current linearLayout row
 			rows[i].setLayoutParams(llParams);
 			// if we've reached the last linearLayout row and there is an odd
 			// number of buttons, add only one button
 			if (i == (numRows - 1) && odd) {
-				FixedAspectRatioButton btn = new FixedAspectRatioButton(this);
-				btn.setLayoutParams(vParams);
-				btn.setBackgroundResource(colours[buttonNum]);
-				btn.setId(buttonNum);
+				
+				GameButton btn = new GameButton(this, buttonNumber);
 				rows[i].addView(btn);
-				buttonNum++;
+				buttonNumber++;
+				
 				// create an empty text view that fills up the remaining space
 				TextView fake = new TextView(this);
-				fake.setLayoutParams(vParams);
+				fake.setLayoutParams(GameButton.bParams);
 				rows[i].addView(fake);		
 			}
 			// otherwise add two buttons to the current linearLayout row
 			else {
-				FixedAspectRatioButton[] rowButtons = new FixedAspectRatioButton[2];
-				for (FixedAspectRatioButton btn : rowButtons) {
-					btn = new FixedAspectRatioButton(this);
-					btn.setLayoutParams(vParams);
-					btn.setBackgroundResource(colours[buttonNum]);
-					btn.setId(buttonNum);
+				GameButton[] rowButtons = new GameButton[2];
+				for (GameButton btn : rowButtons) {
+					btn = new GameButton(this, buttonNumber);
 					rows[i].addView(btn);
-					buttonNum++;
+					buttonNumber++;
 				}
 			}
 			mainLayout.addView(rows[i]);
@@ -291,3 +263,5 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	}
 
 }
+
+
