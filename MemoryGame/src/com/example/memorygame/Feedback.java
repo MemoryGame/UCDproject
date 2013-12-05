@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -16,16 +18,67 @@ import com.actionbarsherlock.view.MenuItem;
 public class Feedback extends SherlockActivity {
 	ImageButton clearForm, sendForm;
 	Boolean continueMusic;
+	LinearLayout sub_back;
+	TextView textview2;
+	EditText textview1, textview4, textview3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		/* Custom Themes */
 		themeUtils.onActivityCreateSetTheme(this);
 		super.onCreate(savedInstanceState);
-	
+
 		setContentView(R.layout.feedback);
-		
+
 		getSupportActionBar().setBackgroundDrawable(null);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		int whatTheme = themeUtils.getcTheme();
+		textview1 = (EditText) findViewById(R.id.edit_text1);
+		textview2 = (TextView) findViewById(R.id.textview2);
+		textview3 = (EditText) findViewById(R.id.edit_text2);
+		textview4 = (EditText) findViewById(R.id.edit_text3);
+		sub_back = (LinearLayout) findViewById(R.id.rootLayout2);
+		// textview4 = (TextView)findViewById(R.id.textview4);
+		int sdk = android.os.Build.VERSION.SDK_INT;
+		switch (whatTheme) {
+		case 2:
+			// textview3.setBackground(getResources().getDrawable(R.drawable.kidscorners));
+
+			if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+				sub_back.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscorners));
+				//
+			} else {
+				sub_back.setBackground(getResources().getDrawable(
+						R.drawable.kidscorners));
+
+			}
+
+			textview1.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			textview1.setHintTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			textview2.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			textview3.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			textview3.setHintTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			textview4.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			textview4.setHintTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			textview1.setPadding(10, 10, 10, 10);
+			textview2.setPadding(10, 10, 10, 10);
+			textview3.setPadding(10, 10, 10, 10);
+			textview4.setPadding(10, 10, 10, 10);
+
+			break;
+		case 1:
+
+		case 0:
+		}
 
 	}
 
@@ -65,10 +118,9 @@ public class Feedback extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int itemId = item.getItemId();
 		if (itemId == android.R.id.home) {
+			finish();
+			continueMusic = true;
 
-			return (true);
-		} else if (itemId == R.id.about) {
-			abInfo();
 			return (true);
 		} else if (itemId == R.id.cancel) {
 			clearText();
@@ -78,10 +130,6 @@ public class Feedback extends SherlockActivity {
 			return (true);
 		}
 
-		else if (itemId == R.id.gohome) {
-			abGoHome();
-			return (true);
-		}
 		return (super.onOptionsItemSelected(item));
 	}
 

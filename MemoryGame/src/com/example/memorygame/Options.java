@@ -36,6 +36,7 @@ public class Options extends SherlockActivity implements OnClickListener {
 		setContentView(R.layout.activity_options);
 	
 		getSupportActionBar().setBackgroundDrawable(null);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	
 		/* Make buttons transparent */
 		blueButton = (Button) findViewById(R.id.bluebutton);
@@ -186,13 +187,11 @@ public class Options extends SherlockActivity implements OnClickListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-
-		case R.id.action_info:
-			abInfo();
+			finish();
+			continueMusic = true;
+			soundnotify.setChecked(true);
+			setResult(RESULT_OK);
 			return (true);
-		case R.id.gohome:
-			abGoHome();
-			return (true);		
 
 		}
 
@@ -211,17 +210,6 @@ public class Options extends SherlockActivity implements OnClickListener {
 		startActivity(new Intent(this, About.class));
 
 	}
-//	public void blueTheme(){
-//		themeUtils.changeToTheme(Options.this, themeUtils.BLUE);
-//	}
-//	
-//	public void blackTheme(){
-//		themeUtils.changeToTheme(Options.this, themeUtils.BLACK);
-//	}
-//	
-//	public void xmasTheme(){
-//		themeUtils.changeToTheme(Options.this, themeUtils.XMAS);
-//	}
 
 
 	@Override

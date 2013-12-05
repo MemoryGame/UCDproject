@@ -3,6 +3,7 @@ package com.example.memorygame;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -12,16 +13,51 @@ import com.actionbarsherlock.view.MenuItem;
 public class Instructions extends SherlockActivity {
 
 	Boolean continueMusic;
+	TextView textview2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		/* Custom Themes */
 		themeUtils.onActivityCreateSetTheme(this);
 		super.onCreate(savedInstanceState);
-	
+
 		setContentView(R.layout.activity_instructions);
-		
+
 		getSupportActionBar().setBackgroundDrawable(null);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		/* Decide what background to put on the textviews */
+
+		int whatTheme = themeUtils.getcTheme();
+		textview2 = (TextView) findViewById(R.id.textview2);
+
+		int sdk = android.os.Build.VERSION.SDK_INT;
+		switch (whatTheme) {
+		case 2:
+			// textview3.setBackground(getResources().getDrawable(R.drawable.kidscorners));
+
+			if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+
+				textview2.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscorners));
+
+			} else {
+
+				textview2.setBackground(getResources().getDrawable(
+						R.drawable.kidscorners));
+
+			}
+
+			textview2.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+
+			textview2.setPadding(10, 10, 10, 10);
+
+			break;
+		case 1:
+
+		case 0:
+		}
 
 	}
 
@@ -52,7 +88,7 @@ public class Instructions extends SherlockActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		new MenuInflater(this).inflate(R.menu.main_menu, menu);
+		new MenuInflater(this).inflate(R.menu.instructions_menu, menu);
 
 		return (super.onCreateOptionsMenu(menu));
 	}
@@ -62,12 +98,9 @@ public class Instructions extends SherlockActivity {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 
-		case R.id.action_settings:
-			abOptions();
-			return (true);
+			finish();
+			continueMusic = true;
 
-		case R.id.action_info:
-			abInfo();
 			return (true);
 
 		}

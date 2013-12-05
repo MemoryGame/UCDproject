@@ -3,7 +3,8 @@
     android:id="@+id/scrollView1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity" 
+    android:paddingTop="?attr/actionBarSize">
 
     <LinearLayout
         android:id="@+id/rootLayout"
@@ -16,7 +17,7 @@
             android:id="@+id/textview1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginLeft="8dp"
             android:gravity="center_horizontal"
             android:text="@string/how_to_play"
             android:textAppearance="?android:attr/textAppearanceLarge" />

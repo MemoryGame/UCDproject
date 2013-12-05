@@ -20,6 +20,14 @@
             android:gravity="center_horizontal"
             android:text="@string/feedback_heading"
             android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+          <LinearLayout
+        android:id="@+id/rootLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+         android:layout_margin="5dp"
+        android:gravity="top"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textview2"
@@ -72,6 +80,7 @@
                 android:scrollbars="vertical" >
             </EditText>
         </ScrollView>
+         </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

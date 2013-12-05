@@ -18,6 +18,9 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 
 public class PlayGame extends SherlockActivity implements OnClickListener, OnTouchListener {
 	
@@ -44,6 +47,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_play_game);
 		getSupportActionBar().setBackgroundDrawable(null);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		//handling replay button
 		if( gameDataObj.getPatternString() == null ){
@@ -266,6 +270,27 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 			}
 			mainLayout.addView(rows[i]);
 		}
+	}
+	
+	/* for back button for action bar */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		new MenuInflater(this).inflate(R.menu.game_menu, menu);
+
+		return (super.onCreateOptionsMenu(menu));
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+
+			gameAlerterObj.alertQuit("Quit Game?", "Are you sure you want to quit?");
+
+			return (true);
+
+		}
+		return (super.onOptionsItemSelected(item));
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {

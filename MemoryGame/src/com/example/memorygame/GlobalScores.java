@@ -63,6 +63,7 @@ public class GlobalScores extends SherlockActivity implements
 		setContentView(R.layout.activity_global_scores);
 		int hello = themeUtils.getcTheme();
 		getSupportActionBar().setBackgroundDrawable(null);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		lv = (ListView) findViewById(R.id.listView2);
 		new Task().execute();
 
@@ -208,19 +209,19 @@ public class GlobalScores extends SherlockActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-
-		case R.id.action_settings:
-			abOptions();
+			finish();
+			continueMusic = true;
+		
 			return (true);
-
-		case R.id.action_info:
-			abInfo();
-			return (true);
-
-		case R.id.gohome:
+		
+		case R.id.local:
+			finish();
 			abGoHome();
 			return (true);
 
+	
+
+		
 		}
 		return (super.onOptionsItemSelected(item));
 	}
@@ -241,7 +242,7 @@ public class GlobalScores extends SherlockActivity implements
 	// Home activity launched from the actionBar
 	public void abGoHome() {
 		continueMusic = true;
-		startActivity(new Intent(this, MainMenu.class));
+		startActivity(new Intent(this, HighScores.class));
 
 	}
 

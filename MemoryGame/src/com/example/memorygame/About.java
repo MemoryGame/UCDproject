@@ -3,6 +3,7 @@ package com.example.memorygame;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -13,18 +14,61 @@ import com.actionbarsherlock.view.MenuItem;
 public class About extends SherlockActivity {
 
 	Boolean continueMusic;
-	TextView richTextView1;
+	TextView textview1, textview2, textview3, textview4;
+	LinearLayout sub_back;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		/* Custom Themes */
 		themeUtils.onActivityCreateSetTheme(this);
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.about);
 
 		getSupportActionBar().setBackgroundDrawable(null);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+		/* Decide what background to put on the textviews */
+
+		int whatTheme = themeUtils.getcTheme();
+		textview1 = (TextView) findViewById(R.id.textview1);
+		textview2 = (TextView) findViewById(R.id.textview2);
+		textview3 = (TextView) findViewById(R.id.textview3);
+		textview4 = (TextView) findViewById(R.id.textview4);
+		sub_back = (LinearLayout) findViewById(R.id.rootLayout);
+
+		int sdk = android.os.Build.VERSION.SDK_INT;
+		switch (whatTheme) {
+		case 2:
+
+			if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+				sub_back.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscorners));
+
+			} else {
+				sub_back.setBackground(getResources().getDrawable(
+						R.drawable.kidscorners));
+
+			}
+
+			textview1.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			textview2.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			textview3.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			textview4.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			textview1.setPadding(10, 10, 10, 10);
+			textview2.setPadding(10, 10, 10, 10);
+			textview3.setPadding(10, 10, 10, 10);
+			textview4.setPadding(10, 10, 10, 10);
+
+			break;
+		case 1:
+
+		case 0:
+		}
 
 	}
 
@@ -64,20 +108,14 @@ public class About extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int itemId = item.getItemId();
 		if (itemId == android.R.id.home) {
+			finish();
+			continueMusic = true;
 
-			return (true);
-		} else if (itemId == R.id.action_settings) {
-			abOptions();
 			return (true);
 		}
 
 		else if (itemId == R.id.feedback) {
 			abFeedback();
-			return (true);
-		}
-
-		else if (itemId == R.id.gohome) {
-			abGoHome();
 			return (true);
 		}
 

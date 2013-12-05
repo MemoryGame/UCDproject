@@ -37,6 +37,7 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 		setContentView(R.layout.activity_high_scores);
 	
 		getSupportActionBar().setBackgroundDrawable(null);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		// Create listView to display results from database
 		lv = (ListView) findViewById(R.id.listView1);
 		lv.setAdapter(new VivzAdapter(this));
@@ -79,22 +80,18 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-
+			finish();
+			continueMusic = true;
+		
+			return (true);
 		case R.id.discard:
 
 			clearScores();
 			return (true);
 
-		case R.id.action_settings:
-			abOptions();
-			return (true);
-
-		case R.id.action_info:
-			abInfo();
-			return (true);
-
-		case R.id.gohome:
-			abGoHome();
+		case R.id.global:
+			finish();
+			abGlobal();
 			return (true);
 
 		}
@@ -108,9 +105,9 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 
 	}
 
-	public void abInfo() {
+	public void abGlobal() {
 		continueMusic = true;
-		startActivity(new Intent(this, About.class));
+		startActivity(new Intent(this, GlobalScores.class));
 
 	}
 

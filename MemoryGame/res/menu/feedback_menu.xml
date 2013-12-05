@@ -2,25 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/about"
-        android:icon="@drawable/info"
-        android:orderInCategory="6"
-        android:showAsAction="ifRoom"
-        android:title="@string/about">
-    </item>
-    <item
         android:id="@+id/cancel"
         android:icon="@drawable/cancel"
         android:orderInCategory="2"
         android:showAsAction="ifRoom"
         android:title="@string/cancel">
     </item>
-    <item
-        android:id="@+id/gohome"
-        android:icon="@drawable/home"
-        android:orderInCategory="4"
-        android:showAsAction="ifRoom"
-        android:title="@string/home"/>
+
     <item
         android:id="@+id/send_email"
         android:icon="@drawable/send"

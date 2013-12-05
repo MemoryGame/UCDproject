@@ -1,28 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/action_settings"
-        android:icon="@drawable/ic_action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom"
-        android:text="@string/action_settings"/>
-    <item
-        android:id="@+id/action_info"
-        android:icon="@drawable/info"
-        android:orderInCategory="99"
-        android:showAsAction="ifRoom"
-        android:text="@string/action_info"/>
+
     <item
         android:id="@+id/discard"
         android:icon="@drawable/discard"
         android:orderInCategory="97"
         android:showAsAction="ifRoom"
         android:title="@string/delete_scores"/>
-    <item
-        android:id="@+id/gohome"
-        android:icon="@drawable/home"
+          <item
+        android:id="@+id/global"
         android:orderInCategory="98"
         android:showAsAction="ifRoom"
-        android:title="@string/goHome"/>
+        android:title="@string/global"/>
 
 </menu>

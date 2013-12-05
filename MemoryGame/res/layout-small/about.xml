@@ -3,6 +3,7 @@
     android:id="@+id/scrollView1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingTop="?attr/actionBarSize"
     tools:context=".MainActivity" >
 
     <LinearLayout
@@ -16,11 +17,11 @@
             android:id="@+id/textview1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginLeft="8dp"
             android:gravity="center_horizontal"
             android:text="@string/about_this_app"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-        
+
         <TextView
             android:id="@+id/textview2"
             android:layout_width="fill_parent"
@@ -29,14 +30,18 @@
             android:gravity="left"
             android:text="@string/appdescription" />
 
-        <TextView
-            android:id="@+id/textview3"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center"
-            android:text="@string/credits" />
-        
+
+            <TextView
+                android:id="@+id/textview3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                
+                android:gravity="center_horizontal"
+                android:text="@string/credits" />
+
+         
+
         <TextView
             android:id="@+id/textview4"
             android:layout_width="fill_parent"
@@ -44,8 +49,6 @@
             android:layout_margin="8dp"
             android:gravity="left"
             android:text="@string/disclaimer" />
-
-        
     </LinearLayout>
 
 </ScrollView>

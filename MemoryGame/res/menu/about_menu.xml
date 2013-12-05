@@ -6,19 +6,7 @@
         android:orderInCategory="5"
         android:showAsAction="ifRoom"
         android:title="@string/feedback"/>
-            <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="6"
-        android:icon="@drawable/ic_action_settings"
-        android:showAsAction="ifRoom"
-        android:text="@string/action_settings"/>
-        
-        <item
-        android:id="@+id/gohome"
-        android:orderInCategory="4"
-        android:icon="@drawable/home"
-        android:showAsAction="ifRoom"
-        android:title="@string/goHome"/>
+
 
 
 </menu>

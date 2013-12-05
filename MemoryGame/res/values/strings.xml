@@ -29,6 +29,8 @@
     <string name="feedback_name_hint">Please enter your name:</string>
     <string name="game_page">The Game Itself</string>
     <string name="goHome">Home</string>
+        <string name="global">Global</string>
+    <string name="local">Local</string>
     <string name="hello_world">Hello world!</string>
     <string name="high_scores">High Scores</string>
     <string name="home">Home</string>
