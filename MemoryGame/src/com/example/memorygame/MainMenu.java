@@ -254,6 +254,7 @@ public class MainMenu extends SherlockActivity {
 	public void btPlayNow(View btPlayNow) {
 		continueMusic = true;
 		startActivity(new Intent(this, PlayGame.class));
+		finish();
 
 	}
 

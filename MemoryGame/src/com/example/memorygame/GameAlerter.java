@@ -44,16 +44,36 @@ public class GameAlerter {
 		alertGameOver.show();
 	}
 
-	public void alert(String title, String message) {
+	public void alertQuit(String title, String message) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(playGamObj);
+		builder.setTitle(title).setMessage(message).setCancelable(false)
+				.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				})
+				.setPositiveButton("QUIT", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,	int which) {
+								gameDataObj.reset();
+								gameDataObj.commit();
+								playGamObj.startActivity(new Intent(playGamObj, MainMenu.class));
+								playGamObj.finish();
+							}
+						});
+		AlertDialog alertQuit = builder.create();
+		alertQuit.show();
+	}	
+	
+	public void alert(String title, String message){
 		AlertDialog.Builder builder = new AlertDialog.Builder(playGamObj);
 		builder.setTitle(title).setMessage(message).setCancelable(false)
 				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						dialog.cancel();
 					}
-				});
-		AlertDialog alert = builder.create();
-		alert.show();
-	}	
+	});
+	AlertDialog alert = builder.create();
+	alert.show();
+	}
 	
 }
