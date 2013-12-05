@@ -276,10 +276,14 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+	
+	/*
 protected void onDestroy(){
 	super.onDestroy();
 	currentSound.release();
+	this.finish();
 }
+*/
 }
 
 

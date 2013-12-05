@@ -194,9 +194,6 @@ public class MainMenu extends SherlockActivity {
 			
 			break;
 		}
-		
-		
-
 	}
 
 	@Override
@@ -205,7 +202,6 @@ public class MainMenu extends SherlockActivity {
 		if (!continueMusic) {
 			MusicManager.pause();
 		}
-
 	}
 
 	@Override

@@ -56,8 +56,10 @@ public class GameAlerter {
 							public void onClick(DialogInterface dialog,	int which) {
 								gameDataObj.reset();
 								gameDataObj.commit();
-								playGamObj.startActivity(new Intent(playGamObj, MainMenu.class));
+								//playGamObj.onDestroy();
 								playGamObj.finish();
+								playGamObj.startActivity(new Intent(playGamObj, MainMenu.class));
+								
 							}
 						});
 		AlertDialog alertQuit = builder.create();
