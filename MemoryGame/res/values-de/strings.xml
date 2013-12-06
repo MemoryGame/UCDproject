@@ -57,6 +57,12 @@
     <string name="incorrect"> Falsch</string>
     <string name="quitgame">Leben gelassen?</string>
     <string name="rusure">Sind Sie sicher, dass Sie aufhören wollen?</string>
+    <string name="SubmitScore">Submit Score</string>
+	<string name="enterName">Geben Sie Ihren Namen:</string>
+	<string name="toggleButton">Anzeige-Taste</string>
+	<string name="kidsTheme">Glückliche Theme</string>
+	<string name="horrorTheme">Horror Theme</string>
+	<string name="christmasTheme">Christmas Theme</string>
     <string name="music_manage">Musikmanagement</string>
     <string name="theme_manage">Theme-Management</string>
 

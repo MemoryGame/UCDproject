@@ -57,6 +57,12 @@
     <string name="incorrect">  不正确</string>
     <string name="quitgame">离开游戏？</string>
     <string name="rusure"> 您确定要退出吗？</string>
+    <string name="SubmitScore">提交得分</string>
+	<string name="enterName">输入你的名字：</string>
+	<string name="toggleButton">切换按钮</string>
+	<string name="kidsTheme">快乐主题</string>
+	<string name="horrorTheme">恐怖主题</string>
+	<string name="christmasTheme">圣诞主题</string>
     <string name="music_manage">音乐管理</string>
     <string name="theme_manage">主题管理</string>
 

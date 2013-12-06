@@ -56,6 +56,12 @@
     <string name="incorrect"> Mícheart </string>
     <string name="quitgame"> Scor an Cluiche? </string>
     <string name="rusure"> An bhfuil tú cinnte gur maith leat a scor</string>
+    <string name="SubmitScore">Cuir Scór</string>
+	<string name="enterName">Cuir isteach do ainm:</string>
+	<string name="toggleButton">Cnaipe scoránaigh</string>
+	<string name="kidsTheme">Téama Shona</string>
+	<string name="horrorTheme">Horror Téama</string>
+	<string name="christmasTheme">Nollag Téama</string>
     <string name="music_manage">Bainistíocht Ceol</string>
     <string name="theme_manage">Bainistíocht téama</string>
 </resources>

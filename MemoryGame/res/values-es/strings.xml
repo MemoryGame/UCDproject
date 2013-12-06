@@ -57,6 +57,12 @@
     <string name="incorrect"> Incorrecto</string>
     <string name="quitgame">¿Salir del juego?</string>
     <string name="rusure">¿Está seguro de que desea salir?</string>
+    <string name="SubmitScore">Submit Score</string>
+	<string name="enterName">Introduzca su nombre:</string>
+	<string name="toggleButton">Botón de alternar</string>
+	<string name="kidsTheme">feliz Tema</string>
+	<string name="horrorTheme">Horror Tema</string>
+	<string name="christmasTheme">Tema de Navidad</string>
     <string name="music_manage">Gestión De La Música</string>
     <string name="theme_manage">Tema administración</string>
 

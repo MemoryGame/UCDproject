@@ -57,6 +57,12 @@
     <string name="incorrect"> неправильный</string>
     <string name="quitgame">Выйти из игры?</string>
     <string name="rusure">Вы уверены, что хотите выйти?</string>
+    <string name="SubmitScore">Отправить Оценка</string>
+	<string name="enterName">Введите ваше имя:</string>
+	<string name="toggleButton">кнопка переключения</string>
+	<string name="kidsTheme">Счастливые Стиль</string>
+	<string name="horrorTheme">Ужасы Стиль</string>
+	<string name="christmasTheme">Новогодняя тема</string>
     <string name="music_manage">Music Management</string>
     <string name="theme_manage">Стиль управления</string>
 
