@@ -79,11 +79,11 @@ public class MusicManager {
 			}
 		} else {
 			if (music == MUSIC_MENU) {
-				mp = MediaPlayer.create(context, R.raw.xmas);
+				mp = MediaPlayer.create(context, R.raw.secondbounce);
 			} else if (music == MUSIC_GAME) {
-				mp = MediaPlayer.create(context, R.raw.xmas);
+				mp = MediaPlayer.create(context, R.raw.secondbounce);
 			} else if (music == MUSIC_END_GAME) {
-				mp = MediaPlayer.create(context, R.raw.xmas);
+				mp = MediaPlayer.create(context, R.raw.secondbounce);
 			} else {
 				Log.e(TAG, "unsupported music number - " + music);
 				return;

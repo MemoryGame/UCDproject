@@ -35,7 +35,7 @@ public class MainMenu extends SherlockActivity {
 	
 		setContentView(R.layout.activity_main_menu);
 		getSupportActionBar().setBackgroundDrawable(null);
-		int whatTheme = themeUtils.getcTheme();
+		int whatTheme = theme;
 
 		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
 		
