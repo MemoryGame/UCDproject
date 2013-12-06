@@ -25,8 +25,7 @@ public class GameAlerter {
 				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						Intent go = new Intent(playGamObj, InsertScores.class);
-						Integer.toString(R.string.score);
-						go.putExtra(Integer.toString(R.string.score), sc);
+						go.putExtra("Score", sc);
 						gameDataObj.reset();
 						gameDataObj.commit();
 						playGamObj.startActivity(go);
