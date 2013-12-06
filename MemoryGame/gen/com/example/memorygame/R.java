@@ -1111,13 +1111,15 @@ containing a value of this type.
         public static final int rank_image00=0x7f020097;
         public static final int red_button_off=0x7f020098;
         public static final int red_button_on=0x7f020099;
-        public static final int save=0x7f02009a;
-        public static final int send=0x7f02009b;
-        public static final int snowman=0x7f02009c;
-        public static final int splash=0x7f02009d;
-        public static final int xmas_background_full=0x7f02009e;
-        public static final int yellow_button_off=0x7f02009f;
-        public static final int yellow_button_on=0x7f0200a0;
+        public static final int replay_button=0x7f02009a;
+        public static final int save=0x7f02009b;
+        public static final int send=0x7f02009c;
+        public static final int snowman=0x7f02009d;
+        public static final int splash=0x7f02009e;
+        public static final int wait_button=0x7f02009f;
+        public static final int xmas_background_full=0x7f0200a0;
+        public static final int yellow_button_off=0x7f0200a1;
+        public static final int yellow_button_on=0x7f0200a2;
     }
     public static final class id {
         public static final int LivesVals=0x7f05004a;

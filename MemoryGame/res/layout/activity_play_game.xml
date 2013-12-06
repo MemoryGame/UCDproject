@@ -16,10 +16,11 @@
         	<Button
         	    android:id="@+id/replayButton"
         	    android:layout_height="wrap_content"
-        	    android:layout_weight="1"
-        	    android:text="@string/waitButtonText" />
+        	    android:layout_width="wrap_content"
+        	    android:background="@drawable/wait_button" />
 
         	<TextView
+        	    android:paddingLeft="50dp"
         	    android:layout_height="wrap_content"
         	    android:layout_weight="1"
         	    android:text="@string/scoresTvVal" />

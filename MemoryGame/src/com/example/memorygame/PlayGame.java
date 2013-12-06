@@ -107,8 +107,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 							b.setOnClickListener(thisPlayGame);
 						}
 						Button replayButton = ((Button)findViewById(R.id.replayButton));
-						replayButton.setBackgroundResource(R.drawable.ic_launcher);
-						replayButton.setText("");
+						replayButton.setBackgroundResource(R.drawable.replay_button);
 						replayButton.setOnClickListener(thisPlayGame);
 					}
 				});
@@ -276,7 +275,6 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		new MenuInflater(this).inflate(R.menu.game_menu, menu);
-
 		return (super.onCreateOptionsMenu(menu));
 	}
 
@@ -284,11 +282,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-
 			gameAlerterObj.alertQuit("Quit Game?", "Are you sure you want to quit?");
-
 			return (true);
-
 		}
 		return (super.onOptionsItemSelected(item));
 	}
