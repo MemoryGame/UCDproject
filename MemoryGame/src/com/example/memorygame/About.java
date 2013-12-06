@@ -43,7 +43,7 @@ public class About extends SherlockActivity {
 
 		int sdk = android.os.Build.VERSION.SDK_INT;
 		switch (whatTheme) {
-		case 2:
+		case 0:
 
 			if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
 				sub_back.setBackgroundDrawable(getResources().getDrawable(
@@ -71,7 +71,7 @@ public class About extends SherlockActivity {
 			break;
 		case 1:
 
-		case 0:
+		case 2:
 		}
 
 	}

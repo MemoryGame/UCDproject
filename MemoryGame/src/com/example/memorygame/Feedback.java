@@ -45,7 +45,7 @@ public class Feedback extends SherlockActivity {
 		// textview4 = (TextView)findViewById(R.id.textview4);
 		int sdk = android.os.Build.VERSION.SDK_INT;
 		switch (whatTheme) {
-		case 2:
+		case 0:
 			// textview3.setBackground(getResources().getDrawable(R.drawable.kidscorners));
 
 			if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
@@ -80,7 +80,7 @@ public class Feedback extends SherlockActivity {
 			break;
 		case 1:
 
-		case 0:
+		case 2:
 		}
 
 	}

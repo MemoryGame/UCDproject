@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="about"> О </string>
+    <string name="about_this_app"> AppИнформация </string>
+    <string name="action_settings"> Настройки </string>
+    <string name="app_name"> игры памяти </string>
+    <string name="how_to_play"> Как играть </string>
+    <string name="game_explanation"> «Цель игры проста.\n \nУ вас есть три жизни.\n \nКогда огоньки начнут мигать, внимательно следите за их последовательностью.\n \nКак только мигание прекратится, вам необходимо ввести последовательность, именно в том виде, в каком вы ее видели, чтобы завершить уровень. \n \ nНа первый взгляд это просто, но последовательности становятся длиннее,  мелькают быстрее и количество их увеличивается . \n \ nСможете ли вы выиграть игру для памяти?" </string>
+    <string name="credits"> " Создатели игры : \nОуен О'Коннор \ nКейт Ханахоу \ nПитер Косгрейв \ nЭндрю Дойл \ nПирс Кассиди " </string>
+    <string name="appdescription"> " Разработано в рамках курса Разработка мобильных приложений программа Магистр компьютерных наук UCD 2013 года. " </string>
+    <string name="disclaimer"> " Внимание! . Пожалуйста, обратите внимание , что это приложение только для образовательных целей " </string>
+    <string name="buttonInstructions"> ИНСТРУКЦИЯ </string>
+    <string name="buttonOptions"> ВАРИАНТЫ </string>
+    <string name="buttonPlay"> ИГРАТЬ СЕЙЧАС </string>
+    <string name="buttonScores"> РЕКОРДЫ </string>
+    <string name="cancel"> Отмена </string>
+    <string name="delete_scores"> Стереть результаты </string>
+    <string name="feedback"> Обратная связь </string>
+    <string name="key_pref_music_volume"> 100 </string>
+    <string name="key_def_music_volume"> 100 </string>
+    <string name="feedback_actual"> Оставьте Ваш отзыв </string>
+    <string name="feedback_actual_hint"> Оставьте Ваш отзыв </string>
+    <string name="feedback_email"> Пожалуйста, введите свой адрес электронной почты </string>
+    <string name="feedback_email_hint"> Пожалуйста, введите свой адрес электронной почты </string>
+    <string name="feedback_heading"> форма для отзывов </string>
+    <string name="feedback_instructions"> Мы ценим ваши отзывы . Введите ваше имя и адрес электронной почты , до 28 января 2014 для розыгрыша маленьких призов ! Мы не передаем ваши данные третьим лицам. </string>
+    <string name="feedback_name"> Пожалуйста, введите ваше имя : </string>
+    <string name="feedback_name_hint"> Пожалуйста, введите ваше имя : </string>
+    <string name="game_page"> самой игры </string>
+    <string name="goHome"> Главная </string>
+    <string name="hello_world"> Привет, мир! </string>
+    <string name="high_scores"> Лучшие результаты </string>
+    <string name="home"> Главная </string>
+    <string name="instructions"> Инструкции </string>
+    <string name="main_menu"> игры для памяти </string>
+    <string name="options"> Опции </string>
+    <string name="send"> Отправить </string>
+    <string name="action_info"> Информация </string>
+    <string name="sound_off"> Звук от </string>
+    <string name="sound_on"> Звук На </string>
+    <string name="title_activity_insert_scores"> вставить баллы </string>
+    <string name="global">глобальный</string>
+    <string name="local">местный</string>
+    <string name="waitButtonText">Подожди</string>
+    <string name="scoresTvVal">множество</string>
+    <string name="LivesTvVal">Живет</string>
+    <string name="ok">хорошо</string>
+    <string name="score"> счет</string>
+    <string name="nothanks"> Нет, спасибо</string>
+    <string name="cancel">отменить</string>
+    <string name="quit">выход</string>
+    <string name="tellscore">Ваша оценка: </string>
+    <string name="enterscore">\nвведите ваш счет?</string>
+    <string name="gameover">игра закончилась</string>
+    <string name="livesleft"> жизнь осталось</string>
+    <string name="incorrect"> неправильный</string>
+    <string name="quitgame">Выйти из игры?</string>
+    <string name="rusure">Вы уверены, что хотите выйти?</string>
+    <string name="music_manage">Music Management</string>
+    <string name="theme_manage">Стиль управления</string>
+
+</resources>

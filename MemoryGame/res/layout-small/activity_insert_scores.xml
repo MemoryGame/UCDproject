@@ -12,20 +12,22 @@
         android:id="@+id/playerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:inputType="textCapSentences" />
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:layout_alignLeft="@+id/playerName"
         android:layout_alignRight="@+id/playerName"
         android:layout_below="@+id/playerName"
         android:onClick="submitScore"
-        android:text="Submit Score" />
+        android:text="@string/SubmitScore" />
 
     <TextView
         android:id="@+id/textView1"
@@ -34,6 +36,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="146dp"
-        android:text="Enter your name:" />
+        android:text="@string/enterName" />
 
 </RelativeLayout>

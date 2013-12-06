@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="about">关于</string>
+    <string name="about_this_app">程序信息</string>
+    <string name="action_settings">游戏设置</string>
+    <string name="app_name">记忆游戏</string>
+    <string name="how_to_play">如何游戏</string>
+    <string name="game_explanation"> “游戏的目的很简单。\n \ n您有三条命。\n \ n灯以序列闪烁，请仔细留意它们。\n \n一旦结束，需要你根据说见准确输入以完成该序列。\n \n首次会很简单，但随着样式，速度，和数量增加，难度递增，你有信心挑战记忆游戏吗？ “ </string>
+    <string name="credits"> “分数： \ nEoin奥康纳\ nKate Hanahoe 凯特\ nPeter科斯瑞\ nAndrew多伊尔\ nPearse帕斯” </string>
+    <string name="appdescription"> “本应用是UCD 2013 计算机科学硕士专业移动应用开发课程的项目开发部分 ” </string>
+    <string name="disclaimer"> “免责声明：请注意，这个应用程序仅用于教育目的” </string>
+    <string name="buttonInstructions">指南</string>
+    <string name="buttonOptions">选项</string>
+    <string name="buttonPlay"> 开始游戏</string>
+    <string name="buttonScores">高分</string>
+    <string name="cancel">取消</string>
+    <string name="delete_scores">清除分数</string>
+    <string name="feedback">反馈</string>
+    <string name="key_pref_music_volume"> 100 </string>
+    <string name="key_def_music_volume"> 100 </string>
+    <string name="feedback_actual">请输入您的反馈意见</string>
+    <string name="feedback_actual_hint">请输入您的反馈意见</string>
+    <string name="feedback_email">请输入您的电子邮件地址</string>
+    <string name="feedback_email_hint">请输入您的电子邮件地址</string>
+    <string name="feedback_heading">反馈表</string>
+    <string name="feedback_instructions">我们重视您的反馈。请于2014年1月28日前输入您的姓名和电子邮件地址，参与我们的活动！我们不会把您的资料泄露给第三方。 </string>
+    <string name="feedback_name">请输入您的姓名： </string>
+    <string name="feedback_name_hint">请输入您的姓名： </string>
+    <string name="game_page">游戏本身</string>
+    <string name="goHome">首页</string>
+    <string name="hello_world">世界，你好！ </string>
+    <string name="high_scores">高分</string>
+    <string name="home">首页</string>
+    <string name="instructions">指南</string>
+    <string name="main_menu">记忆游戏</string>
+    <string name="options">选项</string>
+    <string name="send">发送</string>
+    <string name="action_info">信息</string>
+    <string name="sound_off">关闭声音</string>
+    <string name="sound_on">打开声音</string>
+    <string name="title_activity_insert_scores">插入分数</string>
+    <string name="global">全球</string>
+    <string name="local">当地</string>
+    <string name="waitButtonText">等待</string>
+    <string name="scoresTvVal"> 分数</string>
+    <string name="LivesTvVal">生活</string>
+    <string name="ok">行</string>
+    <string name="score">得分</string>
+    <string name="nothanks">不用，谢谢</string>
+    <string name="cancel"> 取消</string>
+    <string name="quit"> 退出</string>
+    <string name="tellscore">你的得分是： </string>
+    <string name="enterscore">\n输入你的分数？</string>
+    <string name="gameover">游戏汉化</string>
+    <string name="livesleft"> 离开生活</string>
+    <string name="incorrect">  不正确</string>
+    <string name="quitgame">离开游戏？</string>
+    <string name="rusure"> 您确定要退出吗？</string>
+    <string name="music_manage">音乐管理</string>
+    <string name="theme_manage">主题管理</string>
+
+</resources>

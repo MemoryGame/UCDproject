@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="about"> Maidir </string >
+    <string name="about_this_app"> App Faisnéise </string>
+    <string name="action_settings"> Socruithe </string>
+    <string name="app_name"> Cluiche cuimhne </string>
+    <string name="how_to_play"> Conas a Seinn </string>
+    <string name="game_explanation"> "Is é an aidhm atá leis an cluiche simplí.\n\nTá tá trí shaol.\n Beidh soilse \nThe flash i seicheamh , iad ag breathnú go cúramach . \ n \ nOnce é an seicheamh iomlán , tú Ní mór dul isteach an t-ord go díreach cé a chonaic tú é leis an leibhéal a chríochnú . \ n \ fhéadfadh nit feiceáil éasca ar dtús , ach na patrúin a fháil níos faide , níos tapúla agus líon na soilse a mhéadú . \ n \ nCan leat buille an cluiche cuimhne ? " </string>
+    <string name="credits"> " Creidmheasanna : \nEoin O'Connor\nKate Hanahoe\nPeter Cosgrave\nAndrew Doyle\nPhiaris Ó Chaiside " </string>
+    <string name="appdescription"> "Forbartha mar chuid de chúrsa Iarratas Forbartha Mobile do MSc Eolaíocht Ríomhaireachta UCD 2013 . " </string>
+    <string name="disclaimer"> " Séanadh : Tabhair faoi deara go bhfuil an t-iarratas seo chun críocha oideachais amháin " </string>
+    <string name="buttonInstructions"> TREORACHA </string>
+    <string name="buttonOptions"> ROGHANNA </string>
+    <string name="buttonPlay"> IMIRT ANOIS </string>
+    <string name="buttonScores"> SCÓIR ARDA </string>
+    <string name="cancel"> Cealaigh </string>
+    <string name="delete_scores"> Scóir Léirscrios </string>
+    <string name="feedback"> Aiseolas </string>
+    <string name="key_pref_music_volume"> 100 </string>
+    <string name="key_def_music_volume"> 100 </string>
+    <string name="feedback_actual"> Cuir isteach do chuid aiseolais </string>
+    <string name="feedback_actual_hint"> Cuir isteach do chuid aiseolais </string>
+    <string name="feedback_email"> Cuir isteach do sheoladh ríomhphoist </string>
+    <string name="feedback_email_hint"> Cuir isteach do sheoladh ríomhphoist </string>
+    <string name="feedback_heading"> Foirm Aiseolais </string>
+    <string name="feedback_instructions"> "Is mór againn do chuid aiseolais. Cuir isteach d\'ainm agus do sheoladh r-phoist a chur isteach i chrannchur an 28 Eanáir, 2014 le haghaidh rud éigin! Ní chuirimid pas a fháil ar do chuid sonraí do thríú páirtithe." </string>
+    <string name="feedback_name"> Cuir isteach do ainm : </string>
+    <string name="feedback_name_hint"> Cuir isteach do ainm : </string>
+    <string name="game_page"> An Cluiche Féin </string>
+    <string name="goHome"> Baile </string>
+    <string name="hello_world"> Dia duit ar domhan!</string>
+    <string name="high_scores"> Scóir </string>
+    <string name="home"> Baile </string>
+    <string name="instructions"> Treoracha </string>
+    <string name="main_menu"> Cluiche cuimhne </string>
+    <string name="options"> Roghanna </string>
+    <string name="send"> Seol </string>
+    <string name="action_info"> Eolas </string>
+    <string name="sound_off"> Fuaim Off </string>
+    <string name="sound_on"> Fuaim Ar </string>
+    <string name="title_activity_insert_scores"> Cuir isteach an scóir </string>	
+	<string name="global"> Domhanda </string>
+    <string name="local"> Áitiúil </string>
+    <string name="waitButtonText"> Fan </string>
+    <string name="scoresTvVal"> Scóir </string>
+    <string name="LivesTvVal"> Saol </string>
+    <string name="ok"> OK </string>
+    <string name="score"> Scór </string>
+    <string name="nothanks"> Uimh go raibh maith agat </string>
+    <string name="cancel"> Cealaigh </string>
+    <string name="quit"> Scor </string>
+    <string name="tellscore"> Tá do Scór: </string>
+    <string name="enterscore"> \nCuir isteach do scór? </string>
+    <string name="gameover"> CLUICHE THART </string>
+    <string name="livesleft"> Saol ar chlé </string>
+    <string name="incorrect"> Mícheart </string>
+    <string name="quitgame"> Scor an Cluiche? </string>
+    <string name="rusure"> An bhfuil tú cinnte gur maith leat a scor</string>
+    <string name="music_manage">Bainistíocht Ceol</string>
+    <string name="theme_manage">Bainistíocht téama</string>
+</resources>
+
+

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="about"> Über </string>
+    <string name="about_this_app"> Informationen zur App </string>
+    <string name="action_settings"> Einstellungen </string>
+    <string name="app_name"> Memory-Spiel </string>
+    <string name="how_to_play"> Wie zu Spielen </string>
+    <string name="game_explanation"> "Das Ziel des Spiels ist einfach. \ n \ nSie haben drei Leben . \ n \ nDie Lichter werden in einer Sequenz zu blinken , sehen sie sorgfältig. \ n \ nWenn die Sequenz abgeschlossen ist, muss die Reihenfolge genau, wie Sie es gesehen , um den Level zu beenden geben . \ n \ nEs kann einfach erscheinen auf den ersten, aber die Muster werden länger , schneller und die Anzahl der Lichter zu erhöhen. \ n \ Ncan Sie das Memory-Spiel zu schlagen? " </string>
+    <string name="credits"> " Credits: \ nEoin O'Connor \ Nkate Hanahoe \ nPeter Cosgrave \ nAndrew Doyle \ nPearse Cassidy " </string>
+    <string name="appdescription"> "als Teil des Mobile Application Development Kurs für Msc Informatik UCD 2013 entwickelt . " </string>
+    <string name="disclaimer"> "Disclaimer : . Bitte beachten Sie, dass diese Anwendung nur für Bildungszwecke " </string>
+    <string name="buttonInstructions"> ANLEITUNG </string>
+    <string name="buttonOptions"> OPTIONEN </string>
+    <string name="buttonPlay"> JETZT SPIELEN </string>
+    <string name="buttonScores"> HOCH PARTITUREN </string>
+    <string name="cancel"> Abbrechen </string>
+    <string name="delete_scores"> Erase Ticker </string>
+    <string name="feedback"> Meinung </string>
+    <string name="key_pref_music_volume"> 100 </string>
+    <string name="key_def_music_volume"> 100 </string>
+    <string name="feedback_actual"> Bitte geben Sie Ihr Feedback </string>
+    <string name="feedback_actual_hint"> Bitte geben Sie Ihr Feedback </string>
+    <string name="feedback_email"> Bitte geben Sie Ihre e-mail -Adresse </string>
+    <string name="feedback_email_hint"> Bitte geben Sie Ihre e-mail -Adresse </string>
+    <string name="feedback_heading"> Feedback-Formular </string>
+    <string name="feedback_instructions"> Wir schätzen Ihr Feedback. Geben Sie für etwas, Ihren Namen und Ihre E-Mail- Adresse, um am 28. Januar 2014 unserer Verlosung teil! Wir wollen nicht auf Ihre Daten an Dritte weiterzugeben. </string>
+    <string name="feedback_name"> Bitte geben Sie Ihren Namen ein: </string>
+    <string name="feedback_name_hint"> Bitte geben Sie Ihren Namen ein: </string>
+    <string name="game_page"> Das Spiel selbst </string>
+    <string name="goHome"> Zu Hause </string>
+    <string name="hello_world"> Hallo Welt! </string>
+    <string name="high_scores"> Hoch Partituren </string>
+    <string name="home"> Zu Hause </string>
+    <string name="instructions"> Anleitung </string>
+    <string name="main_menu"> Memory-Spiel </string>
+    <string name="options"> Optionen </string>
+    <string name="send"> senden </string>
+    <string name="action_info"> Informationen </string>
+    <string name="sound_off"> Klingen aus </string>
+    <string name="sound_on"> Klingen auf </string>
+    <string name="title_activity_insert_scores"> Einfügen Partituren </string>
+    <string name="global">Weltweit</string>
+    <string name="local">Lokal</string>
+    <string name="waitButtonText">Warten Sie</string>
+    <string name="scoresTvVal">Spielstände</string>
+    <string name="LivesTvVal">Wohnort</string>
+    <string name="ok">OK</string>
+    <string name="score">Partitur</string>
+    <string name="nothanks">Nein Danke</string>
+    <string name="cancel">Stornieren</string>
+    <string name="quit">Verlassen</string>
+    <string name="tellscore">Ihr Ergebnis ist: </string>
+    <string name="enterscore">\nGeben Sie Ihre Gäste?</string>
+    <string name="gameover">SPIEL FERTIG</string>
+    <string name="livesleft"> Leben gelassen</string>
+    <string name="incorrect"> Falsch</string>
+    <string name="quitgame">Leben gelassen?</string>
+    <string name="rusure">Sind Sie sicher, dass Sie aufhören wollen?</string>
+    <string name="music_manage">Musikmanagement</string>
+    <string name="theme_manage">Theme-Management</string>
+
+</resources>

@@ -20,10 +20,9 @@ import com.actionbarsherlock.view.MenuItem;
 
 public class MainMenu extends SherlockActivity {
 
-	Boolean continueMusic = true;// = true;
+	Boolean continueMusic = true;
 
-	Boolean yo;
-
+	
 	Button btPlayNow, btInstructions, btOptions, btHighScores;
 
 	@Override
@@ -39,7 +38,7 @@ public class MainMenu extends SherlockActivity {
 		int whatTheme = themeUtils.getcTheme();
 
 		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
-		yo = sharedPrefs.getBoolean("tgref", true);
+		
 
 		btPlayNow = (Button) findViewById(R.id.button_play);
 		btInstructions = (Button) findViewById(R.id.button_instructions);
@@ -53,7 +52,7 @@ public class MainMenu extends SherlockActivity {
 		
 		/*Big first letters*/
 		switch (whatTheme){
-		case 2:   // ***************** OCEAN OR KIDS LETTERS ************************ //
+		case 0:   // ***************** OCEAN OR KIDS LETTERS ************************ //
 			// Letter P for "Play Now"
 			String playLetter = (String) btPlayNow.getText();
 			SpannableString bigLetter = new SpannableString(playLetter);
@@ -148,7 +147,7 @@ public class MainMenu extends SherlockActivity {
 			btHighScores.setText(horrorhLetter, BufferType.SPANNABLE);
 			
 			break;
-		case 0:   // ***************** XMAS LETTERS ************************ //
+		case 2:   // ***************** XMAS LETTERS ************************ //
 			// Letter P for "Play Now"
 			String xmasplayLetter = (String) btPlayNow.getText();
 			SpannableString xmasbigLetter = new SpannableString(xmasplayLetter);
@@ -210,15 +209,8 @@ public class MainMenu extends SherlockActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if (yo) // if (yo) may be enough, not sure
-		{
-			continueMusic = false;
-			MusicManager.start(this, MusicManager.MUSIC_MENU);
-		}
-
-		else {
-			MusicManager.pause();
-		}
+		continueMusic = false;
+		MusicManager.start(this, MusicManager.MUSIC_MENU);
 	}
 	
 	@Override

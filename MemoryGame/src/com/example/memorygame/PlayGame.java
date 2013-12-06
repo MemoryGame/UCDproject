@@ -32,7 +32,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	PlayGame thisPlayGame;
 	MediaPlayer currentSound;
 	long delay;
-	Boolean yo;
+	
 	Boolean continueMusic = true;
 		
 	@Override
@@ -46,7 +46,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		delay = 1;	
 		
 		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
-		yo = sharedPrefs.getBoolean("tgref", true);
+		
 		
 		/* Custom Themes */
 		SharedPreferences settings = this.getSharedPreferences("settings", 0);
@@ -139,15 +139,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if (yo) // if (yo) may be enough, not sure
-		{
-			continueMusic = false;
-			MusicManager.start(this, MusicManager.MUSIC_MENU);
-		}
-
-		else {
-			MusicManager.pause();
-		}
+		continueMusic = false;
+		MusicManager.start(this, MusicManager.MUSIC_MENU);
 	}
 
     @Override

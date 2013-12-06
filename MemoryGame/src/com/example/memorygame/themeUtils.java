@@ -6,9 +6,9 @@ import android.content.Intent;
 public class themeUtils {
 	
   private static int cTheme;
-  public final static int XMAS = 0;
+  public final static int XMAS = 2;
   public final static int BLACK = 1;
-  public final static int BLUE = 2;
+  public final static int BLUE = 0;
   
   public static void changeToTheme(Activity activity, int theme) {
     setcTheme(theme);

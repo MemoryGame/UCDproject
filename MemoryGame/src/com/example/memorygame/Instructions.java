@@ -36,7 +36,7 @@ public class Instructions extends SherlockActivity {
 
 		int sdk = android.os.Build.VERSION.SDK_INT;
 		switch (whatTheme) {
-		case 2:
+		case 0:
 			// textview3.setBackground(getResources().getDrawable(R.drawable.kidscorners));
 
 			if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
@@ -59,7 +59,7 @@ public class Instructions extends SherlockActivity {
 			break;
 		case 1:
 
-		case 0:
+		case 2:
 		}
 
 	}

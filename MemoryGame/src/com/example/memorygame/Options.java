@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -21,6 +23,7 @@ import com.actionbarsherlock.view.MenuItem;
 public class Options extends SherlockActivity implements OnClickListener {
 
 	Boolean continueMusic;
+	TextView textview1, textview2;
 	Boolean musicIsXmas, musicIsHorror, musicIsOcean;
 	ToggleButton soundnotify;
 	SharedPreferences preferences; 
@@ -50,30 +53,137 @@ public class Options extends SherlockActivity implements OnClickListener {
 		
 		/* Decide what music will be started again */
 		int whatTheme = themeUtils.getcTheme();
+		textview1 = (TextView) findViewById(R.id.textView1);
+		textview2 = (TextView) findViewById(R.id.textView2);
+		int sdk = android.os.Build.VERSION.SDK_INT;
 		
 		switch (whatTheme){
-		case 2:   // ***************** OCEAN THEME ************************ //
-		musicIsXmas = false;
-		musicIsHorror = false;
-		musicIsOcean = true;
-	
-		break;
-		case 1:  // ***************** HORROR THEME ************************ //
-		musicIsXmas = false;
-		musicIsHorror = true;
-		musicIsOcean = false;
+		case 0:   // ***************** OCEAN THEME ************************ //
+			musicIsXmas = false;
+			musicIsHorror = false;
+			musicIsOcean = true;
+			
+			if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+				blueButton.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscornersgrey));
+				blackButton.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscorners));
+				xmasButton.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscorners));
+				textview1.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscorners));
+				textview2.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscorners));
+
+			} else {
+				blueButton.setBackground(getResources().getDrawable(
+						R.drawable.kidscornersgrey));
+				blackButton.setBackground(getResources().getDrawable(
+						R.drawable.kidscorners));
+				xmasButton.setBackground(getResources().getDrawable(
+						R.drawable.kidscorners));
+				textview1.setBackground(getResources().getDrawable(
+						R.drawable.kidscornersgrey));
+				textview2.setBackground(getResources().getDrawable(
+						R.drawable.kidscornersgrey));
+
+			}
+
+			blueButton.setTextColor(getResources().getColor(
+					R.color.white));
+			blackButton.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			xmasButton.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			textview1.setTextColor(getResources().getColor(
+					R.color.white));
+			textview2.setTextColor(getResources().getColor(
+					R.color.white));
+		
+			blueButton.setPadding(10, 10, 10, 10);
+			blackButton.setPadding(10, 10, 10, 10);
+			xmasButton.setPadding(10, 10, 10, 10);
+			textview1.setPadding(10, 10, 10, 10);
+			textview2.setPadding(10, 10, 10, 10);
+			LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)textview2.getLayoutParams();
+			params.setMargins(15, 160, 15, 16); //substitute parameters for left, top, right, bottom
+			textview2.setLayoutParams(params);
+			
 		
 		
-			
 			break;
-		case 0:   // ***************** XMAS THEME ************************ //
-		musicIsXmas = true;
-		musicIsHorror = false;
-		musicIsOcean = false;
-	
+			case 1:  // ***************** HORROR THEME ************************ //
+			musicIsXmas = false;
+			musicIsHorror = true;
+			musicIsOcean = false;
 			
-			break;
-		}
+			if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+				blueButton.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscorners));
+				blackButton.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscornersgrey));
+				xmasButton.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscorners));
+
+			} else {
+				blueButton.setBackground(getResources().getDrawable(
+						R.drawable.kidscorners));
+				blackButton.setBackground(getResources().getDrawable(
+						R.drawable.kidscornersgrey));
+				xmasButton.setBackground(getResources().getDrawable(
+						R.drawable.kidscorners));
+
+			}
+
+			blueButton.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			blackButton.setTextColor(getResources().getColor(
+					R.color.white));
+			xmasButton.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+		
+			blueButton.setPadding(10, 10, 10, 10);
+			blackButton.setPadding(10, 10, 10, 10);
+			xmasButton.setPadding(10, 10, 10, 10);
+			
+				
+				break;
+			case 2:   // ***************** XMAS THEME ************************ //
+			musicIsXmas = true;
+			musicIsHorror = false;
+			musicIsOcean = false;
+		
+			if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+				blueButton.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscorners));
+				blackButton.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscorners));
+				xmasButton.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.kidscornersgrey));
+
+			} else {
+				blueButton.setBackground(getResources().getDrawable(
+						R.drawable.kidscorners));
+				blackButton.setBackground(getResources().getDrawable(
+						R.drawable.kidscorners));
+				xmasButton.setBackground(getResources().getDrawable(
+						R.drawable.kidscornersgrey));
+
+			}
+
+			blueButton.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			blackButton.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
+			xmasButton.setTextColor(getResources().getColor(
+					R.color.white));
+		
+			blueButton.setPadding(10, 10, 10, 10);
+			blackButton.setPadding(10, 10, 10, 10);
+			xmasButton.setPadding(10, 10, 10, 10);
+				
+				break;
+			}
 		
 		
 		blueButton.setOnClickListener(this);

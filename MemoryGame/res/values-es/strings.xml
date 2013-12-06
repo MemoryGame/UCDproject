@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="about"> Acerca </string>
+    <string name="about_this_app"> App Información </string>
+    <string name="action_settings"> Configuración </string>
+    <string name="app_name"> Juego de Memoria </string>
+    <string name="how_to_play"> Cómo jugar </string>
+    <string name="game_explanation"> "El objetivo del juego es simple. \ n \ nNo tener tres vidas. \ n luces \ nLos parpadea en una secuencia , de ver con cuidado. \ n \ nUna vez la secuencia se haya completado , se debe entrar en la secuencia de exactamente cómo lo encontró para completar el nivel . \ n \ nSe puede parecer fácil al principio, pero los patrones se hacen más largos , más rápido y el número de luces aumenta. \ n \ nPuede que termines el juego de la memoria? " </string>
+    <string name="credits"> " Créditos : \ nEoin O'Connor \ Nkate Hanahoe \ nPeter Cosgrave \ nAndrew Doyle \ nPearse Cassidy" </string>
+    <string name="appdescription"> " Desarrollado como parte del curso de desarrollo de aplicaciones móviles para Msc Informática UCD 2013 . " </string>
+    <string name="disclaimer"> " Disclaimer : . Tenga en cuenta que esta aplicación es sólo con fines educativos " </string>
+    <string name="buttonInstructions"> INSTRUCCIONES </string>
+    <string name="buttonOptions"> OPCIONES </string>
+    <string name="buttonPlay"> JUGAR AHORA </string>
+    <string name="buttonScores"> RÉCORDS </string>
+    <string name="cancel"> Cancelar </string>
+    <string name="delete_scores"> Borrar Partituras </string>
+    <string name="feedback"> Sugerencias </string>
+    <string name="key_pref_music_volume"> 100 </string>
+    <string name="key_def_music_volume"> 100 </string>
+    <string name="feedback_actual"> Por favor , escriba su opinión </string>
+    <string name="feedback_actual_hint"> Por favor , escriba su opinión </string>
+    <string name="feedback_email"> Introduzca su dirección de correo electrónico </string>
+    <string name="feedback_email_hint"> Introduzca su dirección de correo electrónico </string>
+    <string name="feedback_heading"> Formulario Sugerencias </string>
+    <string name="feedback_instructions"> Valoramos sus comentarios . Introduce tu nombre y dirección de correo electrónico que se introducirán en el sorteo el 28 de enero de 2014 para algo! Nosotros no transmitimos sus datos a terceros. </string>
+    <string name="feedback_name"> Introduzca su nombre: </string>
+    <string name="feedback_name_hint"> Introduzca su nombre: </string>
+    <string name="game_page"> el juego en sí </string>
+    <string name="goHome"> Casa </string>
+    <string name="hello_world"> Hola mundo! </string>
+    <string name="high_scores"> mejores puntuaciones </string>
+    <string name="home"> Casa </string>
+    <string name="instructions"> Instrucciones </string>
+    <string name="main_menu"> Juego de Memoria </string>
+    <string name="options"> Opciones </string>
+    <string name="send"> Enviar </string>
+    <string name="action_info"> Información </string>
+    <string name="sound_off"> Sonido apagado </string>
+    <string name="sound_on"> Sonido en </string>
+    <string name="title_activity_insert_scores"> Insertar Puntajes </string>
+    <string name="global">Global</string>
+    <string name="local">Local</string>
+    <string name="waitButtonText">Esperar</string>
+    <string name="scoresTvVal">Partituras</string>
+    <string name="LivesTvVal">Vidas</string>
+    <string name="ok">Bueno</string>
+    <string name="score">Puntuación</string>
+    <string name="nothanks">No Gracias</string>
+    <string name="cancel">Cancelar</string>
+    <string name="quit">Dejar de</string>
+    <string name="tellscore">Su puntuación es: </string>
+    <string name="enterscore">\n¿introduzca su puntuación?</string>
+    <string name="gameover">JUEGO TERMINADO</string>
+    <string name="livesleft">vidas que quedan</string>
+    <string name="incorrect"> Incorrecto</string>
+    <string name="quitgame">¿Salir del juego?</string>
+    <string name="rusure">¿Está seguro de que desea salir?</string>
+    <string name="music_manage">Gestión De La Música</string>
+    <string name="theme_manage">Tema administración</string>
+
+</resources>
