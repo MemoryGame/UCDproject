@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView.BufferType;
@@ -284,7 +285,12 @@ public class MainMenu extends SherlockActivity {
 	public void abInfo() {
 		continueMusic = true;
 		startActivity(new Intent(this, About.class));
-
 	}
 
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			this.finish();
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 }
