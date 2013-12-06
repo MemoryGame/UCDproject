@@ -3,6 +3,7 @@ package com.example.memorygame;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +19,9 @@ public class InsertScores extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		/* Custom Themes */
-		themeUtils.onActivityCreateSetTheme(this);
+		SharedPreferences settings = this.getSharedPreferences("settings", 0);
+		int theme = settings.getInt("theme", 0);				
+		themeUtils.onActivityCreateSetTheme(this, theme);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_insert_scores);
 

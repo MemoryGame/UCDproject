@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -31,7 +32,9 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		/* Custom Themes */
-		themeUtils.onActivityCreateSetTheme(this);
+		SharedPreferences settings = this.getSharedPreferences("settings", 0);
+		int theme = settings.getInt("theme", 0);				
+		themeUtils.onActivityCreateSetTheme(this, theme);
 		super.onCreate(savedInstanceState);
 	
 		setContentView(R.layout.activity_high_scores);

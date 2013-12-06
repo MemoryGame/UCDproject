@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,7 +60,9 @@ public class GlobalScores extends SherlockActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		themeUtils.onActivityCreateSetTheme(this);
+		SharedPreferences settings = this.getSharedPreferences("settings", 0);
+		int theme = settings.getInt("theme", 0);				
+		themeUtils.onActivityCreateSetTheme(this, theme);
 		setContentView(R.layout.activity_global_scores);
 		int hello = themeUtils.getcTheme();
 		getSupportActionBar().setBackgroundDrawable(null);

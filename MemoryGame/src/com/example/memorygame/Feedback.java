@@ -1,6 +1,7 @@
 package com.example.memorygame;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,7 +26,9 @@ public class Feedback extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		/* Custom Themes */
-		themeUtils.onActivityCreateSetTheme(this);
+		SharedPreferences settings = this.getSharedPreferences("settings", 0);
+		int theme = settings.getInt("theme", 0);				
+		themeUtils.onActivityCreateSetTheme(this, theme);
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.feedback);

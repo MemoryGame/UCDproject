@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -43,7 +44,9 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		delay = 1;		
 
 		/* Custom Themes */
-		themeUtils.onActivityCreateSetTheme(this);
+		SharedPreferences settings = this.getSharedPreferences("settings", 0);
+		int theme = settings.getInt("theme", 0);				
+		themeUtils.onActivityCreateSetTheme(this, theme);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_play_game);
 		getSupportActionBar().setBackgroundDrawable(null);

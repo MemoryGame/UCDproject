@@ -30,7 +30,9 @@ public class Options extends SherlockActivity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		/* Custom Themes */
-		themeUtils.onActivityCreateSetTheme(this);
+		SharedPreferences settings = this.getSharedPreferences("settings", 0);
+		int theme = settings.getInt("theme", 0);				
+		themeUtils.onActivityCreateSetTheme(this, theme);
 		super.onCreate(savedInstanceState);
 	
 		setContentView(R.layout.activity_options);
@@ -214,11 +216,19 @@ public class Options extends SherlockActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		
+		SharedPreferences settings = this.getSharedPreferences("settings", 0);
+		SharedPreferences.Editor editor = settings.edit();		
+		
 		switch (v.getId())
 
 		{
 		case R.id.blackbutton:
+			
 
+			editor.putInt("theme", themeUtils.BLACK);	
+		    editor.commit();				
+			
 			themeUtils.changeToTheme(this, themeUtils.BLACK);
 			
 			MusicManager.stop();
@@ -238,6 +248,9 @@ public class Options extends SherlockActivity implements OnClickListener {
 			break;
 
 			case R.id.bluebutton:
+			
+			editor.putInt("theme", themeUtils.BLUE);	
+			editor.commit();					
 		
 			themeUtils.changeToTheme(this, themeUtils.BLUE);
 			
@@ -260,6 +273,9 @@ public class Options extends SherlockActivity implements OnClickListener {
 			break;
 			
 			case R.id.xmasbutton:
+				
+				editor.putInt("theme", themeUtils.XMAS);	
+				editor.commit();					
 				
 				themeUtils.changeToTheme(this, themeUtils.XMAS);
 				MusicManager.stop();

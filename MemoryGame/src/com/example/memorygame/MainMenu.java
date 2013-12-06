@@ -29,7 +29,9 @@ public class MainMenu extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		/* Custom Themes */
-		themeUtils.onActivityCreateSetTheme(this);
+		SharedPreferences settings = this.getSharedPreferences("settings", 0);
+		int theme = settings.getInt("theme", 0);				
+		themeUtils.onActivityCreateSetTheme(this, theme);
 		super.onCreate(savedInstanceState);
 	
 		setContentView(R.layout.activity_main_menu);
