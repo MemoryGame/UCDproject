@@ -15,7 +15,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textCapSentences" />
 
     <Button
         android:id="@+id/button1"
