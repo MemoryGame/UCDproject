@@ -195,8 +195,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 				
 				// the game is over so show the GameOver alert dialogue box
 				// IMPORTANT: this dialogue box will redirect the user to the main menu or insert scores activity
-				String message = "Your score is: " + gameDataObj.getScore() + "\nenter your score?";
-				gameAlerterObj.alertGameOver("GAME OVER", message, gameDataObj.getScore());
+				String message = (getString(R.string.tellscore) +" "+ gameDataObj.getScore() + getString(R.string.enterscore));
+				gameAlerterObj.alertGameOver(getString(R.string.gameover), message, gameDataObj.getScore());
 				
 
 			} else {
@@ -207,8 +207,8 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 		        currentSound.release();
 		        
 				// display the number of lives left to the user
-				String message = gameDataObj.getLives() + " lives left.";
-				gameAlerterObj.alert("Nope", message);
+				String message = gameDataObj.getLives() +" "+ getString(R.string.livesleft);
+				gameAlerterObj.alert(getString(R.string.incorrect), message);
 				
 				// start the user guess from the beginning
 				gameDataObj.setPatternPosition(0);
@@ -285,7 +285,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			gameAlerterObj.alertQuit("Quit Game?", "Are you sure you want to quit?");
+			gameAlerterObj.alertQuit(getString(R.string.quitgame), getString(R.string.rusure));
 			return (true);
 		}
 		return (super.onOptionsItemSelected(item));
@@ -294,7 +294,7 @@ public class PlayGame extends SherlockActivity implements OnClickListener, OnTou
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			//continueMusic = true;
-			gameAlerterObj.alertQuit("Quit Game?", "Are you sure you want to quit?");
+			gameAlerterObj.alertQuit(getString(R.string.quitgame), getString(R.string.rusure));
 			//startActivity(new Intent(this,MainMenu.class));
 		}
 		return super.onKeyDown(keyCode, event);

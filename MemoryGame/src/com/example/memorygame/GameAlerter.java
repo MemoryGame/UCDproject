@@ -4,8 +4,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+
 public class GameAlerter {
-	
+
+
 	GameData gameDataObj;
 	PlayGame playGamObj;
 	
@@ -20,17 +22,18 @@ public class GameAlerter {
 		builder.setTitle(title)
 				.setMessage(message)
 				.setCancelable(false)
-				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						Intent go = new Intent(playGamObj, InsertScores.class);
-						go.putExtra("Score", sc);
+						Integer.toString(R.string.score);
+						go.putExtra(Integer.toString(R.string.score), sc);
 						gameDataObj.reset();
 						gameDataObj.commit();
 						playGamObj.startActivity(go);
 						playGamObj.finish();
 					}
 				})
-				.setNegativeButton("Nah",
+				.setNegativeButton(R.string.nothanks,
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int which) {
@@ -47,12 +50,12 @@ public class GameAlerter {
 	public void alertQuit(String title, String message) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(playGamObj);
 		builder.setTitle(title).setMessage(message).setCancelable(false)
-				.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+				.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						dialog.cancel();
 					}
 				})
-				.setPositiveButton("QUIT", new DialogInterface.OnClickListener() {
+				.setPositiveButton(R.string.quit, new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,	int which) {
 								gameDataObj.reset();
 								gameDataObj.commit();
@@ -69,7 +72,7 @@ public class GameAlerter {
 	public void alert(String title, String message){
 		AlertDialog.Builder builder = new AlertDialog.Builder(playGamObj);
 		builder.setTitle(title).setMessage(message).setCancelable(false)
-				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						dialog.cancel();
 					}

@@ -45,5 +45,17 @@
     <string name="waitButtonText">Wait</string>
     <string name="scoresTvVal">Scores</string>
     <string name="LivesTvVal">Lives</string>
-
+  
+    <string name="ok">OK</string>
+    <string name="score">Score</string>
+    <string name="nothanks">No Thanks</string>
+    <string name="cancel">Cancel</string>
+    <string name="quit">Quit</string>
+    <string name="tellscore">Your Score is: </string>
+    <string name="enterscore">\nenter your score?</string>
+    <string name="gameover">GAME OVER</string>
+    <string name="livesleft"> lives left.</string>
+    <string name="incorrect"> Incorrect</string>
+    <string name="quitgame">Quit Game?</string>
+    <string name="rusure">Are you sure you want to quit?</string>
 </resources>
