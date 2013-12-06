@@ -16,6 +16,8 @@ public class InsertScores extends SherlockActivity {
 
 	EditText playerName;
 	Button insertScore;
+	Boolean yo;
+	Boolean continueMusic = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +27,36 @@ public class InsertScores extends SherlockActivity {
 		themeUtils.onActivityCreateSetTheme(this, theme);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_insert_scores);
+		
+		//prefs for music
+		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
+		yo = sharedPrefs.getBoolean("tgref", true);
 
 		playerName = (EditText) findViewById(R.id.playerName);
 		
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (!continueMusic) {
+			MusicManager.pause();
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (yo) // if (yo) may be enough, not sure
+		{
+			continueMusic = false;
+			MusicManager.start(this, MusicManager.MUSIC_MENU);
+		}
+
+		else {
+			MusicManager.pause();
+		}
+	}
 	public void submitScore(View v) {
 		// TODO Auto-generated method stub
 		boolean didItWork = true;
