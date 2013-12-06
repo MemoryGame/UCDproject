@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#FFFFFF"
     android:gravity="left|center"
     android:minHeight="?android:attr/listPreferredItemHeight" >
 
@@ -15,11 +16,11 @@
     </ImageView>
 
     <LinearLayout
-        
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="5dip"
         android:layout_weight="1"
+        android:background="#FFFFFF"
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:orientation="vertical" >
 
@@ -30,8 +31,8 @@
             android:layout_weight="1"
             android:ellipsize="marquee"
             android:gravity="center_vertical"
-            android:text="hi"
-            android:textColor="#336600"
+            android:textColor="#000000"
+            android:textStyle="bold"
             android:textSize="16dip" >
         </TextView>
 
@@ -44,8 +45,7 @@
             android:lines="20"
             android:minHeight="?android:attr/listPreferredItemHeight"
             android:singleLine="false"
-            android:text="hi"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="14dip" >
         </TextView>
     </LinearLayout>

@@ -36,9 +36,9 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 		int theme = settings.getInt("theme", 0);				
 		themeUtils.onActivityCreateSetTheme(this, theme);
 		super.onCreate(savedInstanceState);
-	
+
 		setContentView(R.layout.activity_high_scores);
-	
+
 		getSupportActionBar().setBackgroundDrawable(null);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		// Create listView to display results from database
@@ -85,7 +85,7 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 		case android.R.id.home:
 			finish();
 			continueMusic = true;
-		
+
 			return (true);
 		case R.id.discard:
 
@@ -127,11 +127,11 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 				HighScores.this);
 
 		// Set Title
-		alertDialogBuilder.setTitle("High Scores will be erased!");
+		alertDialogBuilder.setTitle("Erase High Scores");
 
 		// Set dialog message
 		alertDialogBuilder
-				.setMessage("Are you sure?")
+				.setMessage("Are you sure you want to delete your highscores?")
 				.setCancelable(false)
 				.setPositiveButton("Yes",
 						new DialogInterface.OnClickListener() {
@@ -209,12 +209,9 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 
 			int[] images = new int[length];
 
-			int j = 1;
-			
 			for (int i = 0; i < scores.length; i++) {
-				
-				images[i] = R.drawable.rank_image0+j;
-				j++;
+
+				images[i] = R.drawable.rank_image01 + i;
 			}
 
 			for (int i = 0; i < scores.length; i++) {
@@ -223,7 +220,7 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 			info.close();
 
 		}
-		
+
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
@@ -263,6 +260,7 @@ public class HighScores extends SherlockActivity implements OnItemClickListener 
 		}
 
 	}
+
 	/* End of Custom ListView Layout */
 
 	@Override

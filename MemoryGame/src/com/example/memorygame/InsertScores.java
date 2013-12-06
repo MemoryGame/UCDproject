@@ -1,14 +1,24 @@
 package com.example.memorygame;
 
+import java.util.ArrayList;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
@@ -16,8 +26,9 @@ public class InsertScores extends SherlockActivity {
 
 	EditText playerName;
 	Button insertScore;
-	Boolean yo;
-	Boolean continueMusic = true;
+
+	StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+			.permitAll().build();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,36 +38,10 @@ public class InsertScores extends SherlockActivity {
 		themeUtils.onActivityCreateSetTheme(this, theme);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_insert_scores);
-		
-		//prefs for music
-		SharedPreferences sharedPrefs = getSharedPreferences(null, MODE_PRIVATE);
-		yo = sharedPrefs.getBoolean("tgref", true);
-
 		playerName = (EditText) findViewById(R.id.playerName);
-		
+
 	}
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if (!continueMusic) {
-			MusicManager.pause();
-		}
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		if (yo) // if (yo) may be enough, not sure
-		{
-			continueMusic = false;
-			MusicManager.start(this, MusicManager.MUSIC_MENU);
-		}
-
-		else {
-			MusicManager.pause();
-		}
-	}
 	public void submitScore(View v) {
 		// TODO Auto-generated method stub
 		boolean didItWork = true;
@@ -64,13 +49,34 @@ public class InsertScores extends SherlockActivity {
 			String name = playerName.getText().toString();
 			Intent go = getIntent();
 			int highScore = go.getIntExtra("Score", 0);
+			String sHighScore = Integer.toString(highScore);
 
 			DatabaseScores enterScore = new DatabaseScores(InsertScores.this);
 			enterScore.open();
 			enterScore.createEntry(name, highScore);
 			enterScore.close();
-		} catch (Exception e) {
-			didItWork = false;
+
+			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+
+			nameValuePairs.add(new BasicNameValuePair("name", name));
+			nameValuePairs.add(new BasicNameValuePair("score", sHighScore));
+
+			StrictMode.setThreadPolicy(policy);
+
+			try {
+				HttpClient httpclient = new DefaultHttpClient();
+				HttpPost httppost = new HttpPost(
+						"http://andrewdoyle.pw/memorygame/update-global.php");
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+				httpclient.execute(httppost);
+
+			} catch (Exception e) {
+				didItWork = false;
+				Toast.makeText(getApplicationContext(), "Connection fail",
+						Toast.LENGTH_SHORT).show();
+
+			}
+
 		} finally {
 			if (didItWork) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -82,22 +88,18 @@ public class InsertScores extends SherlockActivity {
 									public void onClick(DialogInterface dialog,
 											int id) {
 										finish();
-										Intent toMainScreen = new Intent(InsertScores.this, MainMenu.class);
-										toMainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-									    startActivity(toMainScreen);
+										Intent toMainScreen = new Intent(
+												InsertScores.this,
+												MainMenu.class);
+										toMainScreen
+												.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+										startActivity(toMainScreen);
 									}
 								});
 				AlertDialog alert = builder.create();
 				alert.show();
 			}
 		}
-	}
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			finish();
-			startActivity(new Intent(this,MainMenu.class));
-		}
-		return super.onKeyDown(keyCode, event);
 	}
 
 }

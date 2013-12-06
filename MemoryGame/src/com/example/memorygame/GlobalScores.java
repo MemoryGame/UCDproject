@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -27,6 +29,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,24 +45,23 @@ public class GlobalScores extends SherlockActivity implements
 	TextView scoreName, scores, scoreDate;
 	ListView lv;
 
-	/* Start of Custom ListView Layout */
-	class SingleRow {
-		String name;
-		String score;
-		int image;
-		String id;
+	int[] rank = new int[] { R.drawable.rank_image01, R.drawable.rank_image02,
+			R.drawable.rank_image03, R.drawable.rank_image04,
+			R.drawable.rank_image05, R.drawable.rank_image06,
+			R.drawable.rank_image07, R.drawable.rank_image08,
+			R.drawable.rank_image09, R.drawable.rank_image10,
+			R.drawable.rank_image11, R.drawable.rank_image12,
+			R.drawable.rank_image13, R.drawable.rank_image14,
+			R.drawable.rank_image15, R.drawable.rank_image16,
+			R.drawable.rank_image17, R.drawable.rank_image18,
+			R.drawable.rank_image19, R.drawable.rank_image20,
 
-		SingleRow(String name, String score, int image) {
-			this.name = name;
-			this.score = score;
-			this.image = image;
-
-		}
-	}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		/* Custom Themes */
 		SharedPreferences settings = this.getSharedPreferences("settings", 0);
 		int theme = settings.getInt("theme", 0);				
 		themeUtils.onActivityCreateSetTheme(this, theme);
@@ -106,6 +108,8 @@ public class GlobalScores extends SherlockActivity implements
 			} catch (Exception e) {
 
 				Log.e("log_tag", "Error in http connection " + e.toString());
+				Toast.makeText(getBaseContext(), "Cannot Connect To Leaderboard",
+						Toast.LENGTH_LONG).show();
 			}
 			try {
 				BufferedReader br = new BufferedReader(
@@ -117,12 +121,12 @@ public class GlobalScores extends SherlockActivity implements
 				}
 				is.close();
 				result = sb.toString();
-				System.out.println(result);
-				Log.d("log_tag", result);
 
 			} catch (Exception e) {
 				// TODO: handle exception
 				Log.e("log_tag", "Error converting result " + e.toString());
+				Toast.makeText(getBaseContext(), "Error Retrieving Leaderboard",
+						Toast.LENGTH_LONG).show();
 			}
 
 			return null;
@@ -133,27 +137,38 @@ public class GlobalScores extends SherlockActivity implements
 
 				JSONArray Jarray = new JSONArray(result);
 
-				ArrayList<String> arrayNames = null;
-				ArrayList<String> arrayScores = null;
-				ArrayList<String> arrayDates = null;
+				String[] arrayNames = new String[Jarray.length()];
+				String[] arrayScores = new String[Jarray.length()];
+				String[] arrayDates = new String[Jarray.length()];
 
-				/*
-				 * String[] arrayNames = new String[Jarray.length()]; String[]
-				 * arrayScores = new String[Jarray.length()]; String[]
-				 * arrayDates = new String[Jarray.length()];
-				 */
+				List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
 
 				for (int i = 0; i < Jarray.length(); i++) {
 
+					HashMap<String, String> hm = new HashMap<String, String>();
+
 					JSONObject Jasonobject = Jarray.getJSONObject(i);
 
-					String name = Jasonobject.getString("KEY_NAME");
-					String score = Jasonobject.getString("KEY_SCORE");
-					String date = Jasonobject.getString("KEY_DATE");
+					arrayNames[i] = Jasonobject.getString("KEY_NAME");
+					arrayScores[i] = Jasonobject.getString("KEY_SCORE");
+					arrayDates[i] = Jasonobject.getString("KEY_DATE");
 
-					arrayNames.add(name);
-					arrayScores.add(score);
-					arrayDates.add(date);
+					hm.put("name", arrayNames[i]);
+					hm.put("score", arrayScores[i]);
+					hm.put("ranks", Integer.toString(rank[i]));
+					aList.add(hm);
+
+					String[] from = { "ranks", "name", "score" };
+
+					int[] to = { R.id.imageView1, R.id.textView1,
+							R.id.textView2 };
+
+					SimpleAdapter adapter = new SimpleAdapter(getBaseContext(),
+							aList, R.layout.single_row, from, to);
+
+					ListView listView = (ListView) findViewById(R.id.listView2);
+
+					listView.setAdapter(adapter);
 
 					this.progressDialog.dismiss();
 				}
@@ -161,7 +176,7 @@ public class GlobalScores extends SherlockActivity implements
 			}
 
 			catch (JSONException e1) {
-				Toast.makeText(getBaseContext(), "No Data Found",
+				Toast.makeText(getBaseContext(), "No Highscores Present",
 						Toast.LENGTH_LONG).show();
 				this.progressDialog.dismiss();
 			}
@@ -170,6 +185,8 @@ public class GlobalScores extends SherlockActivity implements
 				// TODO: handle exception
 				Log.e("log_tag", "Error parsing data " + e.toString());
 				this.progressDialog.dismiss();
+				Toast.makeText(getBaseContext(), "Error Retrieving Leaderboard",
+						Toast.LENGTH_LONG).show();
 			}
 
 		}
@@ -214,17 +231,14 @@ public class GlobalScores extends SherlockActivity implements
 		case android.R.id.home:
 			finish();
 			continueMusic = true;
-		
+
 			return (true);
-		
+
 		case R.id.local:
 			finish();
 			abGoHome();
 			return (true);
 
-	
-
-		
 		}
 		return (super.onOptionsItemSelected(item));
 	}
