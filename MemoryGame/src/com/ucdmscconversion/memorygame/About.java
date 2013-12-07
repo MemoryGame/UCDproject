@@ -67,7 +67,7 @@ public class About extends SherlockActivity {
 					R.color.Grey_gunmetal));
 			textview5.setTextColor(getResources().getColor(
 					R.color.Grey_gunmetal));
-			textview1.setPadding(10, 10, 10, 10);
+			//textview1.setPadding(10, 10, 10, 10);
 			textview2.setPadding(10, 10, 10, 10);
 			textview3.setPadding(10, 10, 10, 10);
 			textview4.setPadding(10, 10, 10, 10);
