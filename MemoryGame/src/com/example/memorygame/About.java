@@ -15,7 +15,7 @@ import com.actionbarsherlock.view.MenuItem;
 public class About extends SherlockActivity {
 
 	Boolean continueMusic;
-	TextView textview1, textview2, textview3, textview4;
+	TextView textview1, textview2, textview3, textview4, textview5;
 	LinearLayout sub_back;
 
 	@Override
@@ -39,6 +39,7 @@ public class About extends SherlockActivity {
 		textview2 = (TextView) findViewById(R.id.textview2);
 		textview3 = (TextView) findViewById(R.id.textview3);
 		textview4 = (TextView) findViewById(R.id.textview4);
+		textview5 = (TextView) findViewById(R.id.textview5);
 		sub_back = (LinearLayout) findViewById(R.id.rootLayout);
 
 		int sdk = android.os.Build.VERSION.SDK_INT;
@@ -63,10 +64,13 @@ public class About extends SherlockActivity {
 					R.color.Grey_gunmetal));
 			textview4.setTextColor(getResources().getColor(
 					R.color.Grey_gunmetal));
+			textview5.setTextColor(getResources().getColor(
+					R.color.Grey_gunmetal));
 			textview1.setPadding(10, 10, 10, 10);
 			textview2.setPadding(10, 10, 10, 10);
 			textview3.setPadding(10, 10, 10, 10);
 			textview4.setPadding(10, 10, 10, 10);
+			textview5.setPadding(10, 10, 10, 10);
 
 			break;
 		case 1:

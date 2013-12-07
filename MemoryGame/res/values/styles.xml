@@ -13,14 +13,14 @@
 
         -->
                 <item name="windowActionBarOverlay">true</item>
-            <item name="android:windowFullscreen">true</item>
+           
     </style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
                 <item name="windowActionBarOverlay">true</item>
-            <item name="android:windowFullscreen">true</item>
+            
     </style>
 
     <style name="CustomTheme" parent="Theme.Sherlock">
@@ -28,7 +28,7 @@
         <item name="android:textColor">#FFF8DC</item>
         <item name="android:buttonStyle">@style/BlackButton</item>
              <item name="windowActionBarOverlay">true</item>
-            <item name="android:windowFullscreen">true</item>
+           
       
         
 
@@ -39,7 +39,10 @@
             <item name="android:textColor">#FFFFFF</item>
             <item name="android:buttonStyle">@style/KidsButton</item>
                  <item name="windowActionBarOverlay">true</item>
-            <item name="android:windowFullscreen">true</item>
+                 
+                 <item name="android:actionBarStyle">@style/BlueTheme.ActionBarStyle</item>
+<item name="actionBarStyle">@style/BlueTheme.ActionBarStyle</item>
+           
         </style>
         
       <style name="xmas" parent = "Theme.Sherlock">
@@ -47,7 +50,7 @@
             <item name="android:textColor">#FFFFFF</item>
             <item name="android:buttonStyle">@style/BlackButton</item>
             <item name="windowActionBarOverlay">true</item>
-            <item name="android:windowFullscreen">true</item>
+           
         </style>
    <style name="BlackButton" parent="@android:style/Widget.Button">
        <item name="android:textColor">#FFF8DC</item>
@@ -55,4 +58,16 @@
       <style name="KidsButton" parent="@android:style/Widget.Button">
        <item name="android:textColor">#000000</item>
    </style>
+   
+      <style name="BlueTheme.ActionBarStyle" parent="Widget.Sherlock.Light.ActionBar">
+<item name="android:titleTextStyle">@style/BlueTheme.ActionBar.TitleTextStyle</item>
+<item name="titleTextStyle">@style/BlueTheme.ActionBar.TitleTextStyle</item>
+</style>
+
+<style name="BlueTheme.ActionBar.TitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
+<item name="android:textColor">@color/Black</item>
+
+</style>
+   
+      
 </resources>

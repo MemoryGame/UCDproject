@@ -71,9 +71,9 @@ public class Options extends SherlockActivity implements OnClickListener {
 				xmasButton.setBackgroundDrawable(getResources().getDrawable(
 						R.drawable.kidscorners));
 				textview1.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.kidscorners));
+						R.drawable.kidscornersgrey));
 				textview2.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.kidscorners));
+						R.drawable.kidscornersgrey));
 
 			} else {
 				blueButton.setBackground(getResources().getDrawable(
@@ -196,6 +196,9 @@ public class Options extends SherlockActivity implements OnClickListener {
 		preferences = getPreferences(MODE_PRIVATE);
 
 		soundnotify = (ToggleButton) findViewById(R.id.toggleButton1);
+		soundnotify.setText(null);
+		soundnotify.setTextOn(null);
+		soundnotify.setTextOff(null);
 		
 		soundnotify
 				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

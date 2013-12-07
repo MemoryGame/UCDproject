@@ -24,7 +24,7 @@
     <string name="feedback_email">Please enter your email address</string>
     <string name="feedback_email_hint">Please enter your email address</string>
     <string name="feedback_heading">Feedback Form</string>
-    <string name="feedback_instructions">We value your feedback. Enter your name and email address to be entered into our draw on January 28th, 2014 for something! We do not pass on your details to third parties.</string>
+    <string name="feedback_instructions">We value your feedback. Enter your name and email address to be entered into our draw on January 28th, 2014 for a mystery prize! We do not pass on your details to third parties.</string>
     <string name="feedback_name">Please enter your name:</string>
     <string name="feedback_name_hint">Please enter your name:</string>
     <string name="game_page">The Game Itself</string>
@@ -66,5 +66,6 @@
 	<string name="hi">hi</string>
 	<string name="music_manage">Music Management</string>
 	<string name="theme_manage">Theme Management</string>
+	<string name="musicby">Music and sound effects by:\n\nEoin O Connor</string>
 	
 </resources>
