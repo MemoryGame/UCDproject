@@ -6,7 +6,7 @@
     <string name="action_settings"> Configuración </string>
     <string name="app_name"> Juego de Memoria </string>
     <string name="how_to_play"> Cómo jugar </string>
-    <string name="game_explanation"> "El objetivo del juego es simple. \ n \ nNo tener tres vidas. \ n luces \ nLos parpadea en una secuencia , de ver con cuidado. \ n \ nUna vez la secuencia se haya completado , se debe entrar en la secuencia de exactamente cómo lo encontró para completar el nivel . \ n \ nSe puede parecer fácil al principio, pero los patrones se hacen más largos , más rápido y el número de luces aumenta. \ n \ nPuede que termines el juego de la memoria? " </string>
+    <string name="game_explanation"> "El objetivo del juego es simple. \ n \ nTienes cuatro vidas. \ n luces \ nLos parpadea en una secuencia , de ver con cuidado. \ n \ nUna vez la secuencia se haya completado , se debe entrar en la secuencia de exactamente cómo lo encontró para completar el nivel . \ n \ nSe puede parecer fácil al principio, pero los patrones se hacen más largos , más rápido y el número de luces aumenta. \ n \ nPuede que termines el juego de la memoria? " </string>
     <string name="credits"> " Créditos : \ nEoin O'Connor \ Nkate Hanahoe \ nPeter Cosgrave \ nAndrew Doyle \ nPearse Cassidy" </string>
     <string name="appdescription"> " Desarrollado como parte del curso de desarrollo de aplicaciones móviles para Msc Informática UCD 2013 . " </string>
     <string name="disclaimer"> " Disclaimer : . Tenga en cuenta que esta aplicación es sólo con fines educativos " </string>

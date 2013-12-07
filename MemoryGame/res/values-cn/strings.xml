@@ -6,7 +6,7 @@
     <string name="action_settings">游戏设置</string>
     <string name="app_name">记忆游戏</string>
     <string name="how_to_play">如何游戏</string>
-    <string name="game_explanation"> “游戏的目的很简单。\n \ n您有三条命。\n \ n灯以序列闪烁，请仔细留意它们。\n \n一旦结束，需要你根据说见准确输入以完成该序列。\n \n首次会很简单，但随着样式，速度，和数量增加，难度递增，你有信心挑战记忆游戏吗？ “ </string>
+    <string name="game_explanation"> “游戏的目的很简单。\n \n你有四个生活。\n \n灯以序列闪烁，请仔细留意它们。\n \n一旦结束，需要你根据说见准确输入以完成该序列。\n \n首次会很简单，但随着样式，速度，和数量增加，难度递增，你有信心挑战记忆游戏吗？ “ </string>
     <string name="credits"> “分数： \ nEoin奥康纳\ nKate Hanahoe 凯特\ nPeter科斯瑞\ nAndrew多伊尔\ nPearse帕斯” </string>
     <string name="appdescription"> “本应用是UCD 2013 计算机科学硕士专业移动应用开发课程的项目开发部分 ” </string>
     <string name="disclaimer"> “免责声明：请注意，这个应用程序仅用于教育目的” </string>

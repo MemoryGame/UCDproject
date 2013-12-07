@@ -6,7 +6,7 @@
     <string name="action_settings"> Einstellungen </string>
     <string name="app_name"> Memory-Spiel </string>
     <string name="how_to_play"> Wie zu Spielen </string>
-    <string name="game_explanation"> "Das Ziel des Spiels ist einfach. \ n \ nSie haben drei Leben . \ n \ nDie Lichter werden in einer Sequenz zu blinken , sehen sie sorgfältig. \ n \ nWenn die Sequenz abgeschlossen ist, muss die Reihenfolge genau, wie Sie es gesehen , um den Level zu beenden geben . \ n \ nEs kann einfach erscheinen auf den ersten, aber die Muster werden länger , schneller und die Anzahl der Lichter zu erhöhen. \ n \ Ncan Sie das Memory-Spiel zu schlagen? " </string>
+    <string name="game_explanation"> "Das Ziel des Spiels ist einfach. \ n \ nSie haben vier Leben. \ n \ nDie Lichter werden in einer Sequenz zu blinken , sehen sie sorgfältig. \ n \ nWenn die Sequenz abgeschlossen ist, muss die Reihenfolge genau, wie Sie es gesehen , um den Level zu beenden geben . \ n \ nEs kann einfach erscheinen auf den ersten, aber die Muster werden länger , schneller und die Anzahl der Lichter zu erhöhen. \ n \ Ncan Sie das Memory-Spiel zu schlagen? " </string>
     <string name="credits"> " Credits: \ nEoin O'Connor \ Nkate Hanahoe \ nPeter Cosgrave \ nAndrew Doyle \ nPearse Cassidy " </string>
     <string name="appdescription"> "als Teil des Mobile Application Development Kurs für Msc Informatik UCD 2013 entwickelt . " </string>
     <string name="disclaimer"> "Disclaimer : . Bitte beachten Sie, dass diese Anwendung nur für Bildungszwecke " </string>
