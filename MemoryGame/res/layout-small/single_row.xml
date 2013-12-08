@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#FFFFFF"
+    android:background="@color/White"
     android:gravity="left|center"
     android:minHeight="?android:attr/listPreferredItemHeight" >
 
@@ -20,7 +20,7 @@
         android:layout_height="fill_parent"
         android:layout_marginLeft="5dip"
         android:layout_weight="1"
-        android:background="#FFFFFF"
+        android:background="@color/White"
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:orientation="vertical" >
 

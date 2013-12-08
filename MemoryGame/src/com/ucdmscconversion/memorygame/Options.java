@@ -304,9 +304,15 @@ public class Options extends SherlockActivity implements OnClickListener {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			finish();
+			boolean tgpref = preferences.getBoolean("tgpref", true);
+			if (tgpref) //if (tgpref) may be enough, not sure
+			{
 			continueMusic = true;
 			soundnotify.setChecked(true);
-			setResult(RESULT_OK);
+			
+			continueMusic = true;
+			soundnotify.setChecked(true);
+			}setResult(RESULT_OK);
 			return (true);
 
 		}
