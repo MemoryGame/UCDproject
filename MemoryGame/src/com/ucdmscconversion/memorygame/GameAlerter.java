@@ -1,6 +1,6 @@
 package com.ucdmscconversion.memorygame;
 
-import com.example.memorygame.R;
+
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

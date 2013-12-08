@@ -1,6 +1,6 @@
 package com.ucdmscconversion.memorygame;
 
-import com.example.memorygame.R;
+
 
 import android.app.Activity;
 import android.content.Intent;

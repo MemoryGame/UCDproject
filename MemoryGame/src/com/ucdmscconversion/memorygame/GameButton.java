@@ -1,6 +1,6 @@
 package com.ucdmscconversion.memorygame;
 
-import com.example.memorygame.R;
+
 
 import android.content.Context;
 import android.widget.Button;
