@@ -61,13 +61,14 @@ public class GlobalScores extends SherlockActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		
 		/* Custom Themes */
 		SharedPreferences settings = this.getSharedPreferences("settings", 0);
 		int theme = settings.getInt("theme", 0);				
 		themeUtils.onActivityCreateSetTheme(this, theme);
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_global_scores);
-		int hello = themeUtils.getcTheme();
+		//int hello = themeUtils.getcTheme();
 		getSupportActionBar().setBackgroundDrawable(null);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		lv = (ListView) findViewById(R.id.listView2);
