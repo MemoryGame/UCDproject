@@ -141,7 +141,7 @@ public class InsertScores extends SherlockActivity {
 			Intent go = getIntent();
 			int highScore = go.getIntExtra("Score", 0);
 			String sHighScore = Integer.toString(highScore);
-
+			
 			DatabaseScores enterScore = new DatabaseScores(InsertScores.this);
 			enterScore.open();
 			enterScore.createEntry(name, highScore);
@@ -154,7 +154,7 @@ public class InsertScores extends SherlockActivity {
 
 			StrictMode.setThreadPolicy(policy);
 
-			try {
+			try {				
 				HttpClient httpclient = new DefaultHttpClient();
 				HttpPost httppost = new HttpPost(
 						"http://andrewdoyle.pw/memorygame/update-global.php");

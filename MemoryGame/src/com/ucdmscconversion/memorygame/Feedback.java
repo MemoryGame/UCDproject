@@ -165,7 +165,7 @@ public class Feedback extends SherlockActivity {
 		Intent email2 = new Intent(android.content.Intent.ACTION_SEND);
 		email2.setType("plain/text");
 		email2.putExtra(android.content.Intent.EXTRA_EMAIL,
-				new String[] { "andrew.doyle@ucdconnect.ie",
+				new String[] { "memorygame2014@gmail.com",
 						mailaddress.getText().toString() });
 		email2.putExtra(android.content.Intent.EXTRA_SUBJECT,
 				"Memory Game Feedback Form");
