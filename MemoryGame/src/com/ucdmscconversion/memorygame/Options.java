@@ -53,12 +53,12 @@ public class Options extends SherlockActivity implements OnClickListener {
 		xmasButton.setBackgroundColor(Color.TRANSPARENT);
 		
 		/* Decide what music will be started again */
-		int whatTheme = themeUtils.getcTheme();
+		//int whatTheme = themeUtils.getcTheme();
 		textview1 = (TextView) findViewById(R.id.textView1);
 		textview2 = (TextView) findViewById(R.id.textView2);
 		int sdk = android.os.Build.VERSION.SDK_INT;
-		
-		switch (whatTheme){
+		// changed from whatTheme
+		switch (theme){
 		case 0:   // ***************** OCEAN THEME ************************ //
 			musicIsXmas = false;
 			musicIsHorror = false;

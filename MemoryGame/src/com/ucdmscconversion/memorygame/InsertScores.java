@@ -83,6 +83,77 @@ public class InsertScores extends SherlockActivity {
 		textView1.setPadding(10, 10, 10, 10);
 		playerName.setPadding(10, 10, 10, 10);
 		insertScore.setPadding(10, 10, 10, 10);
+		
+		/* AVOCADO BUTTON */
+
+		insertScore.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				
+				Toast.makeText(getApplicationContext(), "Adding Your Score",
+						Toast.LENGTH_SHORT).show();
+				
+				boolean didItWork = true;
+				try {
+					String name = playerName.getText().toString();
+					Intent go = getIntent();
+					int highScore = go.getIntExtra("Score", 0);
+					String sHighScore = Integer.toString(highScore);
+					
+					DatabaseScores enterScore = new DatabaseScores(InsertScores.this);
+					enterScore.open();
+					enterScore.createEntry(name, highScore);
+					enterScore.close();
+
+					ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+
+					nameValuePairs.add(new BasicNameValuePair("name", name));
+					nameValuePairs.add(new BasicNameValuePair("score", sHighScore));
+
+					StrictMode.setThreadPolicy(policy);
+
+					try {				
+						HttpClient httpclient = new DefaultHttpClient();
+						HttpPost httppost = new HttpPost(
+								"http://andrewdoyle.pw/memorygame/update-global.php");
+						httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+						httpclient.execute(httppost);
+
+					} catch (Exception e) {
+						didItWork = false;
+						Toast.makeText(getApplicationContext(), "Connection fail",
+								Toast.LENGTH_SHORT).show();
+
+					}
+
+				} finally {
+					if (didItWork) {
+						AlertDialog.Builder builder = new AlertDialog.Builder(InsertScores.this);
+						builder.setTitle("Success");
+						builder.setMessage("HighScore Added Successfully")
+								.setCancelable(false)
+								.setPositiveButton("OK",
+										new DialogInterface.OnClickListener() {
+											public void onClick(DialogInterface dialog,
+													int id) {
+												finish();
+												Intent toMainScreen = new Intent(
+														InsertScores.this,
+														MainMenu.class);
+												toMainScreen
+														.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+												startActivity(toMainScreen);
+											}
+										});
+						AlertDialog alert = builder.create();
+						alert.show();
+					}
+				}
+
+				
+			}
+
+		});
 
 	}
 	
@@ -132,65 +203,65 @@ public class InsertScores extends SherlockActivity {
 		MusicManager.start(this, MusicManager.MUSIC_MENU);
 	}
 
-
-	public void submitScore(View v) {
-		// TODO Auto-generated method stub
-		boolean didItWork = true;
-		try {
-			String name = playerName.getText().toString();
-			Intent go = getIntent();
-			int highScore = go.getIntExtra("Score", 0);
-			String sHighScore = Integer.toString(highScore);
-			
-			DatabaseScores enterScore = new DatabaseScores(InsertScores.this);
-			enterScore.open();
-			enterScore.createEntry(name, highScore);
-			enterScore.close();
-
-			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-
-			nameValuePairs.add(new BasicNameValuePair("name", name));
-			nameValuePairs.add(new BasicNameValuePair("score", sHighScore));
-
-			StrictMode.setThreadPolicy(policy);
-
-			try {				
-				HttpClient httpclient = new DefaultHttpClient();
-				HttpPost httppost = new HttpPost(
-						"http://andrewdoyle.pw/memorygame/update-global.php");
-				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-				httpclient.execute(httppost);
-
-			} catch (Exception e) {
-				didItWork = false;
-				Toast.makeText(getApplicationContext(), "Connection fail",
-						Toast.LENGTH_SHORT).show();
-
-			}
-
-		} finally {
-			if (didItWork) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle("Success");
-				builder.setMessage("HighScore Added Successfully")
-						.setCancelable(false)
-						.setPositiveButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int id) {
-										finish();
-										Intent toMainScreen = new Intent(
-												InsertScores.this,
-												MainMenu.class);
-										toMainScreen
-												.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-										startActivity(toMainScreen);
-									}
-								});
-				AlertDialog alert = builder.create();
-				alert.show();
-			}
-		}
-	}
+	/* below way allowed user to add scores twice!!*/
+//	public void submitScore(View v) {
+//		// TODO Auto-generated method stub
+//		boolean didItWork = true;
+//		try {
+//			String name = playerName.getText().toString();
+//			Intent go = getIntent();
+//			int highScore = go.getIntExtra("Score", 0);
+//			String sHighScore = Integer.toString(highScore);
+//			
+//			DatabaseScores enterScore = new DatabaseScores(InsertScores.this);
+//			enterScore.open();
+//			enterScore.createEntry(name, highScore);
+//			enterScore.close();
+//
+//			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+//
+//			nameValuePairs.add(new BasicNameValuePair("name", name));
+//			nameValuePairs.add(new BasicNameValuePair("score", sHighScore));
+//
+//			StrictMode.setThreadPolicy(policy);
+//
+//			try {				
+//				HttpClient httpclient = new DefaultHttpClient();
+//				HttpPost httppost = new HttpPost(
+//						"http://andrewdoyle.pw/memorygame/update-global.php");
+//				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+//				httpclient.execute(httppost);
+//
+//			} catch (Exception e) {
+//				didItWork = false;
+//				Toast.makeText(getApplicationContext(), "Connection fail",
+//						Toast.LENGTH_SHORT).show();
+//
+//			}
+//
+//		} finally {
+//			if (didItWork) {
+//				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//				builder.setTitle("Success");
+//				builder.setMessage("HighScore Added Successfully")
+//						.setCancelable(false)
+//						.setPositiveButton("OK",
+//								new DialogInterface.OnClickListener() {
+//									public void onClick(DialogInterface dialog,
+//											int id) {
+//										finish();
+//										Intent toMainScreen = new Intent(
+//												InsertScores.this,
+//												MainMenu.class);
+//										toMainScreen
+//												.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//										startActivity(toMainScreen);
+//									}
+//								});
+//				AlertDialog alert = builder.create();
+//				alert.show();
+//			}
+//		}
+//	}
 
 }
