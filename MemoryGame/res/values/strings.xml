@@ -43,7 +43,7 @@
 	<string name="global">Global</string>
     <string name="local">Local</string>
 	<string name="waitButtonText">Wait</string>
-    <string name="scoresTvVal">Scores</string>
+    <string name="scoresTvVal">Score:</string>
     <string name="LivesTvVal">Lives</string>
     <string name="ok">OK</string>
     <string name="score">Score</string>
