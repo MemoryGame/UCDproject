@@ -2,6 +2,8 @@ package com.ucdmscconversion.memorygame;
 
 
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,5 +43,19 @@ public class PreviewScreen extends Activity {
 		}, SPLASH_TIME_OUT);
 
 	}
+	
+	  @Override
+	  public void onStart() {
+	    super.onStart();
+	    //GOOGLE ANALYTICS
+	    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+	  }
+
+	  @Override
+	  public void onStop() {
+	    super.onStop();
+	    //GOOGLE ANALYTICS
+	    EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+	  }
 
 }

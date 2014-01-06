@@ -19,6 +19,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.analytics.tracking.android.EasyTracker;
 
 
 public class Options extends SherlockActivity implements OnClickListener {
@@ -288,6 +289,20 @@ public class Options extends SherlockActivity implements OnClickListener {
 		continueMusic = false;
 		MusicManager.start(this, MusicManager.MUSIC_MENU);
 	}
+	
+  @Override
+  public void onStart() {
+    super.onStart();
+    //GOOGLE ANALYTICS
+    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+  }
+
+  @Override
+  public void onStop() {
+    super.onStop();
+    //GOOGLE ANALYTICS
+    EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+  }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

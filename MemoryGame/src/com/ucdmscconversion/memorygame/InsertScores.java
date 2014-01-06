@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.os.SystemClock;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -26,10 +27,12 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.analytics.tracking.android.EasyTracker;
 
 
 public class InsertScores extends SherlockActivity {
 
+	private long mLastClickTime = 0;
 	EditText playerName;
 	TextView textView1;
 	Button insertScore;
@@ -84,12 +87,15 @@ public class InsertScores extends SherlockActivity {
 		playerName.setPadding(10, 10, 10, 10);
 		insertScore.setPadding(10, 10, 10, 10);
 		
-		/* AVOCADO BUTTON */
+	
 
 		insertScore.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				
+		        if (SystemClock.elapsedRealtime() - mLastClickTime < 200){
+		            return;
+		        }
+		        mLastClickTime = SystemClock.elapsedRealtime();
 				Toast.makeText(getApplicationContext(), "Adding Your Score",
 						Toast.LENGTH_SHORT).show();
 				
@@ -129,8 +135,8 @@ public class InsertScores extends SherlockActivity {
 				} finally {
 					if (didItWork) {
 						AlertDialog.Builder builder = new AlertDialog.Builder(InsertScores.this);
-						builder.setTitle("Success");
-						builder.setMessage("HighScore Added Successfully")
+						builder.setTitle("All done");
+						builder.setMessage("HighScore Added")
 								.setCancelable(false)
 								.setPositiveButton("OK",
 										new DialogInterface.OnClickListener() {
@@ -202,66 +208,20 @@ public class InsertScores extends SherlockActivity {
 		continueMusic = false;
 		MusicManager.start(this, MusicManager.MUSIC_MENU);
 	}
+	
+	  @Override
+	  public void onStart() {
+	    super.onStart();
+	    //GOOGLE ANALYTICS
+	    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+	  }
 
-	/* below way allowed user to add scores twice!!*/
-//	public void submitScore(View v) {
-//		// TODO Auto-generated method stub
-//		boolean didItWork = true;
-//		try {
-//			String name = playerName.getText().toString();
-//			Intent go = getIntent();
-//			int highScore = go.getIntExtra("Score", 0);
-//			String sHighScore = Integer.toString(highScore);
-//			
-//			DatabaseScores enterScore = new DatabaseScores(InsertScores.this);
-//			enterScore.open();
-//			enterScore.createEntry(name, highScore);
-//			enterScore.close();
-//
-//			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-//
-//			nameValuePairs.add(new BasicNameValuePair("name", name));
-//			nameValuePairs.add(new BasicNameValuePair("score", sHighScore));
-//
-//			StrictMode.setThreadPolicy(policy);
-//
-//			try {				
-//				HttpClient httpclient = new DefaultHttpClient();
-//				HttpPost httppost = new HttpPost(
-//						"http://andrewdoyle.pw/memorygame/update-global.php");
-//				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-//				httpclient.execute(httppost);
-//
-//			} catch (Exception e) {
-//				didItWork = false;
-//				Toast.makeText(getApplicationContext(), "Connection fail",
-//						Toast.LENGTH_SHORT).show();
-//
-//			}
-//
-//		} finally {
-//			if (didItWork) {
-//				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//				builder.setTitle("Success");
-//				builder.setMessage("HighScore Added Successfully")
-//						.setCancelable(false)
-//						.setPositiveButton("OK",
-//								new DialogInterface.OnClickListener() {
-//									public void onClick(DialogInterface dialog,
-//											int id) {
-//										finish();
-//										Intent toMainScreen = new Intent(
-//												InsertScores.this,
-//												MainMenu.class);
-//										toMainScreen
-//												.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//										startActivity(toMainScreen);
-//									}
-//								});
-//				AlertDialog alert = builder.create();
-//				alert.show();
-//			}
-//		}
-//	}
+	  @Override
+	  public void onStop() {
+	    super.onStop();
+	    //GOOGLE ANALYTICS
+	    EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+	  }
+
 
 }
